@@ -1,5 +1,5 @@
 # Sexy Bash Prompt, inspired by "Extravagant Zsh Prompt"
-# Screenshot: http://i.imgur.com/6CXVE.png
+# Screenshot: http://img.gf3.ca/d54942f474256ec26a49893681c49b5a.png
 # A big thanks to \amethyst on Freenode
 
 if [[ $COLORTERM = gnome-* && $TERM = xterm ]]  && infocmp gnome-256color >/dev/null 2>&1; then TERM=gnome-256color; fi
