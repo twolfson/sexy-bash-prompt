@@ -17,5 +17,3 @@ install-link:
 	echo ". ~/.bash_prompt" >> ~/.bashrc
 
 	@echo "# twolfson/sexy-bash-prompt installation complete!"
-
-.PHONY: docs clean docclean install uninstall
