@@ -7,4 +7,7 @@ if test -n "$STDERR"; then
   echo "ERRORS OCCURRED. STDERR OUTPUT:" 1>&2
   echo $STDERR 1>&2
   exit 1
+else
+  echo "All tests passed!"
+  exit 0
 fi
