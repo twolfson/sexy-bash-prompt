@@ -1,4 +1,6 @@
 # sexy-bash-prompt changelog
+0.5.0 - Moved majority of bash commands to `Makefile`
+
 0.4.0 - Added `install.sh` for simplified setup
 
 0.3.0 - Updated colors to be consistent between sections
