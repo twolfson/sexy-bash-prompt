@@ -20,7 +20,7 @@ install-link:
 
 clean:
 	@echo "# Cleaning up test files"
-	rm test.stderr
+	-rm test.stderr
 
 test: clean
 	# Run prompt test and output to stderr
@@ -28,15 +28,13 @@ test: clean
 	bash --norc --noprofile -i -c "./test/prompt_test.sh" 2>> test.stderr
 
 	# If there were test failures, fail
-	$(abc =)
-	echo  $(cat test.stderr)
-	# if test -n $(ABC); then
-	#   echo "# ERRORS OCCURRED. ABC OUTPUT:" 1>&2
-	#   echo $ABC 1>&2
-	#   exit 1
-	# else
-	#   echo "# All tests passed!"
-	#   exit 0
-	# fi
+	if test -s test.stderr; then
+	  echo "# ERRORS OCCURRED. STDERR OUTPUT:" 1>&2
+	  cat test.stderr 1>&2
+	  exit 1
+	else
+	  echo "# All tests passed!"
+	  exit 0
+	fi
 
 .PHONY: install install-link clean test
