@@ -2,11 +2,16 @@
 
 Beautiful and sexy [bash][bash] prompt with colors, git statuses, and git branches.
 
-Providing a unique symbol for every combination of a dirty, unpulled, and unpushed `git` branch.
+Features include:
+
+- Colored prompt for quicker pattern recognition of environment info
+- A unique symbol for every combination of a dirty, unpulled, and unpushed `git` branch
+- [Tests!][tests]
 
 ![sexy-bash-prompt screenshot][screenshot]
 
 [screenshot]: screenshot.png
+[tests]: test
 
 Forked from [a gist by gf3][sexy-bash-orig].
 
