@@ -1,8 +1,8 @@
 # Navigate to test directory
 TEST_DIR=$PWD/test
 
-# Unfixture all git directories (all .git to dotgit)
-"$TEST_DIR"/utils/unfixture_git.sh
+# Move any test .git directories back to dotgit
+make move-git-to-dotgit > /dev/null
 
 fixture_dir() {
   TMP_DIR=$(mktemp -d)
