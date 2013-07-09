@@ -1,8 +1,6 @@
 # sexy-bash-prompt [![Donate on Gittip](http://badgr.co/gittip/twolfson.png)](https://www.gittip.com/twolfson/)
 
-Beautiful and sexy [bash][bash] prompt with colors, git statuses, and git branches.
-
-Features include:
+Beautiful and sexy [bash][bash] prompt with colors, git statuses, and git branches. Features include:
 
 - Colored prompt for quicker pattern recognition of environment info
 - A unique symbol for every combination of a dirty, unpulled, and unpushed `git` branch
