@@ -14,33 +14,33 @@ if tput setaf 1 &> /dev/null; then
 
     # If the terminal supports at least 256 colors, write out our 256 color based set
     if [[ $(tput colors) -ge 256 ]] 2>/dev/null; then
-      USER_COLOR=$(tput setaf 27) #BLUE
-      PREPOSITION_COLOR=$(tput setaf 7) #WHITE
-      DEVICE_COLOR=$(tput setaf 39) #INDIGO
-      DIR_COLOR=$(tput setaf 76) #GREEN
-      GIT_STATUS_COLOR=$(tput setaf 154) #YELLOW
+      USER=$(tput setaf 27) #BLUE
+      PREPOSITION=$(tput setaf 7) #WHITE
+      DEVICE=$(tput setaf 39) #INDIGO
+      DIR=$(tput setaf 76) #GREEN
+      GIT_STATUS=$(tput setaf 154) #YELLOW
     else
     # Otherwise, use colors from our set of 16
       # Original colors from fork
-      USER_COLOR=$(tput setaf 5) #MAGENTA
-      PREPOSITION_COLOR=$(tput setaf 7) #WHITE
-      DEVICE_COLOR=$(tput setaf 4) #ORANGE
-      DIR_COLOR=$(tput setaf 2) #GREEN
-      GIT_STATUS_COLOR=$(tput setaf 1) #PURPLE
+      USER=$(tput setaf 5) #MAGENTA
+      PREPOSITION=$(tput setaf 7) #WHITE
+      DEVICE=$(tput setaf 4) #ORANGE
+      DIR=$(tput setaf 2) #GREEN
+      GIT_STATUS=$(tput setaf 1) #PURPLE
     fi
 
     # Save common color actions
     BOLD=$(tput bold)
-    NORMAL=$PREPOSITION_COLOR
+    NORMAL=$PREPOSITION
     RESET=$(tput sgr0)
 else
 # Otherwise, use ANSI escape sequences for coloring
     # Original colors from fork
-    USER_COLOR="\033[1;31m" #MAGENTA
-    PREPOSITION_COLOR="\033[1;37m" #WHITE
-    DEVICE_COLOR="\033[1;33m" #ORANGE
-    DIR_COLOR="\033[1;32m" #GREEN
-    GIT_STATUS_COLOR="\033[1;35m" #PURPLE
+    USER="\033[1;31m" #MAGENTA
+    PREPOSITION="\033[1;37m" #WHITE
+    DEVICE="\033[1;33m" #ORANGE
+    DIR="\033[1;32m" #GREEN
+    GIT_STATUS="\033[1;35m" #PURPLE
     BOLD=""
     RESET="\033[m"
 fi
@@ -111,6 +111,10 @@ parse_git_dirty () {
   [[ $(git status 2> /dev/null | tail -n1 | sed -E "s/nothing to commit..working directory clean.?/1/") != "1" ]] && echo 1
 }
 
+function is_on_git() {
+  git branch 2> /dev/null
+}
+
 function get_git_status() {
   # Grab the git dirty and git behind
   DIRTY_BRANCH=$(parse_git_dirty)
@@ -151,31 +155,11 @@ get_git_info () {
   fi
 }
 
-# ⍺ - alpha &#9082;
-# λ - lambda &lambda; &#955;
-# ∴ - therefore &there4; &#8756;
-# ± - plus-minus &plusmn; &#177;
-# ∓ - plus-minus-alt &plusmn; &#8723;
-# Δ - &Delta; &#916;
-# ∇ - &nabla; &#8711;
-# ▵ - Smaller delta &#9653;
-# ▴ - Smaller filled &#9652;
-# ▲ - Slightly bigger delta &#9651;
-# △ - Slightly bigger filled &#9650;
-# More characters experimented in https://github.com/twolfson/dotfiles/issues/4
-
-function is_on_git() {
-  git branch 2> /dev/null
-}
-
+# Symbol displayed at the line of every prompt
 get_prompt_symbol () {
-  # git branch --no-color 1> /dev/null 2> /dev/null && echo "∓" && return
+  # Some prompts display $ for a non-version control dir, ∓ for git, and § for mercurial
+  # I have chosen to keep it consistent
   echo "$"
 }
 
-# When on clean git branch,              $USER_COLOR at $COMPUTER in $PWD on $branch
-# When on dirty git branch,              $USER_COLOR at $COMPUTER in $PWD on $branch*
-# When on unsynced git branch,           $USER_COLOR at $COMPUTER in $PWD on $branch▵
-# When on unsynced and dirty git branch, $USER_COLOR at $COMPUTER in $PWD on $branch▴
-
-PS1="\[${BOLD}${USER_COLOR}\]\u \[$PREPOSITION_COLOR\]at \[$DEVICE_COLOR\]\h \[$PREPOSITION_COLOR\]in \[$DIR_COLOR\]\w\[$PREPOSITION_COLOR\]\$([[ -n \$(is_on_git) ]] && echo \" on \")\[$GIT_STATUS_COLOR\]\$(get_git_info)\[$NORMAL\]\n$(get_prompt_symbol) \[$RESET\]"
+PS1="\[${BOLD}${USER}\]\u \[$PREPOSITION\]at \[$DEVICE\]\h \[$PREPOSITION\]in \[$DIR\]\w\[$PREPOSITION\]\$([[ -n \$(is_on_git) ]] && echo \" on \")\[$GIT_STATUS\]\$(get_git_info)\[$NORMAL\]\n$(get_prompt_symbol) \[$RESET\]"
