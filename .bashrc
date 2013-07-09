@@ -14,33 +14,33 @@ if tput setaf 1 &> /dev/null; then
 
     # If the terminal supports at least 256 colors, write out our 256 color based set
     if [[ $(tput colors) -ge 256 ]] 2>/dev/null; then
-      USER=$(tput setaf 27) #BLUE
-      PREPOSITION=$(tput setaf 7) #WHITE
-      DEVICE=$(tput setaf 39) #INDIGO
-      DIR=$(tput setaf 76) #GREEN
-      GIT_STATUS=$(tput setaf 154) #YELLOW
+      USER_COLOR=$(tput setaf 27) #BLUE
+      PREPOSITION_COLOR=$(tput setaf 7) #WHITE
+      DEVICE_COLOR=$(tput setaf 39) #INDIGO
+      DIR_COLOR=$(tput setaf 76) #GREEN
+      GIT_STATUS_COLOR=$(tput setaf 154) #YELLOW
     else
     # Otherwise, use colors from our set of 16
       # Original colors from fork
-      USER=$(tput setaf 5) #MAGENTA
-      PREPOSITION=$(tput setaf 7) #WHITE
-      DEVICE=$(tput setaf 4) #ORANGE
-      DIR=$(tput setaf 2) #GREEN
-      GIT_STATUS=$(tput setaf 1) #PURPLE
+      USER_COLOR=$(tput setaf 5) #MAGENTA
+      PREPOSITION_COLOR=$(tput setaf 7) #WHITE
+      DEVICE_COLOR=$(tput setaf 4) #ORANGE
+      DIR_COLOR=$(tput setaf 2) #GREEN
+      GIT_STATUS_COLOR=$(tput setaf 1) #PURPLE
     fi
 
     # Save common color actions
     BOLD=$(tput bold)
-    NORMAL=$PREPOSITION
+    NORMAL=$PREPOSITION_COLOR
     RESET=$(tput sgr0)
 else
 # Otherwise, use ANSI escape sequences for coloring
     # Original colors from fork
-    USER="\033[1;31m" #MAGENTA
-    PREPOSITION="\033[1;37m" #WHITE
-    DEVICE="\033[1;33m" #ORANGE
-    DIR="\033[1;32m" #GREEN
-    GIT_STATUS="\033[1;35m" #PURPLE
+    USER_COLOR="\033[1;31m" #MAGENTA
+    PREPOSITION_COLOR="\033[1;37m" #WHITE
+    DEVICE_COLOR="\033[1;33m" #ORANGE
+    DIR_COLOR="\033[1;32m" #GREEN
+    GIT_STATUS_COLOR="\033[1;35m" #PURPLE
     BOLD=""
     RESET="\033[m"
 fi
@@ -162,4 +162,4 @@ get_prompt_symbol () {
   echo "$"
 }
 
-PS1="\[${BOLD}${USER}\]\u \[$PREPOSITION\]at \[$DEVICE\]\h \[$PREPOSITION\]in \[$DIR\]\w\[$PREPOSITION\]\$([[ -n \$(is_on_git) ]] && echo \" on \")\[$GIT_STATUS\]\$(get_git_info)\[$NORMAL\]\n$(get_prompt_symbol) \[$RESET\]"
+PS1="\[${BOLD}${USER_COLOR}\]\u \[$PREPOSITION_COLOR\]at \[$DEVICE_COLOR\]\h \[$PREPOSITION_COLOR\]in \[$DIR_COLOR\]\w\[$PREPOSITION_COLOR\]\$([[ -n \$(is_on_git) ]] && echo \" on \")\[$GIT_STATUS_COLOR\]\$(get_git_info)\[$NORMAL\]\n$(get_prompt_symbol) \[$RESET\]"
