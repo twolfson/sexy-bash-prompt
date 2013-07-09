@@ -23,18 +23,7 @@ clean:
 	-rm test.stderr
 
 test: clean
-	# Run prompt test and output to stderr
-	@echo "# Running prompt test"
-	bash --norc --noprofile -i -c "./test/prompt_test.sh" 2>> test.stderr
-
-	# If there were test failures, fail
-	if test -s test.stderr; then
-	  echo "# ERRORS OCCURRED. STDERR OUTPUT:" 1>&2
-	  cat test.stderr 1>&2
-	  exit 1
-	else
-	  echo "# All tests passed!"
-	  exit 0
-	fi
+	# Running all tests
+	./test/run.sh
 
 .PHONY: install install-link clean test

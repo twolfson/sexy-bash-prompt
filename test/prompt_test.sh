@@ -79,7 +79,7 @@ fixture_dir() {
   fixture_dir 'dirty-unpushed'
 
     # is a filled up triangle
-    test "$(get_git_status)" = "" || echo '`get_git_status` !== "▲" on a dirt and unpushed branch' 1>&2
+    test "$(get_git_status)" = "▲" || echo '`get_git_status` !== "▲" on a dirt and unpushed branch' 1>&2
 
   # on an unpulled branch
   fixture_dir 'unpulled'
