@@ -1,5 +1,5 @@
-DOTGIT_DIRS = $(wildcard test/test-files/*/dotgit)
-GIT_DIRS = $(wildcard test/test-files/*/.git)
+DOTGIT_DIRS := $(wildcard test/test-files/*/dotgit)
+GIT_DIRS := $(wildcard test/test-files/*/.git)
 
 install:
 	@echo "# Copying .bashrc to ~/.bash_prompt"
@@ -31,14 +31,15 @@ test: clean
 
 move-to-dotgit:
 	# Iterate over the dotgit directories
-	$(for DOTGIT_DIR in $(DOTGIT_DIRS); do
-	  # Find the target directory
-	  TARGET_DOTGIT_DIR="$(dirname $DOTGIT_DIR)"/.git
+	$(foreach ORIG_DIR, $(DOTGIT_DIRS), \
+	  mv $(ORIG_DIR) $(ORIG_DIR)/../.git; \
+	)
 
-	  # Move over the directories
-	  echo "Moving $DOTGIT_DIR to $TARGET_DOTGIT_DIR"
-	  mv $DOTGIT_DIR $TARGET_DOTGIT_DIR
-	done)
+move-to-git:
+	# Iterate over the .git directories
+	$(foreach ORIG_DIR, $(GIT_DIRS), \
+	  mv $(ORIG_DIR) $(ORIG_DIR)/../dotgit; \
+	)
 
 
 .PHONY: install install-link clean test
