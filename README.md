@@ -20,22 +20,24 @@ One line install:
 Manual install:
 
 ```shell
-$ # Clone the repository
-$ git clone --depth 1 https://github.com/twolfson/sexy-bash-prompt
+# Clone the repository
+git clone --depth 1 https://github.com/twolfson/sexy-bash-prompt
 Cloning into 'sexy-bash-prompt'...
 ...
 Resolving deltas: 100% (13/13), done.
-$ # Go into the directory
-$ cd sexy-bash-prompt
-$ # Install the script
-$ make install
+# Go into the directory
+cd sexy-bash-prompt
+# Install the script
+make install
 # Copying .bashrc to ~/.bash_prompt
 cp --force .bashrc ~/.bash_prompt
 # Adding ~/.bash_prompt to ~/.bashrc
 echo ". ~/.bash_prompt" >> ~/.bashrc
 # twolfson/sexy-bash-prompt installation complete!
-$ # Rerun your ~/.bashrc
-$ source ~/.bashrc
+# Rerun your ~/.bashrc
+source ~/.bashrc
+todd at Euclid in ~/github/sexy-bash-prompt on master
+# Your PS1 should now look like this!
 ```
 
 ## How does it work?
