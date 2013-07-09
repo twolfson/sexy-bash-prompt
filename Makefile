@@ -17,3 +17,26 @@ install-link:
 	echo ". ~/.bash_prompt" >> ~/.bashrc
 
 	@echo "# twolfson/sexy-bash-prompt installation complete!"
+
+clean:
+	rm test.stderr
+
+test:
+	# Clean up past stderr
+	make clean
+
+	# Run prompt test and output to stderr
+	bash --norc --noprofile -i -c "./test/prompt_test.sh" 2>> test.stderr
+
+	# If there were test failures, fail
+	STDERR=$(cat test.stderr)
+	if test -n "$STDERR"; then
+	  echo "ERRORS OCCURRED. STDERR OUTPUT:" 1>&2
+	  echo $STDERR 1>&2
+	  exit 1
+	else
+	  echo "All tests passed!"
+	  exit 0
+	fi
+
+.PHONY: install install-link clean test
