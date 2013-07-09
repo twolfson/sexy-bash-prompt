@@ -50,21 +50,7 @@ function get_git_branch() {
   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1/"
 }
 
-get_origin_ahead_diff () {
-  # Grab the branches
-  BRANCH=$(get_git_branch)
-  REMOTE_BRANCH=origin/$BRANCH
-
-  # Look up the result
-  git log $REMOTE_BRANCH..$BRANCH -1 --no-color 2> /dev/null | head -n1
-}
-
-parse_git_ahead () {
-  # Grab the branch
-  BRANCH=$(get_git_branch)
-
-  # Linux Mint 14
-  # todd at Euclid in ~/github/dotfiles/test/test-files/unpushed on master△
+is_branch1_behind_branch2 () {
   # $ git log origin/master..master
   # commit 4a633f715caf26f6e9495198f89bba20f3402a32
   # Author: Todd Wolfson <todd@twolfson.com>
@@ -72,26 +58,40 @@ parse_git_ahead () {
   #
   #     Unsynced commit
 
-  # If the diff         begins with "commit"
-  [[ $(get_origin_ahead_diff | sed -e "s/^\(commit\).*/\1/") == "commit" ]] ||
+  # -> ... -> "commit"
+
+  #           Look up if branch $1 has logs off of $2   | Pluck the first log | Return the first word "commit"
+  FIRST_LOG=$(git log $1..$2 -1 --no-color 2> /dev/null | head -n1            | sed -e "s/^\(commit\).*/\1/")
+
+  # If there was a first commit, echo out
+  [[ FIRST_LOG == "commit" ]] && echo 1
+}
+
+parse_git_ahead () {
+  # Grab the local and remote branch
+  BRANCH=$(get_git_branch)
+  REMOTE_BRANCH=origin/$BRANCH
+
+  # $ git log origin/master..master
+  # commit 4a633f715caf26f6e9495198f89bba20f3402a32
+  # Author: Todd Wolfson <todd@twolfson.com>
+  # Date:   Sun Jul 7 22:12:17 2013 -0700
+  #
+  #     Unsynced commit
+
+  # If the remote branch is behind the local branch
+  [[ -n $(is_branch1_behind_branch2 $REMOTE_BRANCH $BRANCH) ]] ||
     # or it has not been merged into origin
     [[ $(git branch -r --no-color 2> /dev/null | grep origin/$BRANCH 2> /dev/null | tail -n1) == "" ]] &&
     # echo our character
     echo 1
 }
 
-get_origin_behind_diff () {
-  # Grab the branches
+parse_git_behind () {
+  # Grab the branch
   BRANCH=$(get_git_branch)
   REMOTE_BRANCH=origin/$BRANCH
 
-  # Look up the result
-  git log $BRANCH..$REMOTE_BRANCH -1 --no-color 2> /dev/null | head -n1
-}
-
-parse_git_behind () {
-  # Linux Mint 14
-  # todd at Euclid in ~/github/dotfiles/test/test-files/unpulled on master
   # $ git log master..origin/master
   # commit 4a633f715caf26f6e9495198f89bba20f3402a32
   # Author: Todd Wolfson <todd@twolfson.com>
@@ -99,8 +99,8 @@ parse_git_behind () {
   #
   #     Unsynced commit
 
-  # If the diff         begins with "commit"
-  [[ $(get_origin_behind_diff | sed -e "s/^\(commit\).*/\1/") == "commit" ]] &&
+  # If the local branch is behind the remote branch
+  [[ -n $(is_branch1_behind_branch2 $BRANCH $REMOTE_BRANCH) ]] &&
     # echo our character
     echo 1
 }
