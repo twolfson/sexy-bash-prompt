@@ -29,16 +29,18 @@ test: clean
 	# Running all tests
 	./test/run.sh
 
-move-to-dotgit:
-	# Iterate over the dotgit directories
-	$(foreach ORIG_DIR, $(DOTGIT_DIRS), \
-	  mv $(ORIG_DIR) $(ORIG_DIR)/../.git; \
+move-dotgit-to-git:
+	# Moving over the dotgit directories to git directories
+	@$(foreach ORIG_DIR, $(DOTGIT_DIRS), \
+		echo "Moving $(ORIG_DIR) to $(ORIG_DIR)/../.git"; \
+		mv $(ORIG_DIR) $(ORIG_DIR)/../.git; \
 	)
 
-move-to-git:
-	# Iterate over the .git directories
-	$(foreach ORIG_DIR, $(GIT_DIRS), \
-	  mv $(ORIG_DIR) $(ORIG_DIR)/../dotgit; \
+move-git-to-dotgit:
+	# Moving over the git directories to dotgit directories
+	@$(foreach ORIG_DIR, $(GIT_DIRS), \
+		echo "Moving $(ORIG_DIR) to $(ORIG_DIR)/../dotgit"; \
+		mv $(ORIG_DIR) $(ORIG_DIR)/../dotgit; \
 	)
 
 
