@@ -12,7 +12,7 @@ if tput setaf 1 &> /dev/null; then
     # Reset the shell from our `if` check
     tput sgr0
 
-    # If the terminal supports at least 256 colors, write out our 256 colors
+    # If the terminal supports at least 256 colors, write out our 256 color based set
     if [[ $(tput colors) -ge 256 ]] 2>/dev/null; then
       USER=$(tput setaf 27) #BLUE
       PREPOSITION=$(tput setaf 7) #WHITE
