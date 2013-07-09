@@ -2,34 +2,45 @@
 # https://github.com/twolfson/sexy-bash-prompt
 # Forked from gf3, https://gist.github.com/gf3/306785
 
+# Determine what type of terminal we are using for `tput`
 if [[ $COLORTERM = gnome-* && $TERM = xterm ]]  && infocmp gnome-256color >/dev/null 2>&1; then export TERM=gnome-256color
 elif [[ $TERM != dumb ]] && infocmp xterm-256color >/dev/null 2>&1; then export TERM=xterm-256color
 fi
 
+# If we are on a colored terminal
 if tput setaf 1 &> /dev/null; then
+    # Reset the shell from our `if` check
     tput sgr0
+
+    # If the terminal supports at least 256 colors, write out our 256 colors
     if [[ $(tput colors) -ge 256 ]] 2>/dev/null; then
-      PREPOSITION=$(tput setaf 7) #WHITE
       USER=$(tput setaf 27) #BLUE
+      PREPOSITION=$(tput setaf 7) #WHITE
       DEVICE=$(tput setaf 39) #INDIGO
       DIR=$(tput setaf 76) #GREEN
       GIT_STATUS=$(tput setaf 154) #YELLOW
     else
-      MAGENTA=$(tput setaf 5)
-      ORANGE=$(tput setaf 4)
-      DIR=$(tput setaf 2)
-      PURPLE=$(tput setaf 1)
-      PREPOSITION=$(tput setaf 7)
+    # Otherwise, use colors from our set of 16
+      # Original colors from fork
+      USER=$(tput setaf 5) #MAGENTA
+      PREPOSITION=$(tput setaf 7) #WHITE
+      DEVICE=$(tput setaf 4) #ORANGE
+      DIR=$(tput setaf 2) #GREEN
+      GIT_STATUS=$(tput setaf 1) #PURPLE
     fi
+
+    # Save common color actions
     BOLD=$(tput bold)
     NORMAL=$PREPOSITION
     RESET=$(tput sgr0)
 else
-    MAGENTA="\033[1;31m"
-    ORANGE="\033[1;33m"
-    DIR="\033[1;32m"
-    PURPLE="\033[1;35m"
-    PREPOSITION="\033[1;37m"
+# Otherwise, use ANSI escape sequences for coloring
+    # Original colors from fork
+    USER="\033[1;31m" #MAGENTA
+    PREPOSITION="\033[1;37m" #WHITE
+    DEVICE="\033[1;33m" #ORANGE
+    DIR="\033[1;32m" #GREEN
+    GIT_STATUS="\033[1;35m" #PURPLE
     BOLD=""
     RESET="\033[m"
 fi
