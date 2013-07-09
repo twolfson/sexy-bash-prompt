@@ -10,6 +10,7 @@ install:
 	echo ". ~/.bash_prompt" >> ~/.bashrc
 
 	@echo "# twolfson/sexy-bash-prompt installation complete!"
+	exit 0
 
 install-link:
 	@echo "# Copying .bashrc to ~/.bash_prompt"
@@ -20,6 +21,7 @@ install-link:
 	echo ". ~/.bash_prompt" >> ~/.bashrc
 
 	@echo "# twolfson/sexy-bash-prompt installation complete!"
+	exit 0
 
 clean:
 	@echo "# Cleaning up test files"
