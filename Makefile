@@ -3,7 +3,7 @@ GIT_DIRS := $(wildcard test/test-files/*/.git)
 
 install:
 	@echo "# Copying .bashrc to ~/.bash_prompt"
-	cp --force .bashrc ~/.bash_prompt
+	cp -f .bashrc ~/.bash_prompt
 
 	@echo "# Adding ~/.bash_prompt to ~/.bashrc"
 	@echo "# Run twolfson/sexy-bash-prompt" >> ~/.bashrc
@@ -14,7 +14,7 @@ install:
 
 install-link:
 	@echo "# Copying .bashrc to ~/.bash_prompt"
-	ln --force --symbolic $(PWD)/.bashrc $(HOME)/.bash_prompt
+	ln -f -s $(PWD)/.bashrc $(HOME)/.bash_prompt
 
 	@echo "# Adding ~/.bash_prompt to ~/.bashrc"
 	@echo "# Run twolfson/sexy-bash-prompt" >> ~/.bashrc
