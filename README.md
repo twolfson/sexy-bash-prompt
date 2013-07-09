@@ -15,13 +15,13 @@ Forked from [a gist by gf3][sexy-bash-orig].
 ## Installation
 One line install:
 
-```shell
+```bash
 (cd /tmp && git clone --depth 1 https://github.com/twolfson/sexy-bash-prompt && cd sexy-bash-prompt && make install) && source ~/.bashrc
 ```
 
 Manual install:
 
-```shell
+```bash
 $ # Clone the repository
 $ git clone --depth 1 https://github.com/twolfson/sexy-bash-prompt
 $ Cloning into 'sexy-bash-prompt'...
