@@ -1,4 +1,6 @@
 # sexy-bash-prompt changelog
+0.4.0 - Added `install.sh` for simplified setup
+
 0.3.0 - Updated colors to be consistent between sections
 
 0.2.0 - Introducing latest content from (e.g. prompt updates, tests)
