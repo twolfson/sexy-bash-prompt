@@ -46,4 +46,12 @@ move-git-to-dotgit:
 	)
 
 
-.PHONY: install install-link clean test
+define DEMO_BODY
+Hello
+World
+endef
+export DEMO_BODY
+demo:
+	@echo "$$DEMO_BODY"
+
+.PHONY: install install-link clean test demo
