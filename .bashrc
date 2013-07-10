@@ -58,7 +58,8 @@ is_branch1_behind_branch2 () {
   #
   #     Unsynced commit
 
-  # -> ... -> "commit"
+  # -> commit 4a633f715caf26f6e9495198f89bba20f3402a32
+  # -> commit
 
   #           Look up if branch $1 has logs off of $2   | Pluck the first log | Return the first word "commit"
   FIRST_LOG=$(git log $1..$2 -1 --no-color 2> /dev/null | head -n1            | sed -e "s/^\(commit\).*/\1/")
