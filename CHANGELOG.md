@@ -1,4 +1,6 @@
 # sexy-bash-prompt changelog
+0.8.0 - Renamed `.bashrc` to `.bash_prompt` for semantic reasons
+
 0.7.0 - DRYed up source code to make use same function for ahead/behind
 
 0.6.0 - Namespaced colors, trimmed comments, and filled out README
