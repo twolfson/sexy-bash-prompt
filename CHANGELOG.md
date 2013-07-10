@@ -1,4 +1,6 @@
 # sexy-bash-prompt changelog
+0.9.0 - Moved `demo` script into `Makefile` and updated screenshot to include `non-git` state
+
 0.8.0 - Renamed `.bashrc` to `.bash_prompt` for semantic reasons
 
 0.7.0 - DRYed up source code to make use same function for ahead/behind
