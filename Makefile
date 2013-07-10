@@ -1,3 +1,4 @@
+TEST_DIRS := $(dirname wildcard test/test-files/*)
 DOTGIT_DIRS := $(wildcard test/test-files/*/dotgit)
 GIT_DIRS := $(wildcard test/test-files/*/.git)
 
@@ -45,13 +46,33 @@ move-git-to-dotgit:
 		mv $(ORIG_DIR) $(ORIG_DIR)/../dotgit; \
 	)
 
-
-define DEMO_BODY
-Hello
-World
-endef
-export DEMO_BODY
 demo:
-	@echo "$$DEMO_BODY"
+	# Move dotgit to git for copying
+	@make move-dotgit-to-git
+
+	# Copy over all the directories to /tmp/
+	rm -rf /tmp/git/
+	mkdir -p /tmp/git/
+	$(foreach ORIG_DIR, $(TEST_DIRS), \
+		cp -r $(ORIG_DIR) /tmp/git/$(ORIG_DIR)/../.git; \
+	)
+
+	# Move back git to dotgit dirs
+	@make move-git-to-dotgit
+
+	# Output follow up commands
+	@echo "Demo environment set up. Please run the following commands:"
+	@echo '"""'
+	@echo "cd ~/non-git"
+	@echo "cd /tmp/git/clean-synced"
+	@echo "cd /tmp/git/dirty"
+	@echo "cd /tmp/git/unpushed"
+	@echo "cd /tmp/git/dirty-unpushed"
+	@echo "cd /tmp/git/unpulled"
+	@echo "cd /tmp/git/dirty-unpulled"
+	@echo "cd /tmp/git/unpushed-unpulled"
+	@echo "cd /tmp/git/dirty-unpushed-unpulled"
+	@echo '"""'
+
 
 .PHONY: install install-link clean test demo
