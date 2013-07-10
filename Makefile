@@ -47,8 +47,8 @@ move-git-to-dotgit:
 	)
 
 demo:
-	@# Move dotgit to git for copying
-	@$(make move-dotgit-to-git)
+	# Move dotgit to git for copying
+	make move-dotgit-to-git
 
 	# Make non-git directory for demo
 	mkdir -p ~/non-git
@@ -60,8 +60,8 @@ demo:
 		cp -r test/test-files/$(TEST_DIR) /tmp/git/$(TEST_DIR); \
 	)
 
-	@# Move back git to dotgit dirs
-	@$(make move-git-to-dotgit)
+	# Move back git to dotgit dirs
+	make move-git-to-dotgit
 
 	# Output follow up commands
 	@echo "Demo environment set up. Please run the following commands:"
