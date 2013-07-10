@@ -1,4 +1,4 @@
-TEST_DIRS := $(dirname wildcard test/test-files/*)
+TEST_DIRS := $(notdir $(wildcard test/test-files/*))
 DOTGIT_DIRS := $(wildcard test/test-files/*/dotgit)
 GIT_DIRS := $(wildcard test/test-files/*/.git)
 
@@ -47,18 +47,21 @@ move-git-to-dotgit:
 	)
 
 demo:
-	# Move dotgit to git for copying
-	@make move-dotgit-to-git
+	@# Move dotgit to git for copying
+	@$(make move-dotgit-to-git)
+
+	# Make non-git directory for demo
+	mkdir -p ~/non-git
 
 	# Copy over all the directories to /tmp/
 	rm -rf /tmp/git/
 	mkdir -p /tmp/git/
-	$(foreach ORIG_DIR, $(TEST_DIRS), \
-		cp -r $(ORIG_DIR) /tmp/git/$(ORIG_DIR)/../.git; \
+	$(foreach TEST_DIR, $(TEST_DIRS), \
+		cp -r test/test-files/$(TEST_DIR) /tmp/git/$(TEST_DIR); \
 	)
 
-	# Move back git to dotgit dirs
-	@make move-git-to-dotgit
+	@# Move back git to dotgit dirs
+	@$(make move-git-to-dotgit)
 
 	# Output follow up commands
 	@echo "Demo environment set up. Please run the following commands:"
@@ -73,6 +76,5 @@ demo:
 	@echo "cd /tmp/git/unpushed-unpulled"
 	@echo "cd /tmp/git/dirty-unpushed-unpulled"
 	@echo '"""'
-
 
 .PHONY: install install-link clean test demo
