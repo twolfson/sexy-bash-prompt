@@ -1,4 +1,6 @@
 # sexy-bash-prompt changelog
+0.7.0 - DRYed up source code to make use same function for ahead/behind
+
 0.6.0 - Namespaced colors, trimmed comments, and filled out README
 
 0.5.0 - Moved majority of bash commands to `Makefile`
