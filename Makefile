@@ -2,8 +2,8 @@ DOTGIT_DIRS := $(wildcard test/test-files/*/dotgit)
 GIT_DIRS := $(wildcard test/test-files/*/.git)
 
 install:
-	@echo "# Copying .bashrc to ~/.bash_prompt"
-	cp -f .bashrc ~/.bash_prompt
+	@echo "# Copying .bash_prompt to ~/.bash_prompt"
+	cp -f .bash_prompt ~/.bash_prompt
 
 	@echo "# Adding ~/.bash_prompt to ~/.bashrc"
 	@echo "# Run twolfson/sexy-bash-prompt" >> ~/.bashrc
@@ -13,8 +13,8 @@ install:
 	exit 0
 
 install-link:
-	@echo "# Copying .bashrc to ~/.bash_prompt"
-	ln -f -s $(PWD)/.bashrc $(HOME)/.bash_prompt
+	@echo "# Copying .bash_prompt to ~/.bash_prompt"
+	ln -f -s $(PWD)/.bash_prompt $(HOME)/.bash_prompt
 
 	@echo "# Adding ~/.bash_prompt to ~/.bashrc"
 	@echo "# Run twolfson/sexy-bash-prompt" >> ~/.bashrc

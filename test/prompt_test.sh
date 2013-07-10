@@ -11,8 +11,8 @@ fixture_dir() {
   test -d dotgit && mv dotgit .git
 }
 
-# Load in bashrc
-. .bashrc
+# Load in bash_prompt
+. .bash_prompt
 
 # is_on_git
 

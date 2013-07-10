@@ -31,8 +31,8 @@ $ # Go into the directory
 $ cd sexy-bash-prompt
 $ # Install the script
 $ make install
-# Copying .bashrc to ~/.bash_prompt
-cp --force .bashrc ~/.bash_prompt
+# Copying .bash_prompt to ~/.bash_prompt
+cp --force .bash_prompt ~/.bash_prompt
 # Adding ~/.bash_prompt to ~/.bashrc
 echo ". ~/.bash_prompt" >> ~/.bashrc
 # twolfson/sexy-bash-prompt installation complete!
