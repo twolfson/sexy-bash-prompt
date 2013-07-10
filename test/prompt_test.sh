@@ -48,9 +48,6 @@ fixture_dir() {
     # is 'no branch'
     test "$(get_git_branch)" = "(no branch)" || echo '`get_git_branch` !== `(no branch)` off of a branch' 1>&2
 
-  # TODO: Should we ever list tag?
-  # TODO: What do you think about master~1 as a case?
-
 # git_status
 
   # on a clean and synced branch
