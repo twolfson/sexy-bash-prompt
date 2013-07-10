@@ -64,7 +64,7 @@ is_branch1_behind_branch2 () {
   FIRST_LOG=$(git log $1..$2 -1 --no-color 2> /dev/null | head -n1            | sed -e "s/^\(commit\).*/\1/")
 
   # If there was a first commit, echo out
-  [[ FIRST_LOG == "commit" ]] && echo 1
+  [[ $FIRST_LOG == "commit" ]] && echo 1
 }
 
 parse_git_ahead () {
