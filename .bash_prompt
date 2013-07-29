@@ -180,4 +180,14 @@ get_prompt_symbol () {
   echo "\$"
 }
 
-PS1="\[${BOLD}${USER_COLOR}\]\u \[$PREPOSITION_COLOR\]at \[$DEVICE_COLOR\]\h \[$PREPOSITION_COLOR\]in \[$DIR_COLOR\]\w\[$PREPOSITION_COLOR\]\$( is_on_git && echo \" on \[$GIT_STATUS_COLOR\]\$(get_git_info)\[$NORMAL\]\")\n$(get_prompt_symbol) \[$RESET\]"
+PS1="\[${BOLD}${USER_COLOR}\]\u \
+\[$PREPOSITION_COLOR\]at \
+\[$DEVICE_COLOR\]\h \
+\[$PREPOSITION_COLOR\]in \
+\[$DIR_COLOR\]\w\
+\[$PREPOSITION_COLOR\]\
+\$( is_on_git && \
+  echo -n \" on \" && \
+  echo -n \"\[$GIT_STATUS_COLOR\]\$(get_git_info)\" && \
+  echo -n \"\[$NORMAL\]\")\n\
+$(get_prompt_symbol) \[$RESET\]"
