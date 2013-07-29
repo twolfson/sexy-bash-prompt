@@ -1,4 +1,6 @@
 # sexy-bash-prompt changelog
+0.10.0 - Cleaned up code via reddit's LukeShu's suggestions and added Travis CI
+
 0.9.0 - Moved `demo` script into `Makefile` and updated screenshot to include `non-git` state
 
 0.8.0 - Renamed `.bashrc` to `.bash_prompt` for semantic reasons
