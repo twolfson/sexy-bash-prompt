@@ -20,13 +20,20 @@ fixture_dir() {
   fixture_dir 'git'
 
     # has an exit code of 0
-    is_on_git || echo '`is_on_git` === "" in git directory' 1>&2
+    is_on_git || echo '`is_on_git`; $? != 0 in git directory' 1>&2
 
   # in a non-git directory
   fixture_dir 'non-git'
 
     # has a non-zero exit code
-    ! is_on_git || echo '`is_on_git` !== "" in non-git directory' 1>&2
+    ! is_on_git || echo '`is_on_git`; $? == 0 in non-git directory' 1>&2
+
+  # in a git-init'd directory
+  # DEV: This is an edge case test discovered in 0.10.0
+  fixture_dir 'git-init'
+
+    # has an exit code of 0
+    is_on_git || echo '`is_on_git`; $? != 0 in git-init directory' 1>&2
 
 # get_git_branch
 

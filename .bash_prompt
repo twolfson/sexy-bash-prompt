@@ -129,7 +129,7 @@ parse_git_dirty () {
 
 function is_on_git() {
   # TODO: Add test against `git init`d directories #187d2be
-  git rev-parse 2> /dev/null
+  [[ "$(git branch 2> /dev/null)" != "" ]]
 }
 
 function get_git_status() {
@@ -180,6 +180,7 @@ get_prompt_symbol () {
   echo "\$"
 }
 
+# Define the sexy-bash-prompt
 PS1="\[${BOLD}${USER_COLOR}\]\u \
 \[$PREPOSITION_COLOR\]at \
 \[$DEVICE_COLOR\]\h \
