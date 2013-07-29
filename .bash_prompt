@@ -85,11 +85,12 @@ parse_git_ahead () {
   #     Unsynced commit
 
   # If the remote branch is behind the local branch
-  is_branch1_behind_branch2 "$REMOTE_BRANCH" "$BRANCH" ||
-    # or it has not been merged into origin (remote branch doesn't exist)
-    ! branch_exists "$REMOTE_BRANCH" &&
-    # echo our character
-    echo 1
+  if (is_branch1_behind_branch2 "$REMOTE_BRANCH" "$BRANCH" ||
+  # or it has not been merged into origin (remote branch doesn't exist)
+      ! branch_exists "$REMOTE_BRANCH"); then
+        # echo our character
+        echo 1
+  fi
 }
 
 parse_git_behind () {
@@ -105,9 +106,10 @@ parse_git_behind () {
   #     Unsynced commit
 
   # If the local branch is behind the remote branch
-  is_branch1_behind_branch2 "$BRANCH" "$REMOTE_BRANCH" &&
+  if is_branch1_behind_branch2 "$BRANCH" "$REMOTE_BRANCH"; then
     # echo our character
     echo 1
+  fi
 }
 
 parse_git_dirty () {
@@ -118,8 +120,11 @@ parse_git_dirty () {
   #  D file.txt # Unstaged deleted files
   # D  file.txt # Staged deleted files
 
-  # If the git status has *any* changes, then consider it dirty and echo out
-  [[ -n "$(git status --porcelain 2> /dev/null)" ]] && echo 1
+  # If the git status has *any* changes (i.e. dirty)
+  if [[ -n "$(git status --porcelain 2> /dev/null)" ]]; then
+    # echo our character
+    echo 1
+  fi
 }
 
 function is_on_git() {

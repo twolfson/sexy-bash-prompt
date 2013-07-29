@@ -19,14 +19,14 @@ fixture_dir() {
   # in a git directory
   fixture_dir 'git'
 
-    # returns a non-empty string
-    test "$(is_on_git)" != "" || echo '`is_on_git` === "" in git directory' 1>&2
+    # has an exit code of 0
+    is_on_git || echo '`is_on_git` === "" in git directory' 1>&2
 
   # in a non-git directory
   fixture_dir 'non-git'
 
-    # returns an empty string
-    test "$(is_on_git)" = "" || echo '`is_on_git` !== "" in non-git directory' 1>&2
+    # has a non-zero exit code
+    ! is_on_git || echo '`is_on_git` !== "" in non-git directory' 1>&2
 
 # get_git_branch
 
