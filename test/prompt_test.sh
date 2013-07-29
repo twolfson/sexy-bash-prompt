@@ -33,6 +33,7 @@ fixture_dir() {
   fixture_dir 'git-init'
 
     # has an exit code of 0
+    git rev-parse; echo $?
     is_on_git || echo '`is_on_git`; $? != 0 in git-init directory' 1>&2
 
 # get_git_branch
@@ -41,6 +42,7 @@ fixture_dir() {
   fixture_dir 'branch-master'
 
     # is `master`
+    get_git_branch
     test "$(get_git_branch)" = "master" || echo '`get_git_branch` !== `master` on a `master` branch' 1>&2
 
   # on `dev/test` branch
