@@ -1,4 +1,4 @@
-# sexy-bash-prompt [![Donate on Gittip](http://badgr.co/gittip/twolfson.png)](https://www.gittip.com/twolfson/)
+# sexy-bash-prompt [![Build status](https://travis-ci.org/twolfson/sexy-bash-prompt.png?branch=master)](https://travis-ci.org/twolfson/sexy-bash-prompt)
 
 Beautiful and sexy [bash][bash] prompt with colors, git statuses, and git branches.
 
@@ -47,6 +47,13 @@ $ # Your PS1 should now look like this!
 
 [bash]: https://en.wikipedia.org/wiki/Bash_%28Unix_shell%29
 [ps-vars]: http://www.gnu.org/software/bash/manual/bashref.html#index-PS1
+
+## Donating
+Donations are accepted via [gittip][].
+
+[![Donate on Gittip](http://badgr.co/gittip/twolfson.png)][gittip]
+
+[gittip]: https://www.gittip.com/twolfson/
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Test via `make test`.
