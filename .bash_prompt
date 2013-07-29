@@ -105,17 +105,12 @@ parse_git_behind () {
 }
 
 parse_git_dirty () {
-  # For unstaged new files
-  # ?? file.txt
-
-  # For staged new files
-  # A file.txt
-
-  # TODO: See status for unstaged deleted files
-  # TODO: See status for staged deleted files
-
-  # TODO: See status for unstaged modified files
-  # TODO: See status for staged modified files
+  # ?? file.txt # Unstaged new files
+  # A  file.txt # Staged new files
+  #  M file2.txt # Unstaged modified files
+  # M  file2.txt # Staged modified files
+  #  D file2.txt # Unstaged deleted files
+  # D  file2.txt # Staged deleted files
   [[ -n "$(git status --porcelain 2> /dev/null)" ]] && echo 1
 }
 
