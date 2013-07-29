@@ -48,25 +48,22 @@ fi
 function get_git_branch() {
   # On branches, this will return the branch name
   # On non-branches, HEAD -> (no branch)
-  git rev-parse --abbrev-ref HEAD | sed -e 's/^HEAD$/(no branch)/'
+  git rev-parse --abbrev-ref HEAD 2> /dev/null | sed -e 's/^HEAD$/(no branch)/'
 }
 
 is_branch1_behind_branch2 () {
-  # $ git log origin/master..master
+  # $ git log origin/master..master -1
   # commit 4a633f715caf26f6e9495198f89bba20f3402a32
   # Author: Todd Wolfson <todd@twolfson.com>
   # Date:   Sun Jul 7 22:12:17 2013 -0700
   #
   #     Unsynced commit
 
-  # -> commit 4a633f715caf26f6e9495198f89bba20f3402a32
-  # -> commit
+  # Find the first log (if any) that is in branch1 but not branch2
+  FIRST_LOG="$(git log $1..$2 -1 2> /dev/null)"
 
-  #           Look up if branch $1 has logs off of $2   | Pluck the first log | Return the first word "commit"
-  FIRST_LOG=$(git log $1..$2 -1 --no-color 2> /dev/null | head -n1            | sed -e "s/^\(commit\).*/\1/")
-
-  # If there was a first commit, echo out
-  [[ $FIRST_LOG == "commit" ]] && echo 1
+  # If there was a first log, echo out
+  [[ -n $FIRST_LOG ]] && echo 1
 }
 
 parse_git_ahead () {
@@ -108,8 +105,17 @@ parse_git_behind () {
 }
 
 parse_git_dirty () {
-  # nothing to commit, working directory clean
-  # nothing to commit (working directory clean)
+  # For unstaged new files
+  # ?? file.txt
+
+  # For staged new files
+  # A file.txt
+
+  # TODO: See status for unstaged deleted files
+  # TODO: See status for staged deleted files
+
+  # TODO: See status for unstaged modified files
+  # TODO: See status for staged modified files
   [[ -n "$(git status --porcelain 2> /dev/null)" ]] && echo 1
 }
 
@@ -162,7 +168,7 @@ get_git_info () {
 get_prompt_symbol () {
   # Some prompts display $ for a non-version control dir, ∓ for git, and § for mercurial
   # I have chosen to keep it consistent
-  echo "$"
+  echo "\$"
 }
 
 PS1="\[${BOLD}${USER_COLOR}\]\u \[$PREPOSITION_COLOR\]at \[$DEVICE_COLOR\]\h \[$PREPOSITION_COLOR\]in \[$DIR_COLOR\]\w\[$PREPOSITION_COLOR\]\$([[ -n \$(is_on_git) ]] && echo \" on \")\[$GIT_STATUS_COLOR\]\$(get_git_info)\[$NORMAL\]\n$(get_prompt_symbol) \[$RESET\]"
