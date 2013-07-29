@@ -49,11 +49,10 @@ $ # Your PS1 should now look like this!
 [ps-vars]: http://www.gnu.org/software/bash/manual/bashref.html#index-PS1
 
 ## Donating
-Support this project and [others by twolfson][twolfson] via [gittip][].
+Support this project and [others by twolfson][gittip] via [gittip][].
 
 [![Donate on Gittip](http://badgr.co/gittip/twolfson.png)][gittip]
 
-[twolfson]: http://twolfson.com/projects
 [gittip]: https://www.gittip.com/twolfson/
 
 ## Contributing
