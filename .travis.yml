@@ -1,2 +1,5 @@
 language: bash
 script: make test
+
+notifications:
+  email: false
