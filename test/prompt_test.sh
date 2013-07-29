@@ -33,6 +33,7 @@ fixture_dir() {
   fixture_dir 'git-init'
 
     # has an exit code of 0
+    git --version
     git rev-parse 2>&1
     git rev-parse; echo $?
     is_on_git || echo '`is_on_git`; $? != 0 in git-init directory' 1>&2
