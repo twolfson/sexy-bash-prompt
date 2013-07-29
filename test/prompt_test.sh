@@ -34,7 +34,6 @@ fixture_dir() {
   fixture_dir 'branch-master'
 
     # is `master`
-    echo "$(get_git_branch)"
     test "$(get_git_branch)" = "master" || echo '`get_git_branch` !== `master` on a `master` branch' 1>&2
 
   # on `dev/test` branch
@@ -47,7 +46,6 @@ fixture_dir() {
   fixture_dir 'branch-non'
 
     # is 'no branch'
-    echo "$(get_git_branch)"
     test "$(get_git_branch)" = "(no branch)" || echo '`get_git_branch` !== `(no branch)` off of a branch' 1>&2
 
 # git_status
