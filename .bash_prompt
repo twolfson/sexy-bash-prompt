@@ -47,10 +47,9 @@ fi
 
 function get_git_branch() {
   # On branches, this will return the branch name
-  # On non-branches, HEAD -> (no branch)
+  # On non-branches, (no branch)
   # TODO: For `git init` folders, this is not `master` when it should be #187d2be
-  # git symbolic-ref HEAD --short # works for `git init` case but not for "no branch" case =(
-  git rev-parse --abbrev-ref HEAD 2> /dev/null | sed -e 's/^HEAD$/(no branch)/'
+  git symbolic-ref HEAD --short 2> /dev/null || echo "(no branch)"
 }
 
 is_branch1_behind_branch2 () {
@@ -181,4 +180,4 @@ get_prompt_symbol () {
   echo "\$"
 }
 
-PS1="\[${BOLD}${USER_COLOR}\]\u \[$PREPOSITION_COLOR\]at \[$DEVICE_COLOR\]\h \[$PREPOSITION_COLOR\]in \[$DIR_COLOR\]\w\[$PREPOSITION_COLOR\]\$( is_on_git && echo \" on \")\[$GIT_STATUS_COLOR\]\$(get_git_info)\[$NORMAL\]\n$(get_prompt_symbol) \[$RESET\]"
+PS1="\[${BOLD}${USER_COLOR}\]\u \[$PREPOSITION_COLOR\]at \[$DEVICE_COLOR\]\h \[$PREPOSITION_COLOR\]in \[$DIR_COLOR\]\w\[$PREPOSITION_COLOR\]\$( is_on_git && echo \" on \[$GIT_STATUS_COLOR\]\$(get_git_info)\[$NORMAL\]\")\n$(get_prompt_symbol) \[$RESET\]"
