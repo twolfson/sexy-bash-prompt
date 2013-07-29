@@ -41,9 +41,6 @@ fixture_git_init() {
   fixture_git_init
 
     # has an exit code of 0
-    git --version
-    git rev-parse 2>&1
-    git rev-parse; echo $?
     is_on_git || echo '`is_on_git`; $? != 0 in git-init directory' 1>&2
 
 # get_git_branch
@@ -71,7 +68,6 @@ fixture_git_init() {
   fixture_git_init
 
     # is `master`
-    get_git_branch
     test "$(get_git_branch)" = "master" || echo '`get_git_branch` !== `master` in a `git-init` directory' 1>&2
 
 # git_status
