@@ -34,6 +34,7 @@ fixture_dir() {
   fixture_dir 'branch-master'
 
     # is `master`
+    echo "$(get_git_branch)"
     test "$(get_git_branch)" = "master" || echo '`get_git_branch` !== `master` on a `master` branch' 1>&2
 
   # on `dev/test` branch
