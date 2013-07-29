@@ -48,8 +48,7 @@ fi
 function get_git_branch() {
   # On branches, this will return the branch name
   # On non-branches, (no branch)
-  # TODO: For `git init` folders, this is not `master` when it should be #187d2be
-  git rev-parse --abbrev-ref HEAD 2> /dev/null | sed -e 's/^HEAD$/(no branch)/'
+  git symbolic-ref HEAD --short 2> /dev/null || echo "(no branch)"
 }
 
 is_branch1_behind_branch2 () {
