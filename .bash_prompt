@@ -62,8 +62,8 @@ is_branch1_behind_branch2 () {
   # Find the first log (if any) that is in branch1 but not branch2
   FIRST_LOG="$(git log $1..$2 -1 2> /dev/null)"
 
-  # If there was a first log, echo out
-  [[ -n $FIRST_LOG ]] && echo 1
+  # Exit with 0 if there is a first log, 1 if there is not
+  [[ -n $FIRST_LOG ]]
 }
 
 branch_exists () {
@@ -74,7 +74,7 @@ branch_exists () {
 parse_git_ahead () {
   # Grab the local and remote branch
   BRANCH="$(get_git_branch)"
-  REMOTE_BRANCH=origin/$BRANCH
+  REMOTE_BRANCH=origin/"$BRANCH"
 
   # $ git log origin/master..master
   # commit 4a633f715caf26f6e9495198f89bba20f3402a32
@@ -84,7 +84,7 @@ parse_git_ahead () {
   #     Unsynced commit
 
   # If the remote branch is behind the local branch
-  [[ -n "$(is_branch1_behind_branch2 $REMOTE_BRANCH $BRANCH)" ]] ||
+  is_branch1_behind_branch2 "$REMOTE_BRANCH" "$BRANCH" ||
     # or it has not been merged into origin (remote branch doesn't exist)
     ! branch_exists "$REMOTE_BRANCH" &&
     # echo our character
@@ -94,7 +94,7 @@ parse_git_ahead () {
 parse_git_behind () {
   # Grab the branch
   BRANCH="$(get_git_branch)"
-  REMOTE_BRANCH=origin/$BRANCH
+  REMOTE_BRANCH=origin/"$BRANCH"
 
   # $ git log master..origin/master
   # commit 4a633f715caf26f6e9495198f89bba20f3402a32
@@ -104,7 +104,7 @@ parse_git_behind () {
   #     Unsynced commit
 
   # If the local branch is behind the remote branch
-  [[ -n "$(is_branch1_behind_branch2 $BRANCH $REMOTE_BRANCH)" ]] &&
+  is_branch1_behind_branch2 "$BRANCH" "$REMOTE_BRANCH" &&
     # echo our character
     echo 1
 }
@@ -125,9 +125,9 @@ function is_on_git() {
 
 function get_git_status() {
   # Grab the git dirty and git behind
-  DIRTY_BRANCH=$(parse_git_dirty)
-  BRANCH_AHEAD=$(parse_git_ahead)
-  BRANCH_BEHIND=$(parse_git_behind)
+  DIRTY_BRANCH="$(parse_git_dirty)"
+  BRANCH_AHEAD="$(parse_git_ahead)"
+  BRANCH_BEHIND="$(parse_git_behind)"
 
   # Iterate through all the cases and if it matches, then echo
   if [[ $DIRTY_BRANCH == 1 && $BRANCH_AHEAD == 1 && $BRANCH_BEHIND == 1 ]]; then
@@ -149,7 +149,7 @@ function get_git_status() {
 
 get_git_info () {
   # Grab the branch
-  BRANCH=$(get_git_branch)
+  BRANCH="$(get_git_branch)"
 
   # If there are any branches
   if [[ $BRANCH != "" ]]; then
