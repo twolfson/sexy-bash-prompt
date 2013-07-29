@@ -128,8 +128,7 @@ parse_git_dirty () {
 }
 
 function is_on_git() {
-  # TODO: Add test against `git init`d directories #187d2be
-  [[ "$(git branch 2> /dev/null)" != "" ]]
+  git rev-parse 2> /dev/null
 }
 
 function get_git_status() {
