@@ -1,4 +1,6 @@
 # sexy-bash-prompt changelog
+0.10.1 - Fixed edge case for `get_git_branch` with `git-init` directories and tested edge case for `is_on_git` with `git-init` directories
+
 0.10.0 - Cleaned up code via reddit's LukeShu's suggestions and added Travis CI
 
 0.9.0 - Moved `demo` script into `Makefile` and updated screenshot to include `non-git` state
