@@ -48,6 +48,7 @@ fi
 function get_git_branch() {
   # On branches, this will return the branch name
   # On non-branches, HEAD -> (no branch)
+  # TODO: For `git init` folders, this is not `master` when it should be #187d2be
   git rev-parse --abbrev-ref HEAD 2> /dev/null | sed -e 's/^HEAD$/(no branch)/'
 }
 
@@ -116,11 +117,14 @@ parse_git_dirty () {
   # M  file.txt # Staged modified files
   #  D file.txt # Unstaged deleted files
   # D  file.txt # Staged deleted files
+
+  # If the git status has *any* changes, then consider it dirty and echo out
   [[ -n "$(git status --porcelain 2> /dev/null)" ]] && echo 1
 }
 
 function is_on_git() {
-  git branch 2> /dev/null
+  # TODO: Add test against `git init`d directories #187d2be
+  git rev-parse 2> /dev/null
 }
 
 function get_git_status() {
@@ -171,4 +175,4 @@ get_prompt_symbol () {
   echo "\$"
 }
 
-PS1="\[${BOLD}${USER_COLOR}\]\u \[$PREPOSITION_COLOR\]at \[$DEVICE_COLOR\]\h \[$PREPOSITION_COLOR\]in \[$DIR_COLOR\]\w\[$PREPOSITION_COLOR\]\$([[ -n \$(is_on_git) ]] && echo \" on \")\[$GIT_STATUS_COLOR\]\$(get_git_info)\[$NORMAL\]\n$(get_prompt_symbol) \[$RESET\]"
+PS1="\[${BOLD}${USER_COLOR}\]\u \[$PREPOSITION_COLOR\]at \[$DEVICE_COLOR\]\h \[$PREPOSITION_COLOR\]in \[$DIR_COLOR\]\w\[$PREPOSITION_COLOR\]\$( is_on_git && echo \" on \")\[$GIT_STATUS_COLOR\]\$(get_git_info)\[$NORMAL\]\n$(get_prompt_symbol) \[$RESET\]"
