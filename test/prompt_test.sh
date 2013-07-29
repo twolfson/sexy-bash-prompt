@@ -55,6 +55,13 @@ fixture_dir() {
     # is 'no branch'
     test "$(get_git_branch)" = "(no branch)" || echo '`get_git_branch` !== `(no branch)` off of a branch' 1>&2
 
+  # in a git-init'd directory
+  # DEV: This is an edge case test discovered in 0.10.0
+  fixture_dir 'git-init'
+
+    # is `master`
+    test "$(get_git_branch)" = "master" || echo '`get_git_branch` !== `master` on a `master` branch' 1>&2
+
 # git_status
 
   # on a clean and synced branch
