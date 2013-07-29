@@ -11,6 +11,12 @@ fixture_dir() {
   test -d dotgit && mv dotgit .git
 }
 
+fixture_git_init() {
+  TMP_DIR=$(mktemp -d)
+  cd $TMP_DIR
+  git init
+}
+
 # Load in bash_prompt
 . .bash_prompt
 
@@ -30,9 +36,9 @@ fixture_dir() {
 
   # in a git-init'd directory
   # DEV: This is an edge case test discovered in 0.10.0
-  fixture_dir 'git-init'
-  rm -r .git
-  git init
+  # DEV: Unfortunately, I cannot upgrade to the latest version of Git so I run `git init` to get Travis CI to pass
+  # fixture_dir 'git-init'
+  fixture_git_init
 
     # has an exit code of 0
     git --version
@@ -62,10 +68,7 @@ fixture_dir() {
 
   # in a git-init'd directory
   # DEV: This is an edge case test discovered in 0.10.0
-  fixture_dir 'git-init'
-  rm -r .git
-  git init
-
+  fixture_git_init
 
     # is `master`
     get_git_branch
