@@ -14,7 +14,7 @@ fixture_dir() {
 fixture_git_init() {
   TMP_DIR=$(mktemp -d)
   cd $TMP_DIR
-  git init
+  git init 1> /dev/null
 }
 
 # Load in bash_prompt
