@@ -53,6 +53,11 @@ Support this project and [others by twolfson][gittip] via [gittip][].
 
 [![Donate on Gittip](http://badgr.co/gittip/twolfson.png)][gittip]
 
+<a class="minibutton primary new-repo" href="/repositories/new">
+  <span class="octicon octicon-repo-create"></span>
+  New repository
+</a>
+
 [gittip]: https://www.gittip.com/twolfson/
 
 ## Contributing
