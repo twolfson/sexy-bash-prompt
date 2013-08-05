@@ -1,4 +1,6 @@
 # sexy-bash-prompt changelog
+0.10.3 - Updated donation section to use larger badge
+
 0.10.2 - Updates to test suite to get `git init` tests passing in Travis CI (problems between `git` versions)
 
 0.10.1 - Fixed edge case for `get_git_branch` with `git-init` directories and tested edge case for `is_on_git` with `git-init` directories
