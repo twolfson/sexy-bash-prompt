@@ -53,7 +53,7 @@ Support this project and [others by twolfson][gittip] via [gittip][].
 
 [![Support via Gittip][gittip-badge]][gittip]
 
-[gittip-badge]: https://rawgithub.com/twolfson/gittip-badge/0.1.0/dist/gittip.png
+[gittip-badge]: https://rawgithub.com/twolfson/gittip-badge/master/dist/gittip.png
 [gittip]: https://www.gittip.com/twolfson/
 
 ## Contributing
