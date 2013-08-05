@@ -51,13 +51,9 @@ $ # Your PS1 should now look like this!
 ## Donating
 Support this project and [others by twolfson][gittip] via [gittip][].
 
-[![Donate on Gittip](http://badgr.co/gittip/twolfson.png)][gittip]
+[![Support via Gittip][gittip-badge]][gittip]
 
-<a class="minibutton primary new-repo" href="/repositories/new">
-  <span class="octicon octicon-repo-create"></span>
-  New repository
-</a>
-
+[gittip-badge]: https://rawgithub.com/twolfson/gittip-badge/0.1.0/dist/gittip.png
 [gittip]: https://www.gittip.com/twolfson/
 
 ## Contributing
