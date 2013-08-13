@@ -1,4 +1,6 @@
 # sexy-bash-prompt changelog
+0.10.5 - Patched `get_git_branch` to allow compatibility with earlier Git versions
+
 0.10.4 - Added Support section to README
 
 0.10.3 - Updated donation section to use larger badge
