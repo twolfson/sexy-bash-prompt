@@ -1,4 +1,6 @@
 # sexy-bash-prompt changelog
+0.10.7 - Added FAQ section and information on prompt not appearing in new shells
+
 0.10.6 - Added testing against multiple `git` versions
 
 0.10.5 - Patched `get_git_branch` to allow compatibility with earlier Git versions
