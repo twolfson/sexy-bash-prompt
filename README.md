@@ -56,6 +56,14 @@ Support this project and [others by twolfson][gittip] via [gittip][].
 [gittip-badge]: https://rawgithub.com/twolfson/gittip-badge/master/dist/gittip.png
 [gittip]: https://www.gittip.com/twolfson/
 
+## Support
+Linux and Mac OSX are supported platforms.
+
+Windows is supported to the best of my abilities. However, there have been [font issues][putty-issue] with using [PuTTY][].
+
+[PuTTY]: http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html
+[putty-issue]: https://github.com/twolfson/sexy-bash-prompt/issues/7
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Test via `make test`.
 
