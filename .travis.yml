@@ -1,4 +1,9 @@
 language: bash
+env:
+  - GIT_PPA=1.8.3
+  - GIT_PPA=1.7.9.5
+before_script:
+  - ./test/before_script.sh
 script: make test
 
 notifications:
