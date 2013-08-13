@@ -1,7 +1,7 @@
 language: bash
 env:
-  - GIT_PPA=1.8.3
-  - GIT_PPA=1.7.9.5
+  - GIT_PPA='ppa:pdoes/ppa' # 1.8.3.1, http://blog.avirtualhome.com/git-ppa-for-ubuntu/
+  - GIT_PPA='1.7.9.5-1' # 1.7.9.5, https://launchpad.net/ubuntu/+source/git
 before_script:
   - ./test/before_script.sh
 script: make test
