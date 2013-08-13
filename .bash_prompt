@@ -48,7 +48,7 @@ fi
 function get_git_branch() {
   # On branches, this will return the branch name
   # On non-branches, (no branch)
-  REF="$(git symbolic-ref HEAD --short 2> /dev/null)"
+  REF="$(git symbolic-ref HEAD 2> /dev/null | sed -e 's/refs\/heads\///')"
   if [[ $REF != "" ]]; then
     echo $REF
   else
