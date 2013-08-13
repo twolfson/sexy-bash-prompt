@@ -3,7 +3,8 @@ env:
   - GIT_PPA='ppa:pdoes/ppa' # 1.8.3.1, http://blog.avirtualhome.com/git-ppa-for-ubuntu/
   - GIT_PPA='1.7.9.5-1' # 1.7.9.5, https://launchpad.net/ubuntu/+source/git
 before_script:
-  - ./test/before_script.sh
+  - ./test/before_script.sh # Take care of git version
+  - git --version # Spit out the git version
 script: make test
 
 notifications:
