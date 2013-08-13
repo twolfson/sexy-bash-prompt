@@ -1,4 +1,6 @@
 # sexy-bash-prompt changelog
+0.10.4 - Added Support section to README
+
 0.10.3 - Updated donation section to use larger badge
 
 0.10.2 - Updates to test suite to get `git init` tests passing in Travis CI (problems between `git` versions)
