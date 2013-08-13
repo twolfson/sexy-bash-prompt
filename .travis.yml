@@ -5,7 +5,9 @@ env:
 before_script:
   - ./test/before_script.sh # Take care of git version
   - git --version # Spit out the git version
-script: make test
+script:
+  - make test # Run normal test
+  - make test-install # Run install-specific test
 
 notifications:
   email: false
