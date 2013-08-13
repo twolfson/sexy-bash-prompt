@@ -4,3 +4,6 @@ if [[ "$GIT_PPA" != "ppa:pdoes/ppa" ]]; then
   sudo apt-get install ppa-purge -y
   sudo ppa-purge "ppa:pdoes/ppa" -y
 fi
+
+# Spit out the git version
+git --version

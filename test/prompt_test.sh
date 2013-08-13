@@ -1,10 +1,6 @@
 # Navigate to test directory
 TEST_DIR=$PWD/test
 
-echo "222"
-echo $GIT_PPA
-git --version
-
 # Move any test .git directories back to dotgit
 make move-git-to-dotgit > /dev/null
 
