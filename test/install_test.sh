@@ -18,3 +18,7 @@ if [[ "$EXPECTED_PS1" != "$ACTUAL_PS1" ]]; then
   echo "Actual PS1 !== expected PS1: $ACTUAL_PS1 !== $EXPECTED_PS1" 1>&2
   exit 1
 fi
+
+# Notify the user of all tests passing
+echo "All tests passed!"
+exit 0

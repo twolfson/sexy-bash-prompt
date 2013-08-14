@@ -27,8 +27,12 @@ clean:
 	-rm test.stderr
 
 test: clean
-	# Running all tests
+	# Running prompt test
 	./test/run.sh
+
+test-install:
+	# Running install test
+	./test/intall_test.sh
 
 move-dotgit-to-git:
 	# Moving over the dotgit directories to git directories
