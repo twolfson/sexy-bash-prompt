@@ -13,12 +13,11 @@ install:
 	exit 0
 
 install-link:
-	@echo "# Copying .bash_prompt to ~/.bash_prompt"
+	@echo "# Linking .bash_prompt to ~/.bash_prompt"
 	ln -f -s $(PWD)/.bash_prompt $(HOME)/.bash_prompt
 
-	@echo "# Adding ~/.bash_prompt to ~/.bashrc"
-	@echo "# Run twolfson/sexy-bash-prompt" >> ~/.bashrc
-	echo ". ~/.bash_prompt" >> ~/.bashrc
+	@# Run install script
+	./install.sh
 
 	@echo "# twolfson/sexy-bash-prompt installation complete!"
 	exit 0
