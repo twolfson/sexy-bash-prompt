@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Create helper to determine if our PS1 is installed
 ps1_is_installed () {
   # If our prompt is being loaded, exit positively

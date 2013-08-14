@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Install the prompt
 # make install
 
