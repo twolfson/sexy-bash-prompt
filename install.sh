@@ -14,8 +14,11 @@ ps1_is_installed () {
 
 # # Add the .bash_prompt invocation to .bashrc
 # echo "# Adding ~/.bash_prompt to ~/.bashrc"
-# echo "echo \". ~/.bash_prompt\" >> ~/.bashrc"
+# echo "# Run twolfson/sexy-bash-prompt" >> ~/.bashrc
 # echo ". ~/.bash_prompt" >> ~/.bashrc
+
+# Trigger the prompt
+. ~/.bashrc
 
 # # If our prompt is being loaded, leave
 # ps1_is_installed && exit 0
@@ -35,10 +38,9 @@ fi
 echo $PROFILE_SCRIPT
 
 # # Add a bash invocation to the profile script
-# echo "# Adding ~/.bashrc to $PROFILE_SCRIPT"
-# echo "echo \". ~/.bashrc\" >> $PROFILE_SCRIPT"
+# echo "# Adding ~/.bashrc triggers to $PROFILE_SCRIPT"
+# echo "# Trigger ~/.bashrc commands" >> ~/.bashrc
 # echo ". ~/.bashrc" >> "$PROFILE_SCRIPT"
-
 
 # Get the current PS1
 
