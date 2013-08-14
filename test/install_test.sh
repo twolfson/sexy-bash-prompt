@@ -5,11 +5,13 @@
 touch ~/.bashrc
 echo 'before'
 
+bash --version
+
 # Set up test constants
 EXPECTED_FILE="test/test-files/ps1/expected.txt"
 
 # Get the output of a new shell
-ACTUAL_PS1="$(bash -i -c 'echo $PS1')"
+ACTUAL_PS1="$(bash -c 'echo $PS1')"
 
 echo 'after'
 
