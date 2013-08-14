@@ -26,7 +26,7 @@ PROFILE_SCRIPT_FULL=~/.bash_profile
 
 # Find which exists .bash_profile, .bash_login, or .profile
 if [[ -f ~/.bash_profile ]]; then
-  # Use defaults
+  : # Use defaults
 elif [[ -f ~/.bash_login ]]; then
   PROFILE_SCRIPT_SHORT="~/.bash_login"
   PROFILE_SCRIPT_FULL=~/.bash_login
