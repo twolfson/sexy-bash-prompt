@@ -8,14 +8,15 @@ if [[ -n "$(get_ps1 | grep get_git_info)" ]]; then
   exit 0
 fi
 
-echo hi
-
-# If .bashrc does not exist OR does not contain .bash_prompt invocation
-  # Add the .bash_prompt invocation to .bashrc
-
-# Get the current PS1
+# Add the .bash_prompt invocation to .bashrc
+echo "# Adding ~/.bash_prompt to ~/.bashrc"
+echo "echo \". ~/.bash_prompt\" >> ~/.bashrc"
+echo ". ~/.bash_prompt" >> ~/.bashrc
 
 # If our prompt is being loaded, leave
+if [[ -n "$(get_ps1 | grep get_git_info)" ]]; then
+  exit 0
+fi
 
 # Find which exists .bash_profile, .bash_login, or .profile
 
