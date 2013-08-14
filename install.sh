@@ -3,12 +3,8 @@
 # Create helper to determine if our PS1 is installed
 ps1_is_installed () {
   # If our prompt is being loaded, exit positively
-  if [[ -n "$(bash -i -c 'echo $PS1' | grep 'get_git_info')" ]]; then
-    exit 0
-  fi
-
-  # Otherwise, exit negatively
-  exit 1
+  # if [[ -n "$(bash -i -c 'echo $PS1' | grep 'get_git_info')" ]]; then
+  [[ -n "$(bash -i -c 'echo $PS1' | grep 'no')" ]]
 }
 
 # # If the PS1 already contains our current prompt, leave
@@ -43,4 +39,5 @@ fi
 # echo ". ~/.bashrc" >> "$PROFILE_SCRIPT"
 
 # If our prompt is not being loaded, notify the user and leave angrily
-ps1_is_installed || (echo "sexy-bash-prompt was added to .bashrc and $PROFILE_SCRIPT but was not detected as installed properly." 1>&2 && exit 1)
+ps1_is_installed || (echo "sexy-bash-prompt was added to .bashrc \
+and $PROFILE_SCRIPT but is not being picked up by bash." 1>&2 && exit 1)
