@@ -3,9 +3,10 @@
 # Install the prompt
 # make install
 touch ~/.bashrc
+echo 'bash?'
+bash --version
 echo 'before'
 
-bash --version
 
 # Set up test constants
 EXPECTED_FILE="test/test-files/ps1/expected.txt"
