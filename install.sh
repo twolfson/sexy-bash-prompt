@@ -37,13 +37,10 @@ elif [[ -f ~/.profile ]]; then
   PROFILE_SCRIPT=~/.profile
 fi
 
-echo $PROFILE_SCRIPT
-
 # # Add a bash invocation to the profile script
 # echo "# Adding ~/.bashrc triggers to $PROFILE_SCRIPT"
 # echo "# Trigger ~/.bashrc commands" >> ~/.bashrc
 # echo ". ~/.bashrc" >> "$PROFILE_SCRIPT"
 
-# Get the current PS1
-
 # If our prompt is not being loaded, notify the user and leave angrily
+ps1_is_installed || (echo "sexy-bash-prompt was added to .bashrc and $PROFILE_SCRIPT but was not detected as installed properly." 1>&2 && exit 1)
