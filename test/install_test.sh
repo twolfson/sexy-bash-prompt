@@ -7,9 +7,12 @@ EXPECTED_FILE="test/test-files/ps1/expected.txt"
 # Get the output of a new shell
 ACTUAL_PS1="$(bash -i -c 'echo $PS1')"
 
-# # Save a fixture
-# echo "$ACTUAL_PS1" > $EXPECTED_FILE
+# Save a fixture
+echo -n "$ACTUAL_PS1" > "$EXPECTED_FILE"
 
 # Assert the ACTUAL_PS1 matches the expected PS1
 EXPECTED_PS1="$(cat $EXPECTED_FILE)"
-echo "$EXPECTED_PS1"
+if [[ "$EXPECTED_PS1" != "$ACTUAL_PS1" ]]; then
+  echo "Actual PS1 !== expected PS1: $ACTUAL_PS1 !== $EXPECTED_PS1" 1>&2
+  exit 1
+fi
