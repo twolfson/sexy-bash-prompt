@@ -17,8 +17,8 @@ ps1_is_installed () {
 # echo "# Run twolfson/sexy-bash-prompt" >> ~/.bashrc
 # echo ". ~/.bash_prompt" >> ~/.bashrc
 
-# Trigger the prompt
-. ~/.bashrc
+# # Trigger the prompt
+# . ~/.bashrc
 
 # # If our prompt is being loaded, leave
 # ps1_is_installed && exit 0
