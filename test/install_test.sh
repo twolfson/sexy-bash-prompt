@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Install the prompt
-make install
+$(make install)
 
 # Set up test constants
 EXPECTED_FILE="test/test-files/ps1/expected.txt"
