@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 # Install the prompt
-$(make install)
+# make install
+touch ~/.bashrc
 
 # Set up test constants
 EXPECTED_FILE="test/test-files/ps1/expected.txt"
@@ -9,8 +10,8 @@ EXPECTED_FILE="test/test-files/ps1/expected.txt"
 # Get the output of a new shell
 ACTUAL_PS1="$(bash -i -c 'echo $PS1')"
 
-# Save a fixture
-echo -n "$ACTUAL_PS1" > "$EXPECTED_FILE"
+# # Save a fixture
+# echo -n "$ACTUAL_PS1" > "$EXPECTED_FILE"
 
 # Assert the ACTUAL_PS1 matches the expected PS1
 EXPECTED_PS1="$(cat $EXPECTED_FILE)"
