@@ -32,7 +32,7 @@ test: clean
 
 test-install:
 	# Running install test
-	./test/intall_test.sh
+	./test/install_test.sh
 
 move-dotgit-to-git:
 	# Moving over the dotgit directories to git directories
