@@ -1,21 +1,6 @@
-BASH_PROFILE := $(wildcard $(HOME)/.bash_profile)
-BASH_LOGIN := $(wildcard $(HOME)/.bash_login)
-PROFILE := $(wildcard $(HOME)/.profile)
 TEST_DIRS := $(notdir $(wildcard test/test-files/*))
 DOTGIT_DIRS := $(wildcard test/test-files/*/dotgit)
 GIT_DIRS := $(wildcard test/test-files/*/.git)
-
-ifeq $(BASH_PROFILE), ''
-	echo 1
-endif
-
-install-dev:
-	# TODO: .bash_profile might not always exist
-	# ifeq $(BASH_PROFILE), ''
-	# echo 1
-	# endif
-	echo $(BASH_LOGIN)
-	echo $(PROFILE)
 
 install:
 	@echo "# Copying .bash_prompt to ~/.bash_prompt"
