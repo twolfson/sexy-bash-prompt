@@ -8,7 +8,7 @@ install:
 
 	@echo "# Adding ~/.bash_prompt to ~/.bashrc"
 	@echo "# Run twolfson/sexy-bash-prompt" >> ~/.bashrc
-	echo ". ~/.bash_prompt" >> ~/.bashrc
+	./install.sh
 
 	@echo "# twolfson/sexy-bash-prompt installation complete!"
 	exit 0
