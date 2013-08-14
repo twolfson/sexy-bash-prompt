@@ -3,12 +3,15 @@
 # Install the prompt
 # make install
 touch ~/.bashrc
+echo 'before'
 
 # Set up test constants
 EXPECTED_FILE="test/test-files/ps1/expected.txt"
 
 # Get the output of a new shell
 ACTUAL_PS1="$(bash -i -c 'echo $PS1')"
+
+echo 'after'
 
 # # Save a fixture
 # echo -n "$ACTUAL_PS1" > "$EXPECTED_FILE"
