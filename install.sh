@@ -9,20 +9,30 @@ ps1_is_installed () {
   exit 1
 }
 
-# If the PS1 already contains our current prompt, leave
-ps1_is_installed && exit 0
+# # If the PS1 already contains our current prompt, leave
+# ps1_is_installed && exit 0
 
-# Add the .bash_prompt invocation to .bashrc
-echo "# Adding ~/.bash_prompt to ~/.bashrc"
-echo "echo \". ~/.bash_prompt\" >> ~/.bashrc"
-echo ". ~/.bash_prompt" >> ~/.bashrc
+# # Add the .bash_prompt invocation to .bashrc
+# echo "# Adding ~/.bash_prompt to ~/.bashrc"
+# echo "echo \". ~/.bash_prompt\" >> ~/.bashrc"
+# echo ". ~/.bash_prompt" >> ~/.bashrc
 
-# If our prompt is being loaded, leave
-ps1_is_installed && exit 0
+# # If our prompt is being loaded, leave
+# ps1_is_installed && exit 0
+
+# By default, .bash_profile is our profile script
+PROFILE_SCRIPT=~/.bash_profile
 
 # Find which exists .bash_profile, .bash_login, or .profile
+if [[ -f ~/.bash_profile ]]; then
+  PROFILE_SCRIPT=~/.bash_profile
+elif [[ -f ~/.bash_login ]]; then
+  PROFILE_SCRIPT=~/.bash_login
+elif [[ -f ~/.profile ]]; then
+  PROFILE_SCRIPT=~/.profile
+fi
 
-# If there is no profile_script, fallback to .bash_profile
+echo $PROFILE_SCRIPT
 
 # Add a bash invocation to .bashrc
 
