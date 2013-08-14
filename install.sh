@@ -6,19 +6,19 @@ ps1_is_installed () {
   [[ -n "$(bash -i -c 'echo $PS1' | grep 'get_git_info')" ]]
 }
 
-# # If the PS1 already contains our current prompt, leave
-# ps1_is_installed && exit 0
+# If the PS1 already contains our current prompt, leave
+ps1_is_installed && exit 0
 
-# # Add the .bash_prompt invocation to .bashrc
-# echo "# Adding ~/.bash_prompt to ~/.bashrc"
-# echo "# Run twolfson/sexy-bash-prompt" >> ~/.bashrc
-# echo ". ~/.bash_prompt" >> ~/.bashrc
+# Add the .bash_prompt invocation to .bashrc
+echo "# Adding ~/.bash_prompt to ~/.bashrc"
+echo "# Run twolfson/sexy-bash-prompt" >> ~/.bashrc
+echo ". ~/.bash_prompt" >> ~/.bashrc
 
-# # Trigger the prompt
-# . ~/.bashrc
+# Trigger the prompt
+. ~/.bashrc
 
-# # If our prompt is being loaded, leave
-# ps1_is_installed && exit 0
+# If our prompt is being loaded, leave
+ps1_is_installed && exit 0
 
 # By default, .bash_profile is our profile script
 PROFILE_SCRIPT_SHORT="~/.bash_profile"
