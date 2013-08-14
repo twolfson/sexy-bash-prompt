@@ -34,7 +34,11 @@ fi
 
 echo $PROFILE_SCRIPT
 
-# Add a bash invocation to .bashrc
+# # Add a bash invocation to the profile script
+# echo "# Adding ~/.bashrc to $PROFILE_SCRIPT"
+# echo "echo \". ~/.bashrc\" >> $PROFILE_SCRIPT"
+# echo ". ~/.bashrc" >> "$PROFILE_SCRIPT"
+
 
 # Get the current PS1
 
