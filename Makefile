@@ -1,6 +1,11 @@
+BASH_PROFILE := $(wildcard $(HOME)/.bash_profile)
 TEST_DIRS := $(notdir $(wildcard test/test-files/*))
 DOTGIT_DIRS := $(wildcard test/test-files/*/dotgit)
 GIT_DIRS := $(wildcard test/test-files/*/.git)
+
+install-dev:
+	# TODO: .bash_profile might not always exist
+	echo $(BASH_PROFILE)
 
 install:
 	@echo "# Copying .bash_prompt to ~/.bash_prompt"
