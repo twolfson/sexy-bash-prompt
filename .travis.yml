@@ -7,6 +7,7 @@ before_script:
   - git --version # Spit out the git version
 script:
   - make test # Run normal test
+  # DEV: Install test is disabled due to Travis CI not closing --login scripts
   # - make test-install # Run install-specific test
 
 notifications:
