@@ -64,19 +64,6 @@ Windows is supported to the best of my abilities. However, there have been [font
 [PuTTY]: http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html
 [putty-issue]: https://github.com/twolfson/sexy-bash-prompt/issues/7
 
-### FAQs
-#### The prompt is not present in new shells
-For some operating systems, you may need to add to your `.bash_profile` to invoke `.bashrc` (how we attach `sexy-bash-prompt`). To do this, run:
-
-```bash
-echo ". ~/.bashrc" >> ~/.bash_profile
-```
-
-For more information, please see [#9][issue-9] and [the GNU manual][gnu]
-
-[issue-9]: https://github.com/twolfson/sexy-bash-prompt/issues/9
-[gnu]: https://www.gnu.org/software/bash/manual/html_node/Bash-Startup-Files.html
-
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Test via `make test`.
 
