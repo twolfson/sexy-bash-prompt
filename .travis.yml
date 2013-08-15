@@ -7,7 +7,7 @@ before_script:
   - git --version # Spit out the git version
 script:
   - make test # Run normal test
-  - make test-install # Run install-specific test
+  # - make test-install # Run install-specific test
 
 notifications:
   email: false
