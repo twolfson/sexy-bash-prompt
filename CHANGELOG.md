@@ -1,4 +1,6 @@
 # sexy-bash-prompt changelog
+0.12.0 - Removed `TERM` setting from .bash_prompt and fixed up colors for low-fi terminals
+
 0.11.0 - Robustified `make install` to handle .bashrc not being auto-invoked
 
 0.10.7 - Added FAQ section and information on prompt not appearing in new shells
