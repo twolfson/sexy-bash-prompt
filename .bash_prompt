@@ -37,17 +37,18 @@ if tput setaf 1 &> /dev/null; then
 else
 # Otherwise, use ANSI escape sequences for coloring
   # If you would like to customize your colors, use
-  # Items if interest (0-9, 30-47, 90-107)
+  # DEV: 30-39 lines up 0-9 from `tput`
   # TODO: Reset is not being observed here
-  for i in $(seq 0 109); do
-    echo -n -e "\033[1;${i}mText$(tput sgr0) "
-    echo "\033[1;${i}m"
-  done
-  USER_COLOR="\033[1;31m" #MAGENTA
+  # for i in $(seq 0 109); do
+  #   echo -n -e "\033[1;${i}mText$(tput sgr0) "
+  #   echo "\033[1;${i}m"
+  # done
+
+  USER_COLOR="\033[1;34m" #BLUE
   PREPOSITION_COLOR="\033[1;37m" #WHITE
-  DEVICE_COLOR="\033[1;33m" #ORANGE
+  DEVICE_COLOR="\033[1;36m" #INDIGO
   DIR_COLOR="\033[1;32m" #GREEN
-  GIT_STATUS_COLOR="\033[1;35m" #PURPLE
+  GIT_STATUS_COLOR="\033[1;33m" #YELLOW
   BOLD=""
   RESET="\033[m"
 fi
