@@ -8,6 +8,12 @@ if tput setaf 1 &> /dev/null; then
   # Reset the shell from our `if` check
   tput sgr0
 
+  # If you would like to customize your colors, use
+  # # Attribution: http://linuxtidbits.wordpress.com/2008/08/11/output-color-on-bash-scripts/
+  # for i in $(seq 0 $(tput colors)); do
+  # echo " $(tput setaf $i)Text$(tput sgr0) $(tput bold)$(tput setaf $i)Text$(tput sgr0) $(tput sgr 0 1)$(tput setaf $i)Text$(tput sgr0)  \$(tput setaf $i)"
+  # done
+
   # If the terminal supports at least 256 colors, write out our 256 color based set
   if [[ $(tput colors) -ge 256 ]] 2>/dev/null; then
     USER_COLOR=$(tput setaf 27) #BLUE
@@ -16,13 +22,12 @@ if tput setaf 1 &> /dev/null; then
     DIR_COLOR=$(tput setaf 76) #GREEN
     GIT_STATUS_COLOR=$(tput setaf 154) #YELLOW
   else
-  # Otherwise, use colors from our set of 16
-    # Original colors from fork
-    USER_COLOR=$(tput setaf 5) #MAGENTA
+  # Otherwise, use colors from our set of 8
+    USER_COLOR=$(tput setaf 4) #BLUE
     PREPOSITION_COLOR=$(tput setaf 7) #WHITE
-    DEVICE_COLOR=$(tput setaf 4) #ORANGE
+    DEVICE_COLOR=$(tput setaf 6) #CYAN
     DIR_COLOR=$(tput setaf 2) #GREEN
-    GIT_STATUS_COLOR=$(tput setaf 1) #PURPLE
+    GIT_STATUS_COLOR=$(tput setaf 3) #YELLOW
   fi
 
   # Save common color actions
