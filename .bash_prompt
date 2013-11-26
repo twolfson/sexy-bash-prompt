@@ -11,7 +11,7 @@ if tput setaf 1 &> /dev/null; then
   # If you would like to customize your colors, use
   # # Attribution: http://linuxtidbits.wordpress.com/2008/08/11/output-color-on-bash-scripts/
   # for i in $(seq 0 $(tput colors)); do
-  # echo " $(tput setaf $i)Text$(tput sgr0) $(tput bold)$(tput setaf $i)Text$(tput sgr0) $(tput sgr 0 1)$(tput setaf $i)Text$(tput sgr0)  \$(tput setaf $i)"
+  #   echo " $(tput setaf $i)Text$(tput sgr0) $(tput bold)$(tput setaf $i)Text$(tput sgr0) $(tput sgr 0 1)$(tput setaf $i)Text$(tput sgr0)  \$(tput setaf $i)"
   # done
 
   # If the terminal supports at least 256 colors, write out our 256 color based set
