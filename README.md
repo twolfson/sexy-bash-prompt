@@ -19,7 +19,7 @@ One line install:
 (cd /tmp && git clone --depth 1 https://github.com/twolfson/sexy-bash-prompt && cd sexy-bash-prompt && make install) && source ~/.bashrc
 ```
 
-### My colors don't line up
+### My colors don't look as advertised
 If you are seeing a screen like this:
 
 ![Bad TERM config](docs/bad_term.png)
