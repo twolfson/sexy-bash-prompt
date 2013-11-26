@@ -19,8 +19,29 @@ One line install:
 (cd /tmp && git clone --depth 1 https://github.com/twolfson/sexy-bash-prompt && cd sexy-bash-prompt && make install) && source ~/.bashrc
 ```
 
-Manual install:
+### My colors don't line up
+If you are seeing a screen like this:
 
+![Bad TERM config](docs/bad_term.png)
+
+Then, your `TERM` environment variable may never have been configured. Run the script below to prefix our prompt with a `TERM` setup
+
+```bash
+cat > /tmp/.bash_prompt_term <<EOF
+#!/usr/bin/env bash
+# Determine what type of terminal we are using for \`tput\`
+if [[ \$COLORTERM = gnome-* && \$TERM = xterm ]]  && infocmp gnome-256color >/dev/null 2>&1; then export TERM=gnome-256color
+elif [[ \$TERM != dumb ]] && infocmp xterm-256color >/dev/null 2>&1; then export TERM=xterm-256color
+fi
+
+EOF
+chmod +x /tmp/.bash_prompt_term
+cat ~/.bash_prompt >> /tmp/.bash_prompt_term
+cp /tmp/.bash_prompt_term ~/.bash_prompt
+rm /tmp/.bash_prompt_term
+```
+
+### Manual install
 ```bash
 $ # Clone the repository
 $ git clone --depth 1 https://github.com/twolfson/sexy-bash-prompt
