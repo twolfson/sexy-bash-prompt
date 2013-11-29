@@ -16,7 +16,6 @@ if tput setaf 1 &> /dev/null; then
 
   # If the terminal supports at least 256 colors, write out our 256 color based set
   if [[ $(tput colors) -ge 256 ]] 2>/dev/null; then
-    ROOT_COLOR="$(tput setaf 232)$(tput setab 197)" #BLACK ON RED
     USER_COLOR=$(tput setaf 27) #BLUE
     PREPOSITION_COLOR=$(tput setaf 7) #WHITE
     DEVICE_COLOR=$(tput setaf 39) #CYAN
@@ -24,7 +23,6 @@ if tput setaf 1 &> /dev/null; then
     GIT_STATUS_COLOR=$(tput setaf 154) #YELLOW
   else
   # Otherwise, use colors from our set of 8
-    ROOT_COLOR="$(tput setaf 0)$(tput setab 9)" #BLACK ON RED
     USER_COLOR=$(tput setaf 4) #BLUE
     PREPOSITION_COLOR=$(tput setaf 7) #WHITE
     DEVICE_COLOR=$(tput setaf 6) #CYAN
@@ -43,7 +41,7 @@ else
   #   echo -n -e "\033[1;${i}mText$(tput sgr0) "
   #   echo "\033[1;${i}m"
   # done
-  ROOT_COLOR="\033[40;1;30m" #BLACK ON RED
+
   USER_COLOR="\033[1;34m" #BLUE
   PREPOSITION_COLOR="\033[1;37m" #WHITE
   DEVICE_COLOR="\033[1;36m" #CYAN
@@ -62,9 +60,6 @@ user_priv() {
       return 1 
     fi
 }
-
-# If we are root, use root color 
-$(user_priv) && USER_COLOR="$ROOT_COLOR"
 
 function get_git_branch() {
   # On branches, this will return the branch name
@@ -153,12 +148,7 @@ parse_git_dirty () {
 }
 
 function is_on_git() {
-  # If and only if we are not root, return git info
-  if user_priv; then
-    return 1
-  else
-    git rev-parse 2> /dev/null
-  fi
+  git rev-parse 2> /dev/null
 }
 
 function get_git_status() {
@@ -206,15 +196,11 @@ get_git_info () {
 get_prompt_symbol () {
   # Some prompts display $ for a non-version control dir, ∓ for git, and § for mercurial
   # I have chosen to keep it consistent
-  if user_priv; then
-    echo "#"
-  else
-    echo "\$"
-  fi
+  echo "\$"
 }
 
 # Define the sexy-bash-prompt
-PS1="\[${BOLD}${USER_COLOR}\]\u${RESET}${BOLD} \
+PS1="\[${BOLD}${USER_COLOR}\]\u \
 \[$PREPOSITION_COLOR\]at \
 \[$DEVICE_COLOR\]\h \
 \[$PREPOSITION_COLOR\]in \
