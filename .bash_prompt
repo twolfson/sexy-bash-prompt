@@ -54,7 +54,7 @@ NORMAL=$PREPOSITION_COLOR
 
 # Determine if we are root
 user_priv() {
-    if [[ $(id -u) == "0" ]]; then
+    if [[ $UID == "0" ]]; then
       return 0 
     else
       return 1 
