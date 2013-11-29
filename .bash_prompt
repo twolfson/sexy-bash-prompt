@@ -192,12 +192,16 @@ get_git_info () {
   fi
 }
 
-# Symbol displayed at the line of every prompt
-get_prompt_symbol () {
+# Symbol displayed at the line of every prompt                                          
+get_prompt_symbol () {                                                                  
   # Some prompts display $ for a non-version control dir, ∓ for git, and § for mercurial
-  # I have chosen to keep it consistent
-  echo "\$"
-}
+  # I have chosen to keep it consistent                                                 
+  if user_priv; then                                                                    
+    echo "#"                                                                            
+  else                                                                                  
+    echo "\$"                                                                           
+  fi                                                                                    
+}                                                                                       
 
 # Define the sexy-bash-prompt
 PS1="\[${BOLD}${USER_COLOR}\]\u \
