@@ -183,7 +183,7 @@ get_git_info () {
 }
 
 # Symbol displayed at the line of every prompt
-get_prompt_symbol () {
+function get_prompt_symbol() {
   # If we are root, display `#`. Otherwise, `$`
   if [[ $UID == 0 ]]; then
     echo "#"
