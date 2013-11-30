@@ -6,7 +6,7 @@
 # If we are on a colored terminal
 if tput setaf 1 &> /dev/null; then
   # Reset the shell from our `if` check
-  tput sgr0
+  tput sgr0 > /dev/null
 
   # If you would like to customize your colors, use
   # # Attribution: http://linuxtidbits.wordpress.com/2008/08/11/output-color-on-bash-scripts/
