@@ -22,7 +22,7 @@ fixture_git_init() {
 
 # sexy-bash-prompt
 
-  # when run
+  # when run as a script
   prompt_output="$(bash --norc --noprofile -i -c '. .bash_prompt')"
 
     # does not have any output
