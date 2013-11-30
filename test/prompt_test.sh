@@ -120,3 +120,17 @@ fixture_git_init() {
 
     # is an filled hexagon
     test "$(get_git_status)" = "⬢" || echo '`get_git_status` !== "⬢" on a dirty, unpushed, and unpulled branch' 1>&2
+
+# get_prompt_symbol
+
+  # with a normal user
+  bash_symbol="$(bash --norc --noprofile -i -c '. ~/.bash_prompt; echo $(get_prompt_symbol)')"
+
+    # is $
+    echo $bash_symbol
+
+  # with root
+  bash_symbol="$(sudo bash --norc --noprofile -i -c '. ~/.bash_prompt; echo $(get_prompt_symbol)')"
+
+    # is #
+    echo $bash_symbol
