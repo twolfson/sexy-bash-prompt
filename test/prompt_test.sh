@@ -20,6 +20,21 @@ fixture_git_init() {
 # Load in bash_prompt
 . .bash_prompt
 
+# get_prompt_symbol
+  # with a normal user
+  bash_symbol="$(bash --norc --noprofile -i -c 'echo $PWD; . .bash_prompt; echo -n $(get_prompt_symbol)')"
+
+    # is $
+    echo $bash_symbol
+    test "$bash_symbol" = "$" || echo '`get_prompt_symbol` !== "$" for a normal user' 1>&2
+
+  # with root
+  bash_symbol="$(sudo bash --norc --noprofile -i -c '. .bash_prompt; echo -n $(get_prompt_symbol)')"
+
+    # is #
+    echo "$bash_symbol"
+    test "$bash_symbol" = "#" || echo '`get_prompt_symbol` !== "#" for root' 1>&2
+
 # is_on_git
 
   # in a git directory
@@ -120,17 +135,3 @@ fixture_git_init() {
 
     # is an filled hexagon
     test "$(get_git_status)" = "⬢" || echo '`get_git_status` !== "⬢" on a dirty, unpushed, and unpulled branch' 1>&2
-
-# get_prompt_symbol
-
-  # with a normal user
-  bash_symbol="$(bash --norc --noprofile -i -c '. ~/.bash_prompt; echo $(get_prompt_symbol)')"
-
-    # is $
-    test "$bash_symbol" = "\$" || echo '`get_prompt_symbol` !== "$" for a normal user' 1>&2
-
-  # with root
-  bash_symbol="$(sudo bash --norc --noprofile -i -c '. ~/.bash_prompt; echo $(get_prompt_symbol)')"
-
-    # is #
-    test "$bash_symbol" = "#" || echo '`get_prompt_symbol` !== "#" for root' 1>&2
