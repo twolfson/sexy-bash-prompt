@@ -6,7 +6,7 @@
 # If we are on a colored terminal
 if tput setaf 1 &> /dev/null; then
   # Reset the shell from our `if` check
-  tput sgr0 > /dev/null
+  tput sgr0 &> /dev/null
 
   # If you would like to customize your colors, use
   # # Attribution: http://linuxtidbits.wordpress.com/2008/08/11/output-color-on-bash-scripts/
@@ -15,7 +15,7 @@ if tput setaf 1 &> /dev/null; then
   # done
 
   # If the terminal supports at least 256 colors, write out our 256 color based set
-  if [[ $(tput colors) -ge 256 ]] 2> /dev/null; then
+  if [[ $(tput colors) -ge 256 ]] &> /dev/null; then
     USER_COLOR=$(tput setaf 27) #BLUE
     PREPOSITION_COLOR=$(tput setaf 7) #WHITE
     DEVICE_COLOR=$(tput setaf 39) #CYAN
