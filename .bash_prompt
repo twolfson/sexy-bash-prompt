@@ -50,7 +50,6 @@ else
   BOLD=""
   RESET="\033[m"
 fi
-NORMAL=$PREPOSITION_COLOR
 
 # Determine if we are root
 user_priv() {
@@ -213,5 +212,5 @@ PS1="\[${BOLD}${USER_COLOR}\]\u \
 \$( is_on_git && \
   echo -n \" on \" && \
   echo -n \"\[$GIT_STATUS_COLOR\]\$(get_git_info)\" && \
-  echo -n \"\[$NORMAL\]\")\n\
+  echo -n \"\[$PREPOSITION_COLOR\]\")\n\
 $(get_prompt_symbol) \[$RESET\]"
