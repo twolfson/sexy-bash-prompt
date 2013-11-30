@@ -28,30 +28,18 @@ fixture_git_init() {
     # does not have any output
     test ${#prompt_output} -eq 0 || echo '`prompt_output` did not have length 0' 1>&2
 
-# # get_prompt_symbol
-#   # with a normal user
-#   echo '---'
+# get_prompt_symbol
+  # with a normal user
+  bash_symbol="$(bash --norc --noprofile -i -c '. .bash_prompt; echo $(get_prompt_symbol)')"
 
-#   bash_symbol="$(bash --norc --noprofile -i -c '. .bash_prompt')"
-#   # bash_symbol="$(bash --norc --noprofile -i -c '. .bash_prompt; echo -n $(get_prompt_symbol)')"
+    # is $
+    test "$bash_symbol" = "$" || echo '`get_prompt_symbol` !== "$" for a normal user' 1>&2
 
-#     # is $
-#     # bash_symbol="$"
-#     echo ${bash_symbol:0:1}
-#     echo ${bash_symbol:1:1}
-#     echo ${bash_symbol:2:1}
-#     echo ${bash_symbol:3:1}
-#     echo ${bash_symbol:4:1}
-#     echo ${bash_symbol:5:1}
-#     echo ${#bash_symbol}
-#     test ${bash_symbol:0} = "$" || echo '`get_prompt_symbol` !== "$" for a normal user' 1>&2
+  # with root
+  bash_symbol="$(sudo bash --norc --noprofile -i -c '. .bash_prompt; echo $(get_prompt_symbol)')"
 
-#   # with root
-#   bash_symbol="$(sudo bash --norc --noprofile -i -c '. .bash_prompt; echo -n $(get_prompt_symbol)')"
-
-#     # is #
-#     echo -n "$bash_symbol"
-#     test "$bash_symbol" = "#" || echo '`get_prompt_symbol` !== "#" for root' 1>&2
+    # is #
+    test "$bash_symbol" = "#" || echo '`get_prompt_symbol` !== "#" for root' 1>&2
 
 # is_on_git
 
