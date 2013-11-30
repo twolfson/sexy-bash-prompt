@@ -51,15 +51,6 @@ else
   RESET="\033[m"
 fi
 
-# Determine if we are root
-user_priv() {
-    if [[ $UID == "0" ]]; then
-      return 0 
-    else
-      return 1 
-    fi
-}
-
 function get_git_branch() {
   # On branches, this will return the branch name
   # On non-branches, (no branch)
@@ -191,16 +182,15 @@ get_git_info () {
   fi
 }
 
-# Symbol displayed at the line of every prompt                                          
-get_prompt_symbol () {                                                                  
-  # Some prompts display $ for a non-version control dir, ∓ for git, and § for mercurial
-  # I have chosen to keep it consistent                                                 
-  if user_priv; then                                                                    
-    echo "#"                                                                            
-  else                                                                                  
-    echo "\$"                                                                           
-  fi                                                                                    
-}                                                                                       
+# Symbol displayed at the line of every prompt
+get_prompt_symbol () {
+  # If we are root, display `#`. Otherwise, `$`
+  if test $UID -eq 0; then
+    echo "#"
+  else
+    echo "\$"
+  fi
+}
 
 # Define the sexy-bash-prompt
 PS1="\[${BOLD}${USER_COLOR}\]\u \
