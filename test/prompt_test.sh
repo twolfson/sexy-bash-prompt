@@ -1,4 +1,5 @@
 # Navigate to test directory
+ORIG_PWD=$PWD
 TEST_DIR=$PWD/test
 
 # Move any test .git directories back to dotgit
@@ -19,27 +20,6 @@ fixture_git_init() {
 
 # Load in bash_prompt
 . .bash_prompt
-
-# sexy-bash-prompt
-
-  # when run as a script
-  prompt_output="$(bash --norc --noprofile -i -c '. .bash_prompt')"
-
-    # does not have any output
-    test ${#prompt_output} -eq 0 || echo '`prompt_output` did not have length 0' 1>&2
-
-# get_prompt_symbol
-  # with a normal user
-  bash_symbol="$(bash --norc --noprofile -i -c '. .bash_prompt; echo $(get_prompt_symbol)')"
-
-    # is $
-    test "$bash_symbol" = "$" || echo '`get_prompt_symbol` !== "$" for a normal user' 1>&2
-
-  # with root
-  bash_symbol="$(sudo bash --norc --noprofile -i -c '. .bash_prompt; echo $(get_prompt_symbol)')"
-
-    # is #
-    test "$bash_symbol" = "#" || echo '`get_prompt_symbol` !== "#" for root' 1>&2
 
 # is_on_git
 
@@ -141,3 +121,27 @@ fixture_git_init() {
 
     # is an filled hexagon
     test "$(get_git_status)" = "⬢" || echo '`get_git_status` !== "⬢" on a dirty, unpushed, and unpulled branch' 1>&2
+
+# sexy-bash-prompt
+cd $ORIG_PWD
+
+  # when run as a script
+  prompt_output="$(bash --norc --noprofile -i -c '. .bash_prompt')"
+
+    # does not have any output
+    test ${#prompt_output} -eq 0 || echo '`prompt_output` did not have length 0' 1>&2
+
+# get_prompt_symbol
+cd $ORIG_PWD
+
+  # with a normal user
+  bash_symbol="$(bash --norc --noprofile -i -c '. .bash_prompt; echo $(get_prompt_symbol)')"
+
+    # is $
+    test "$bash_symbol" = "$" || echo '`get_prompt_symbol` !== "$" for a normal user' 1>&2
+
+  # with root
+  bash_symbol="$(sudo bash --norc --noprofile -i -c '. .bash_prompt; echo $(get_prompt_symbol)')"
+
+    # is #
+    test "$bash_symbol" = "#" || echo '`get_prompt_symbol` !== "#" for root' 1>&2
