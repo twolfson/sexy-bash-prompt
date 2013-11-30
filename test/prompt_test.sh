@@ -28,9 +28,14 @@ fixture_git_init() {
 
     # is $
     # bash_symbol="$"
-    echo ${bash_symbol}
+    echo ${bash_symbol:0:1}
+    echo ${bash_symbol:1:1}
+    echo ${bash_symbol:2:1}
+    echo ${bash_symbol:3:1}
+    echo ${bash_symbol:4:1}
+    echo ${bash_symbol:5:1}
     echo ${#bash_symbol}
-    test $bash_symbol = "$" || echo '`get_prompt_symbol` !== "$" for a normal user' 1>&2
+    test ${bash_symbol:0} = "$" || echo '`get_prompt_symbol` !== "$" for a normal user' 1>&2
 
   # with root
   bash_symbol="$(sudo bash --norc --noprofile -i -c '. .bash_prompt; echo -n $(get_prompt_symbol)')"
