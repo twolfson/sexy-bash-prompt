@@ -1,4 +1,6 @@
 # sexy-bash-prompt changelog
+0.15.0 - Converted all UPPER_CASE variable names to lower_case
+
 0.14.0 - Added `#` as prompt symbol for root
 
 0.13.0 - Adjusted color comments and DRYed up colors
