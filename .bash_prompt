@@ -54,11 +54,11 @@ fi
 # Apply any color over-rides that have been set in the environment
 [[ -z $PROMPT_USER_COLOR ]] || user_color="$PROMPT_USER_COLOR"
 [[ -z $PROMPT_PREPOSITION_COLOR ]] || preposition_color="$PROMPT_PREPOSITION_COLOR"
-[[ -z $PROMPT_DEVICE_COLOR ]] && device_color="$PROMPT_DEVICE_COLOR"
-[[ -z $PROMPT_DIR_COLOR ]] && dir_color="$PROMPT_DIR_COLOR"
-[[ -z $PROMPT_GIT_STATUS_COLOR ]] && git_status_color="$PROMPT_GIT_STATUS_COLOR"
-[[ -z $PROMPT_BOLD ]] && bold="$PROMPT_BOLD"
-[[ -z $PROMPT_RESET ]] && reset="$PROMPT_RESET"
+[[ -z $PROMPT_DEVICE_COLOR ]] || device_color="$PROMPT_DEVICE_COLOR"
+[[ -z $PROMPT_DIR_COLOR ]] || dir_color="$PROMPT_DIR_COLOR"
+[[ -z $PROMPT_GIT_STATUS_COLOR ]] || git_status_color="$PROMPT_GIT_STATUS_COLOR"
+[[ -z $PROMPT_BOLD ]] || bold="$PROMPT_BOLD"
+[[ -z $PROMPT_RESET ]] || reset="$PROMPT_RESET"
 
 function get_git_branch() {
   # On branches, this will return the branch name
