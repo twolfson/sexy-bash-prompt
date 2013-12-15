@@ -14,25 +14,26 @@ if tput setaf 1 &> /dev/null; then
   #   echo " $(tput setaf $i)Text$(tput sgr0) $(tput bold)$(tput setaf $i)Text$(tput sgr0) $(tput sgr 0 1)$(tput setaf $i)Text$(tput sgr0)  \$(tput setaf $i)"
   # done
 
-  # If the terminal supports at least 256 colors, write out our 256 color based set
-  if [[ $(tput colors) -ge 256 ]] &> /dev/null; then
-    user_color=$(tput setaf 27) #BLUE
-    preposition_color=$(tput setaf 7) #WHITE
-    device_color=$(tput setaf 39) #CYAN
-    dir_color=$(tput setaf 76) #GREEN
-    git_status_color=$(tput setaf 154) #YELLOW
-  else
-  # Otherwise, use colors from our set of 8
-    user_color=$(tput setaf 4) #BLUE
-    preposition_color=$(tput setaf 7) #WHITE
-    device_color=$(tput setaf 6) #CYAN
-    dir_color=$(tput setaf 2) #GREEN
-    git_status_color=$(tput setaf 3) #YELLOW
-  fi
-
   # Save common color actions
   bold=$(tput bold)
   reset=$(tput sgr0)
+
+  # If the terminal supports at least 256 colors, write out our 256 color based set
+  if [[ $(tput colors) -ge 256 ]] &> /dev/null; then
+    user_color="$bold$(tput setaf 27)" #BLUE
+    preposition_color="$bold$(tput setaf 7)" #WHITE
+    device_color="$bold$(tput setaf 39)" #CYAN
+    dir_color="$bold$(tput setaf 76)" #GREEN
+    git_status_color="$bold$(tput setaf 154)" #YELLOW
+  else
+  # Otherwise, use colors from our set of 8
+    user_color="$bold$(tput setaf 4)" #BLUE
+    preposition_color="$bold$(tput setaf 7)" #WHITE
+    device_color="$bold$(tput setaf 6)" #CYAN
+    dir_color="$bold$(tput setaf 2)" #GREEN
+    git_status_color="$bold$(tput setaf 3)" #YELLOW
+  fi
+
 else
 # Otherwise, use ANSI escape sequences for coloring
   # If you would like to customize your colors, use
