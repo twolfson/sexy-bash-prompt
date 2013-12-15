@@ -202,14 +202,14 @@ function get_prompt_symbol() {
 }
 
 # Define the sexy-bash-prompt
-PS1="\[${bold}${user_color}\]\u \
-\[$preposition_color\]at \
-\[$device_color\]\h \
-\[$preposition_color\]in \
-\[$dir_color\]\w\
-\[$preposition_color\]\
+PS1="\[${user_color}\]\u\[$reset\] \
+\[$preposition_color\]at\[$reset\] \
+\[$device_color\]\h\[$reset\] \
+\[$preposition_color\]in\[$reset\] \
+\[$dir_color\]\w\[$reset\]\
+\[$preposition_color\]\[$reset\]\
 \$( is_on_git && \
   echo -n \" on \" && \
   echo -n \"\[$git_status_color\]\$(get_git_info)\" && \
-  echo -n \"\[$preposition_color\]\")\n\
+  echo -n \"\[$preposition_color\]\")\n\[$reset\]\
 $(get_prompt_symbol) \[$reset\]"
