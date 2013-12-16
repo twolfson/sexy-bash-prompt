@@ -63,6 +63,17 @@ todd at Euclid in ~/github/sexy-bash-prompt on master
 $ # Your PS1 should now look like this!
 ```
 
+## Configuration
+The styles can be customized by editing .bash_prompt directly, or by setting the following environment variables:
+
+* PROMPT_USER_COLOR
+* PROMPT_PREPOSITION_COLOR
+* PROMPT_DEVICE_COLOR
+* PROMPT_DIR_COLOR
+* PROMPT_GIT_STATUS_COLOR
+* PROMPT_BOLD
+* PROMPT_RESET
+
 ## How does it work?
 [bash][bash] provides a special set of [variables for your prompts][ps-vars]. `PS1` is the one used by default. The install script adds a command to `~/.bashrc`, a file that is run every time a new terminal opens. Inside of the new command, we run our script and set your `PS1` which runs some `git` commands to determine its current state and outputs them as a string.
 
