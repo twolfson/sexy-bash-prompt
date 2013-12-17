@@ -15,8 +15,8 @@ if tput setaf 1 &> /dev/null; then
   # done
 
   # Save common color actions
-  bold=$(tput bold)
-  reset=$(tput sgr0)
+  bold="$(tput bold)"
+  reset="$(tput sgr0)"
 
   # If the terminal supports at least 256 colors, write out our 256 color based set
   if [[ $(tput colors) -ge 256 ]] &> /dev/null; then
@@ -53,13 +53,13 @@ else
 fi
 
 # Apply any color over-rides that have been set in the environment
-[[ -z $PROMPT_USER_COLOR ]] || user_color="$PROMPT_USER_COLOR"
-[[ -z $PROMPT_PREPOSITION_COLOR ]] || preposition_color="$PROMPT_PREPOSITION_COLOR"
-[[ -z $PROMPT_DEVICE_COLOR ]] || device_color="$PROMPT_DEVICE_COLOR"
-[[ -z $PROMPT_DIR_COLOR ]] || dir_color="$PROMPT_DIR_COLOR"
-[[ -z $PROMPT_GIT_STATUS_COLOR ]] || git_status_color="$PROMPT_GIT_STATUS_COLOR"
-[[ -z $PROMPT_BOLD ]] || bold="$PROMPT_BOLD"
-[[ -z $PROMPT_RESET ]] || reset="$PROMPT_RESET"
+[[ -z "$PROMPT_USER_COLOR" ]] || user_color="$PROMPT_USER_COLOR"
+[[ -z "$PROMPT_PREPOSITION_COLOR" ]] || preposition_color="$PROMPT_PREPOSITION_COLOR"
+[[ -z "$PROMPT_DEVICE_COLOR" ]] || device_color="$PROMPT_DEVICE_COLOR"
+[[ -z "$PROMPT_DIR_COLOR" ]] || dir_color="$PROMPT_DIR_COLOR"
+[[ -z "$PROMPT_GIT_STATUS_COLOR" ]] || git_status_color="$PROMPT_GIT_STATUS_COLOR"
+[[ -z "$PROMPT_BOLD" ]] || bold="$PROMPT_BOLD"
+[[ -z "$PROMPT_RESET" ]] || reset="$PROMPT_RESET"
 
 function get_git_branch() {
   # On branches, this will return the branch name
@@ -84,7 +84,7 @@ is_branch1_behind_branch2 () {
   first_log="$(git log $1..$2 -1 2> /dev/null)"
 
   # Exit with 0 if there is a first log, 1 if there is not
-  [[ -n $first_log ]]
+  [[ -n "$first_log" ]]
 }
 
 branch_exists () {
@@ -180,15 +180,15 @@ get_git_info () {
   branch="$(get_git_branch)"
 
   # If there are any branches
-  if [[ $branch != "" ]]; then
+  if [[ "$branch" != "" ]]; then
     # Echo the branch
-    output=$branch
+    output="$branch"
 
     # Add on the git status
     output=$output"$(get_git_status)"
 
     # Echo our output
-    echo $output
+    echo "$output"
   fi
 }
 
