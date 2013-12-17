@@ -208,9 +208,8 @@ PS1="\[${user_color}\]\u\[$reset\] \
 \[$device_color\]\h\[$reset\] \
 \[$preposition_color\]in\[$reset\] \
 \[$dir_color\]\w\[$reset\]\
-\[$preposition_color\]\[$reset\]\
 \$( is_on_git && \
-  echo -n \" on \" && \
+  echo -n \" \[$preposition_color\]on\[$reset\] \" && \
   echo -n \"\[$git_status_color\]\$(get_git_info)\" && \
   echo -n \"\[$preposition_color\]\")\n\[$reset\]\
 $(get_prompt_symbol) \[$reset\]"
