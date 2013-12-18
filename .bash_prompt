@@ -14,25 +14,26 @@ if tput setaf 1 &> /dev/null; then
   #   echo " $(tput setaf $i)Text$(tput sgr0) $(tput bold)$(tput setaf $i)Text$(tput sgr0) $(tput sgr 0 1)$(tput setaf $i)Text$(tput sgr0)  \$(tput setaf $i)"
   # done
 
+  # Save common color actions
+  prompt_bold="$(tput bold)"
+  prompt_reset="$(tput sgr0)"
+
   # If the terminal supports at least 256 colors, write out our 256 color based set
   if [[ $(tput colors) -ge 256 ]] &> /dev/null; then
-    user_color=$(tput setaf 27) #BLUE
-    preposition_color=$(tput setaf 7) #WHITE
-    device_color=$(tput setaf 39) #CYAN
-    dir_color=$(tput setaf 76) #GREEN
-    git_status_color=$(tput setaf 154) #YELLOW
+    prompt_user_color="$prompt_bold$(tput setaf 27)" #BLUE
+    prompt_preposition_color="$prompt_bold$(tput setaf 7)" #WHITE
+    prompt_device_color="$prompt_bold$(tput setaf 39)" #CYAN
+    prompt_dir_color="$prompt_bold$(tput setaf 76)" #GREEN
+    prompt_git_status_color="$prompt_bold$(tput setaf 154)" #YELLOW
   else
   # Otherwise, use colors from our set of 8
-    user_color=$(tput setaf 4) #BLUE
-    preposition_color=$(tput setaf 7) #WHITE
-    device_color=$(tput setaf 6) #CYAN
-    dir_color=$(tput setaf 2) #GREEN
-    git_status_color=$(tput setaf 3) #YELLOW
+    prompt_user_color="$prompt_bold$(tput setaf 4)" #BLUE
+    prompt_preposition_color="$prompt_bold$(tput setaf 7)" #WHITE
+    prompt_device_color="$prompt_bold$(tput setaf 6)" #CYAN
+    prompt_dir_color="$prompt_bold$(tput setaf 2)" #GREEN
+    prompt_git_status_color="$prompt_bold$(tput setaf 3)" #YELLOW
   fi
 
-  # Save common color actions
-  bold=$(tput bold)
-  reset=$(tput sgr0)
 else
 # Otherwise, use ANSI escape sequences for coloring
   # If you would like to customize your colors, use
@@ -42,14 +43,23 @@ else
   #   echo "\033[1;${i}m"
   # done
 
-  user_color="\033[1;34m" #BLUE
-  preposition_color="\033[1;37m" #WHITE
-  device_color="\033[1;36m" #CYAN
-  dir_color="\033[1;32m" #GREEN
-  git_status_color="\033[1;33m" #YELLOW
-  bold=""
-  reset="\033[m"
+  prompt_user_color="\033[1;34m" #BLUE
+  prompt_preposition_color="\033[1;37m" #WHITE
+  prompt_device_color="\033[1;36m" #CYAN
+  prompt_dir_color="\033[1;32m" #GREEN
+  prompt_git_status_color="\033[1;33m" #YELLOW
+  prompt_bold=""
+  prompt_reset="\033[m"
 fi
+
+# Apply any color over-rides that have been set in the environment
+if [[ -n "$PROMPT_USER_COLOR" ]]; then prompt_user_color="$PROMPT_USER_COLOR"; fi
+if [[ -n "$PROMPT_PREPOSITION_COLOR" ]]; then prompt_preposition_color="$PROMPT_PREPOSITION_COLOR"; fi
+if [[ -n "$PROMPT_DEVICE_COLOR" ]]; then prompt_device_color="$PROMPT_DEVICE_COLOR"; fi
+if [[ -n "$PROMPT_DIR_COLOR" ]]; then prompt_dir_color="$PROMPT_DIR_COLOR"; fi
+if [[ -n "$PROMPT_GIT_STATUS_COLOR" ]]; then prompt_git_status_color="$PROMPT_GIT_STATUS_COLOR"; fi
+if [[ -n "$PROMPT_BOLD" ]]; then prompt_bold="$PROMPT_BOLD"; fi
+if [[ -n "$PROMPT_RESET" ]]; then prompt_reset="$PROMPT_RESET"; fi
 
 function get_git_branch() {
   # On branches, this will return the branch name
@@ -74,7 +84,7 @@ is_branch1_behind_branch2 () {
   first_log="$(git log $1..$2 -1 2> /dev/null)"
 
   # Exit with 0 if there is a first log, 1 if there is not
-  [[ -n $first_log ]]
+  [[ -n "$first_log" ]]
 }
 
 branch_exists () {
@@ -170,15 +180,15 @@ get_git_info () {
   branch="$(get_git_branch)"
 
   # If there are any branches
-  if [[ $branch != "" ]]; then
+  if [[ "$branch" != "" ]]; then
     # Echo the branch
-    output=$branch
+    output="$branch"
 
     # Add on the git status
     output=$output"$(get_git_status)"
 
     # Echo our output
-    echo $output
+    echo "$output"
   fi
 }
 
@@ -193,14 +203,13 @@ function get_prompt_symbol() {
 }
 
 # Define the sexy-bash-prompt
-PS1="\[${bold}${user_color}\]\u \
-\[$preposition_color\]at \
-\[$device_color\]\h \
-\[$preposition_color\]in \
-\[$dir_color\]\w\
-\[$preposition_color\]\
+PS1="\[${prompt_user_color}\]\u\[$prompt_reset\] \
+\[$prompt_preposition_color\]at\[$prompt_reset\] \
+\[$prompt_device_color\]\h\[$prompt_reset\] \
+\[$prompt_preposition_color\]in\[$prompt_reset\] \
+\[$prompt_dir_color\]\w\[$prompt_reset\]\
 \$( is_on_git && \
-  echo -n \" on \" && \
-  echo -n \"\[$git_status_color\]\$(get_git_info)\" && \
-  echo -n \"\[$preposition_color\]\")\n\
-$(get_prompt_symbol) \[$reset\]"
+  echo -n \" \[$prompt_preposition_color\]on\[$prompt_reset\] \" && \
+  echo -n \"\[$prompt_git_status_color\]\$(get_git_info)\" && \
+  echo -n \"\[$prompt_preposition_color\]\")\n\[$prompt_reset\]\
+$(get_prompt_symbol) \[$prompt_reset\]"
