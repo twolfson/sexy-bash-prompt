@@ -168,7 +168,6 @@ esc=$'\033'
   cd $ORIG_PWD
   TERM=xterm . .bash_prompt
   fixture_dir 'branch-master'
-  test "$(tput setaf 27)" = "$(tput setaf 4)" && echo "same"
 
     # uses 8 color pallete
     # echo "$(TERM=xterm tput bold)$(TERM=xterm tput setaf 4)" | copy
@@ -180,6 +179,10 @@ esc=$'\033'
     test "$prompt_symbol_color" = "$esc[1m" || echo '`prompt_symbol_color` is not bold (8)' 1>&2
 
   # in an ANSI terminal
+  cd $ORIG_PWD
+  TERM="" . .bash_prompt
+  fixture_dir 'branch-master'
+  echo ${#prompt_bold}
 
     # uses ANSI colors
 
