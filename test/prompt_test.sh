@@ -184,12 +184,11 @@ esc=$'\033'
   fixture_dir 'branch-master'
 
     # uses ANSI colors
-    echo $prompt_user_color
-    test "$prompt_user_color" = "$esc[1;34m" || echo '`prompt_user_color` is not blue (ANSI)' 1>&2
-    test "$prompt_preposition_color" = "$esc[1;37m" || echo '`prompt_preposition_color` is not white (ANSI)' 1>&2
-    test "$prompt_device_color" = "$esc[1;36m" || echo '`prompt_device_color` is not cyan (ANSI)' 1>&2
-    test "$prompt_dir_color" = "$esc[1;36m" || echo '`prompt_dir_color` is not green (ANSI)' 1>&2
-    test "$prompt_git_status_color" = "$esc[1;32m" || echo '`prompt_git_status_color` is not yellow (ANSI)' 1>&2
+    test "$prompt_user_color" = "\033[1;34m" || echo '`prompt_user_color` is not blue (ANSI)' 1>&2
+    test "$prompt_preposition_color" = "\033[1;37m" || echo '`prompt_preposition_color` is not white (ANSI)' 1>&2
+    test "$prompt_device_color" = "\033[1;36m" || echo '`prompt_device_color` is not cyan (ANSI)' 1>&2
+    test "$prompt_dir_color" = "\033[1;32m" || echo '`prompt_dir_color` is not green (ANSI)' 1>&2
+    test "$prompt_git_status_color" = "\033[1;33m" || echo '`prompt_git_status_color` is not yellow (ANSI)' 1>&2
     test "$prompt_symbol_color" = "" || echo '`prompt_symbol_color` is not normal (ANSI)' 1>&2
 
   # when overridden
