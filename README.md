@@ -71,6 +71,7 @@ The styles can be customized by editing `.bash_prompt` directly, or by setting t
 - `PROMPT_DEVICE_COLOR` - Color for machine name (e.g. `Euclid`)
 - `PROMPT_DIR_COLOR` - Color for directory (e.g. `~/github/sexy-bash-prompt`)
 - `PROMPT_GIT_STATUS_COLOR` - Color for git branch and symbol (e.g. `master`)
+- `PROMPT_SYMBOL_COLOR` - Color for prompt symbol (e.g. `$`)
 
 You can set colors via [`tput`][] or [ANSI escape codes][]. For example:
 
