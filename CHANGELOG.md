@@ -1,4 +1,6 @@
 # sexy-bash-prompt changelog
+0.16.0 - Added ability to override colors via global PROMPT_ variables
+
 0.15.0 - Converted all UPPER_CASE variable names to lower_case
 
 0.14.0 - Added `#` as prompt symbol for root
