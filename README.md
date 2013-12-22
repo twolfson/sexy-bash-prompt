@@ -66,15 +66,16 @@ $ # Your PS1 should now look like this!
 ## Configuration
 The styles can be customized by editing `.bash_prompt` directly, or by setting the following environment variables:
 
-- `PROMPT_USER_COLOR`
-- `PROMPT_PREPOSITION_COLOR`
-- `PROMPT_DEVICE_COLOR`
-- `PROMPT_DIR_COLOR`
-- `PROMPT_GIT_STATUS_COLOR`
-- `PROMPT_BOLD`
-- `PROMPT_RESET`
+- `PROMPT_USER_COLOR` (color for username)
+- `PROMPT_PREPOSITION_COLOR` (color for 'at', 'in', 'on')
+- `PROMPT_DEVICE_COLOR` (color for machine name)
+- `PROMPT_DIR_COLOR` (color for directory)
+- `PROMPT_GIT_STATUS_COLOR` (color for git branch and symbol)
 
-For example:
+You can set colors via [`tput`][] or [ANSI escape codes][]. For example:
+
+[`tput`]: http://en.wikipedia.org/wiki/Tput
+[ANSI escape codes]: http://en.wikipedia.org/wiki/ANSI_escape_code
 
 ```bash
 # Inside your `.bashrc` or `.bash_profile`
