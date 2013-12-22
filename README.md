@@ -66,13 +66,13 @@ $ # Your PS1 should now look like this!
 ## Configuration
 The styles can be customized by editing `.bash_prompt` directly, or by setting the following environment variables:
 
-* PROMPT_USER_COLOR
-* PROMPT_PREPOSITION_COLOR
-* PROMPT_DEVICE_COLOR
-* PROMPT_DIR_COLOR
-* PROMPT_GIT_STATUS_COLOR
-* PROMPT_BOLD
-* PROMPT_RESET
+- `PROMPT_USER_COLOR`
+- `PROMPT_PREPOSITION_COLOR`
+- `PROMPT_DEVICE_COLOR`
+- `PROMPT_DIR_COLOR`
+- `PROMPT_GIT_STATUS_COLOR`
+- `PROMPT_BOLD`
+- `PROMPT_RESET`
 
 For example:
 ```bash
