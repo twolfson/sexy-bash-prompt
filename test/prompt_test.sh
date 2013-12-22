@@ -182,9 +182,15 @@ esc=$'\033'
   cd $ORIG_PWD
   TERM="" . .bash_prompt
   fixture_dir 'branch-master'
-  echo ${#prompt_bold}
 
     # uses ANSI colors
+    echo $prompt_user_color
+    test "$prompt_user_color" = "$esc[1;34m" || echo '`prompt_user_color` is not blue (ANSI)' 1>&2
+    test "$prompt_preposition_color" = "$esc[1;37m" || echo '`prompt_preposition_color` is not white (ANSI)' 1>&2
+    test "$prompt_device_color" = "$esc[1;36m" || echo '`prompt_device_color` is not cyan (ANSI)' 1>&2
+    test "$prompt_dir_color" = "$esc[1;36m" || echo '`prompt_dir_color` is not green (ANSI)' 1>&2
+    test "$prompt_git_status_color" = "$esc[1;32m" || echo '`prompt_git_status_color` is not yellow (ANSI)' 1>&2
+    test "$prompt_symbol_color" = "" || echo '`prompt_symbol_color` is not normal (ANSI)' 1>&2
 
   # when overridden
 

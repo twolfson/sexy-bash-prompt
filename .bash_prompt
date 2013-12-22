@@ -45,7 +45,6 @@ else
   #   echo "\033[1;${i}m"
   # done
 
-  prompt_bold=""
   prompt_reset="\033[m"
   prompt_user_color="\033[1;34m" # BLUE
   prompt_preposition_color="\033[1;37m" # WHITE
