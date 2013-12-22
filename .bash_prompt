@@ -203,7 +203,7 @@ function get_prompt_symbol() {
 }
 
 # Define the sexy-bash-prompt
-PS1="\[${prompt_user_color}\]\u\[$prompt_reset\] \
+PS1="\[$prompt_user_color\]\u\[$prompt_reset\] \
 \[$prompt_preposition_color\]at\[$prompt_reset\] \
 \[$prompt_device_color\]\h\[$prompt_reset\] \
 \[$prompt_preposition_color\]in\[$prompt_reset\] \
