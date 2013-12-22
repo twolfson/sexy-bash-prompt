@@ -154,24 +154,8 @@ cd $ORIG_PWD
   fixture_dir 'branch-master'
 
     # uses 256 color pallete
-    prompt_bold="$(tput bold)"
-    prompt_reset="$(tput sgr0)"
-    prompt_user_color="$prompt_bold$(tput setaf 27)" # BOLD BLUE
-    prompt_preposition_color="$prompt_bold$(tput setaf 7)" # BOLD WHITE
-    prompt_device_color="$prompt_bold$(tput setaf 39)" # BOLD CYAN
-    prompt_dir_color="$prompt_bold$(tput setaf 76)" # BOLD GREEN
-    prompt_git_status_color="$prompt_bold$(tput setaf 154)" # BOLD YELLOW
-    PS1="\[$prompt_user_color\]\u\[$prompt_reset\] \
-    \[$prompt_preposition_color\]at\[$prompt_reset\] \
-    \[$prompt_device_color\]\h\[$prompt_reset\] \
-    \[$prompt_preposition_color\]in\[$prompt_reset\] \
-    \[$prompt_dir_color\]\w\[$prompt_reset\]\
-    \$( is_on_git && \
-      echo -n \" \[$prompt_preposition_color\]on\[$prompt_reset\] \" && \
-      echo -n \"\[$prompt_git_status_color\]\$(get_git_info)\" && \
-      echo -n \"\[$prompt_preposition_color\]\")\n\[$prompt_reset\]\
-    \[$prompt_symbol_color\]$(get_prompt_symbol) \[$prompt_reset\]"
-    test "$expected_prompt" = "$PS1" || echo 'In a 256 color terminal, 256 colors test are out of sync with code' 1>&2
+    # DEV: We should not be testing internals (prompt_*) over externals (PS1) but PS1 gave me a lot of issues
+    test "$prompt_user_color" = "$(tput bold)$(tput setaf 27)" || echo '`prompt_user_color` is not bold blue' 1>&2
 
   # in an 8 color terminal
 
