@@ -155,10 +155,10 @@ cd $ORIG_PWD
 
     # uses 256 color pallete
     # DEV: We should not be testing internals (prompt_*) over externals (PS1) but PS1 gave me a lot of issues
-    # echo ${#prompt_bold}
-    # tput colors
-    # echo ${prompt_user_color}
-    # echo $TERM
+    TERM=xterm-256color echo ${#prompt_bold}
+    TERM=xterm-256color tput colors
+    TERM=xterm-256color echo ${prompt_user_color}
+    TERM=xterm-256color echo $TERM
     test "$prompt_user_color" = "$(tput bold)$(tput setaf 27)" || echo '`prompt_user_color` is not bold blue (256)' 1>&2
 
   # in an 8 color terminal
