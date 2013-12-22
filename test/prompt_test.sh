@@ -147,6 +147,7 @@ cd $ORIG_PWD
     test "$bash_symbol" = "#" || echo '`get_prompt_symbol` !== "#" for root' 1>&2
 
 # prompt colors
+esc=$'\033'
 
   # in a 256 color terminal
   cd $ORIG_PWD
@@ -156,7 +157,6 @@ cd $ORIG_PWD
     # uses 256 color pallete
     # echo "$(TERM=xterm-256color tput bold)$(TERM=xterm-256color tput setaf 27)" | copy
     # DEV: We should not be testing internals (prompt_*) over externals (PS1) but PS1 gave me a lot of issues
-    esc=$'\033'
     test "$prompt_user_color" = "$esc[1m$esc[38;5;27m" || echo '`prompt_user_color` is not bold blue (256)' 1>&2
     test "$prompt_preposition_color" = "$esc[1m$esc[37m" || echo '`prompt_preposition_color` is not bold white (256)' 1>&2
     test "$prompt_device_color" = "$esc[1m$esc[38;5;39m" || echo '`prompt_device_color` is not bold cyan (256)' 1>&2
@@ -171,7 +171,13 @@ cd $ORIG_PWD
   test "$(tput setaf 27)" = "$(tput setaf 4)" && echo "same"
 
     # uses 8 color pallete
-    test "$prompt_user_color" = "$(tput bold)$(tput setaf 4)" || echo '`prompt_user_color` is not bold blue (8)' 1>&2
+    # echo "$(TERM=xterm tput bold)$(TERM=xterm tput setaf 4)" | copy
+    test "$prompt_user_color" = "$esc[1m$esc[34m" || echo '`prompt_user_color` is not bold blue (8)' 1>&2
+    test "$prompt_preposition_color" = "$esc[1m$esc[37m" || echo '`prompt_preposition_color` is not bold white (8)' 1>&2
+    test "$prompt_device_color" = "$esc[1m$esc[36m" || echo '`prompt_device_color` is not bold cyan (8)' 1>&2
+    test "$prompt_dir_color" = "$esc[1m$esc[32m" || echo '`prompt_dir_color` is not bold green (8)' 1>&2
+    test "$prompt_git_status_color" = "$esc[1m$esc[33m" || echo '`prompt_git_status_color` is not bold yellow (8)' 1>&2
+    test "$prompt_symbol_color" = "$esc[1m" || echo '`prompt_symbol_color` is not bold (8)' 1>&2
 
   # in an ANSI terminal
 
