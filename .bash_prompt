@@ -43,13 +43,12 @@ else
   #   echo "\033[1;${i}m"
   # done
 
-  prompt_user_color="\033[1;34m" #BLUE
-  prompt_preposition_color="\033[1;37m" #WHITE
-  prompt_device_color="\033[1;36m" #CYAN
-  prompt_dir_color="\033[1;32m" #GREEN
-  prompt_git_status_color="\033[1;33m" #YELLOW
-  prompt_bold=""
   prompt_reset="\033[m"
+  prompt_user_color="\033[1;34m" # BLUE
+  prompt_preposition_color="\033[1;37m" # WHITE
+  prompt_device_color="\033[1;36m" # CYAN
+  prompt_dir_color="\033[1;32m" # GREEN
+  prompt_git_status_color="\033[1;33m" # YELLOW
 fi
 
 # Apply any color over-rides that have been set in the environment
