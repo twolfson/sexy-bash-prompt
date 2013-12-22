@@ -145,3 +145,12 @@ cd $ORIG_PWD
 
     # is #
     test "$bash_symbol" = "#" || echo '`get_prompt_symbol` !== "#" for root' 1>&2
+
+# prompt colors
+fixture_dir 'branch-master'
+
+  # in a 256 color terminal
+
+  # in an 8 color terminal
+
+  # in an ANSI terminal
