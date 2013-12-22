@@ -147,11 +147,15 @@ cd $ORIG_PWD
     test "$bash_symbol" = "#" || echo '`get_prompt_symbol` !== "#" for root' 1>&2
 
 # prompt colors
-fixture_dir 'branch-master'
 
   # in a 256 color terminal
+  cd $ORIG_PWD
+  TERM=xterm-256color . .bash_prompt
+  fixture_dir 'branch-master'
 
     # uses 256 color pallete
+    expected_prompt = "\[\033[1m\033[38;5;27m\]\u\[\033(B\033[m\] \[\033[1m\033[37m\]at\[\033(B\033[m\] \[\033[1m\033[38;5;39m\]\h\[\033(B\033[m\] \[\033[1m\033[37m\]in\[\033(B\033[m\] \[\033[1m\033[38;5;76m\]\w\[\033(B\033[m\]$( is_on_git &&   echo -n " \[\033[1m\033[37m\]on\[\033(B\n\033[m\] " &&   echo -n "\[\033[1m\033[38;5;154m\]$(get_git_info)" &&   echo -n "\[\033[1m\033[37m\]")\n\[\033(B\033[m\]\[\033[1m\]$ \[\033(B\033[m\]"
+    test "$expected_prompt" = "$PS1" || echo 'In a 256 color terminal, 256 colors test are out of sync with code'
 
   # in an 8 color terminal
 
