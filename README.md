@@ -75,9 +75,10 @@ The styles can be customized by editing `.bash_prompt` directly, or by setting t
 - `PROMPT_RESET`
 
 For example:
+
 ```bash
 # Inside your `.bashrc` or `.bash_profile`
-PROMPT_USER_COLOR="$(tput setaf 9)" # MAGENTA
+PROMPT_USER_COLOR="$(tput bold)$(tput setaf 9)" # BOLD RED
 source ~/.bash_prompt
 ```
 
