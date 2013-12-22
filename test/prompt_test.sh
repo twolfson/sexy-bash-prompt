@@ -165,6 +165,7 @@ cd $ORIG_PWD
   cd $ORIG_PWD
   TERM=xterm . .bash_prompt
   fixture_dir 'branch-master'
+  test "$(tput setaf 27)" = "$(tput setaf 4)" && echo "same"
 
     # uses 8 color pallete
     test "$prompt_user_color" = "$(tput bold)$(tput setaf 4)" || echo '`prompt_user_color` is not bold blue (8)' 1>&2
