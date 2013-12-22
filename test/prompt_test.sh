@@ -158,6 +158,7 @@ cd $ORIG_PWD
     echo ${#prompt_bold}
     tput colors
     echo ${prompt_user_color}
+    echo $TERM
     test "$prompt_user_color" = "$(tput bold)$(tput setaf 27)" || echo '`prompt_user_color` is not bold blue' 1>&2
 
   # in an 8 color terminal
