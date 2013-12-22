@@ -155,15 +155,19 @@ cd $ORIG_PWD
 
     # uses 256 color pallete
     # DEV: We should not be testing internals (prompt_*) over externals (PS1) but PS1 gave me a lot of issues
-    echo ${#prompt_bold}
-    tput colors
-    echo ${prompt_user_color}
-    echo $TERM
-    test "$prompt_user_color" = "$(tput bold)$(tput setaf 27)" || echo '`prompt_user_color` is not bold blue' 1>&2
+    # echo ${#prompt_bold}
+    # tput colors
+    # echo ${prompt_user_color}
+    # echo $TERM
+    test "$prompt_user_color" = "$(tput bold)$(tput setaf 27)" || echo '`prompt_user_color` is not bold blue (256)' 1>&2
 
   # in an 8 color terminal
+  cd $ORIG_PWD
+  TERM=xterm . .bash_prompt
+  fixture_dir 'branch-master'
 
     # uses 8 color pallete
+    test "$prompt_user_color" = "$(tput bold)$(tput setaf 4)" || echo '`prompt_user_color` is not bold blue (8)' 1>&2
 
   # in an ANSI terminal
 
