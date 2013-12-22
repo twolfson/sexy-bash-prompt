@@ -154,7 +154,7 @@ cd $ORIG_PWD
   fixture_dir 'branch-master'
 
     # uses 256 color pallete
-    expected_prompt = "\[\033[1m\033[38;5;27m\]\u\[\033(B\033[m\] \[\033[1m\033[37m\]at\[\033(B\033[m\] \[\033[1m\033[38;5;39m\]\h\[\033(B\033[m\] \[\033[1m\033[37m\]in\[\033(B\033[m\] \[\033[1m\033[38;5;76m\]\w\[\033(B\033[m\]$( is_on_git &&   echo -n " \[\033[1m\033[37m\]on\[\033(B\n\033[m\] " &&   echo -n "\[\033[1m\033[38;5;154m\]$(get_git_info)" &&   echo -n "\[\033[1m\033[37m\]")\n\[\033(B\033[m\]\[\033[1m\]$ \[\033(B\033[m\]"
+    expected_prompt = "\[[1m[38;5;27m\]\u\[(B[m\] \[[1m[37m\]at\[(B[m\] \[[1m[38;5;39m\]\h\[(B[m\] \[[1m[37m\]in\[(B[m\] \[[1m[38;5;76m\]\w\[(B[m\]$( is_on_git && echo -n " \[[1m[37m\]on\[(B[m\] " && echo -n "\[[1m[38;5;154m\]$(get_git_info)" && echo -n "\[[1m[37m\]")\n\[(B[m\]\[[1m\]$ \[(B[m\]"
     test "$expected_prompt" = "$PS1" || echo 'In a 256 color terminal, 256 colors test are out of sync with code'
 
   # in an 8 color terminal
