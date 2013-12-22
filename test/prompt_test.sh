@@ -151,6 +151,16 @@ fixture_dir 'branch-master'
 
   # in a 256 color terminal
 
+    # uses 256 color pallete
+
   # in an 8 color terminal
 
+    # uses 8 color pallete
+
   # in an ANSI terminal
+
+    # uses ANSI colors
+
+  # when overridden
+
+    # use the new colors
