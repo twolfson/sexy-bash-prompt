@@ -156,9 +156,13 @@ cd $ORIG_PWD
     # uses 256 color pallete
     # echo "$(TERM=xterm-256color tput bold)$(TERM=xterm-256color tput setaf 27)" | copy
     # DEV: We should not be testing internals (prompt_*) over externals (PS1) but PS1 gave me a lot of issues
-    escape=$'\033'
-
-    test "$prompt_user_color" = "$escape[1m$escape[38;5;27m" || echo '`prompt_user_color` is not bold blue (256)' 1>&2
+    esc=$'\033'
+    test "$prompt_user_color" = "$esc[1m$esc[38;5;27m" || echo '`prompt_user_color` is not bold blue (256)' 1>&2
+    test "$prompt_preposition_color" = "$esc[1m$esc[37m" || echo '`prompt_preposition_color` is not bold white (256)' 1>&2
+    test "$prompt_device_color" = "$esc[1m$esc[38;5;39m" || echo '`prompt_device_color` is not bold cyan (256)' 1>&2
+    test "$prompt_dir_color" = "$esc[1m$esc[38;5;76m" || echo '`prompt_dir_color` is not bold green (256)' 1>&2
+    test "$prompt_git_status_color" = "$esc[1m$esc[38;5;154m" || echo '`prompt_git_status_color` is not bold yellow (256)' 1>&2
+    test "$prompt_symbol_color" = "$esc[1m" || echo '`prompt_symbol_color` is not bold (256)' 1>&2
 
   # in an 8 color terminal
   cd $ORIG_PWD
