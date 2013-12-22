@@ -31,7 +31,7 @@ if tput setaf 1 &> /dev/null; then
     prompt_preposition_color="$prompt_bold$(tput setaf 7)" # BOLD WHITE
     prompt_device_color="$prompt_bold$(tput setaf 6)" # BOLD CYAN
     prompt_dir_color="$prompt_bold$(tput setaf 2)" # BOLD GREEN
-    prompt_symbol_color="$prompt_bold$(tput setaf 3)" # BOLD YELLOW
+    prompt_git_status_color="$prompt_bold$(tput setaf 3)" # BOLD YELLOW
   fi
 
   prompt_symbol_color="$prompt_bold" # BOLD
