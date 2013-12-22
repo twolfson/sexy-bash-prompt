@@ -66,11 +66,11 @@ $ # Your PS1 should now look like this!
 ## Configuration
 The styles can be customized by editing `.bash_prompt` directly, or by setting the following environment variables:
 
-- `PROMPT_USER_COLOR` (color for username)
+- `PROMPT_USER_COLOR` (color for username, e.g. `todd`)
 - `PROMPT_PREPOSITION_COLOR` (color for 'at', 'in', 'on')
-- `PROMPT_DEVICE_COLOR` (color for machine name)
-- `PROMPT_DIR_COLOR` (color for directory)
-- `PROMPT_GIT_STATUS_COLOR` (color for git branch and symbol)
+- `PROMPT_DEVICE_COLOR` (color for machine name, e.g. `Euclid`)
+- `PROMPT_DIR_COLOR` (color for directory, e.g. `~/github/sexy-bash-prompt`)
+- `PROMPT_GIT_STATUS_COLOR` (color for git branch and symbol, e.g. `master*`)
 
 You can set colors via [`tput`][] or [ANSI escape codes][]. For example:
 
