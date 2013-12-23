@@ -154,16 +154,19 @@ esc=$'\033'
   TERM=xterm-256color . .bash_prompt
   fixture_dir 'branch-master'
 
-    # uses 256 color pallete
+    # Deprecated color by color test, not used because requires double maintenance
     # echo "$(TERM=xterm-256color tput bold)$(TERM=xterm-256color tput setaf 27)" | copy
-    # DEV: We should not be testing internals (prompt_*) over externals (PS1) but PS1 gave me a lot of issues
     # test "$prompt_user_color" = "$esc[1m$esc[38;5;27m" || echo '`prompt_user_color` is not bold blue (256)' 1>&2
-    # test "$prompt_preposition_color" = "$esc[1m$esc[37m" || echo '`prompt_preposition_color` is not bold white (256)' 1>&2
-    # test "$prompt_device_color" = "$esc[1m$esc[38;5;39m" || echo '`prompt_device_color` is not bold cyan (256)' 1>&2
-    # test "$prompt_dir_color" = "$esc[1m$esc[38;5;76m" || echo '`prompt_dir_color` is not bold green (256)' 1>&2
-    # test "$prompt_git_status_color" = "$esc[1m$esc[38;5;154m" || echo '`prompt_git_status_color` is not bold yellow (256)' 1>&2
-    # test "$prompt_symbol_color" = "$esc[1m" || echo '`prompt_symbol_color` is not bold (256)' 1>&2
-    test "$PS1" = '\['$esc'[1m'$esc'[38;5;27m\]\u\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[37m\]at\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[38;5;39m\]\h\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[37m\]in\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[38;5;76m\]\w\['$esc'(B'$esc'[m\]$( is_on_git &&   echo -n " \['$esc'[1m'$esc'[37m\]on\['$esc'(B'$esc'[m\] " &&   echo -n "\['$esc'[1m'$esc'[38;5;154m\]$(get_git_info)" &&   echo -n "\['$esc'[1m'$esc'[37m\]")\n\['$esc'(B'$esc'[m\]\['$esc'[1m\]$ \['$esc'(B'$esc'[m\]' || echo '`PS1` is not as expected (256)' 1>&2
+
+    # uses 256 color pallete
+    expected_prompt='\['$esc'[1m'$esc'[38;5;27m\]\u\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[37m\]at\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[38;5;39m\]\h\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[37m\]in\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[38;5;76m\]\w\['$esc'(B'$esc'[m\]$( is_on_git &&   echo -n " \['$esc'[1m'$esc'[37m\]on\['$esc'(B'$esc'[m\] " &&   echo -n "\['$esc'[1m'$esc'[38;5;154m\]$(get_git_info)" &&   echo -n "\['$esc'[1m'$esc'[37m\]")\n\['$esc'(B'$esc'[m\]\['$esc'[1m\]$ \['$esc'(B'$esc'[m\]'
+
+    # DEV: To debug, use a diff tool. Don't stare at the code.
+    # http://www.diffchecker.com/diff
+    # echo "$PS1"
+    # echo "$expected_prompt"
+    # make test | copy
+    test "$PS1" = "$expected_prompt" || echo '`PS1` is not as expected (256)' 1>&2
 
   # in an 8 color terminal
   cd $ORIG_PWD
