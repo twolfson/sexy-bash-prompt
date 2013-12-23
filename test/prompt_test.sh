@@ -158,7 +158,7 @@ esc=$'\033'
     # echo "$(TERM=xterm-256color tput bold)$(TERM=xterm-256color tput setaf 27)" | copy
     # test "$prompt_user_color" = "$esc[1m$esc[38;5;27m" || echo '`prompt_user_color` is not bold blue (256)' 1>&2
 
-    # uses 256 color pallete
+    # uses 256 color palette
     expected_prompt='\['$esc'[1m'$esc'[38;5;27m\]\u\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[37m\]at\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[38;5;39m\]\h\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[37m\]in\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[38;5;76m\]\w\['$esc'(B'$esc'[m\]$( is_on_git &&   echo -n " \['$esc'[1m'$esc'[37m\]on\['$esc'(B'$esc'[m\] " &&   echo -n "\['$esc'[1m'$esc'[38;5;154m\]$(get_git_info)" &&   echo -n "\['$esc'[1m'$esc'[37m\]")\n\['$esc'(B'$esc'[m\]\['$esc'[1m\]$ \['$esc'(B'$esc'[m\]'
 
     # DEV: To debug, use a diff tool. Don't stare at the code.
@@ -173,7 +173,7 @@ esc=$'\033'
   TERM=xterm . .bash_prompt
   fixture_dir 'branch-master'
 
-    # uses 8 color pallete
+    # uses 8 color palette
     # echo "$(TERM=xterm tput bold)$(TERM=xterm tput setaf 4)" | copy
     expected_prompt='\['$esc'[1m'$esc'[34m\]\u\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[37m\]at\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[36m\]\h\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[37m\]in\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[32m\]\w\['$esc'(B'$esc'[m\]$( is_on_git &&   echo -n " \['$esc'[1m'$esc'[37m\]on\['$esc'(B'$esc'[m\] " &&   echo -n "\['$esc'[1m'$esc'[33m\]$(get_git_info)" &&   echo -n "\['$esc'[1m'$esc'[37m\]")\n\['$esc'(B'$esc'[m\]\['$esc'[1m\]$ \['$esc'(B'$esc'[m\]'
     test "$PS1" = "$expected_prompt" || echo '`PS1` is not as expected (8)' 1>&2
