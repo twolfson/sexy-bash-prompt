@@ -6,7 +6,6 @@ before_script:
   - ./test/before_script.sh # Take care of git version
   - git --version # Spit out the git version
 script:
-  - find /lib/terminfo /usr/share/terminfo -name "*256*"
   - make test # Run normal test
   # DEV: Install test is disabled due to Travis CI not closing --login scripts
   # - make test-install # Run install-specific test
