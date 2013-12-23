@@ -184,12 +184,9 @@ esc=$'\033'
   fixture_dir 'branch-master'
 
     # uses ANSI colors
-    test "$prompt_user_color" = "\033[1;34m" || echo '`prompt_user_color` is not blue (ANSI)' 1>&2
-    test "$prompt_preposition_color" = "\033[1;37m" || echo '`prompt_preposition_color` is not white (ANSI)' 1>&2
-    test "$prompt_device_color" = "\033[1;36m" || echo '`prompt_device_color` is not cyan (ANSI)' 1>&2
-    test "$prompt_dir_color" = "\033[1;32m" || echo '`prompt_dir_color` is not green (ANSI)' 1>&2
-    test "$prompt_git_status_color" = "\033[1;33m" || echo '`prompt_git_status_color` is not yellow (ANSI)' 1>&2
-    test "$prompt_symbol_color" = "" || echo '`prompt_symbol_color` is not normal (ANSI)' 1>&2
+    expected_prompt='\[\033[1;34m\]\u\[\033[m\] \[\033[1;37m\]at\[\033[m\] \[\033[1;36m\]\h\[\033[m\] \[\033[1;37m\]in\[\033[m\] \[\033[1;32m\]\w\[\033[m\]$( is_on_git &&   echo -n " \[\033[1;37m\]on\[\033[m\] " &&   echo -n "\[\033[1;33m\]$(get_git_info)" &&   echo -n "\[\033[1;37m\]")\n\[\033[m\]\[\]$ \[\033[m\]'
+    test "$PS1" = "$expected_prompt" || echo '`PS1` is not as expected (ANSI)' 1>&2
+
 
   # when overridden
 
