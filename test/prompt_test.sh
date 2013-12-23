@@ -147,12 +147,11 @@ cd $ORIG_PWD
     test "$bash_symbol" = "#" || echo '`get_prompt_symbol` !== "#" for root' 1>&2
 
 # prompt colors
+cd $ORIG_PWD
 esc=$'\033'
 
   # in a 256 color terminal
-  cd $ORIG_PWD
   TERM=xterm-256color . .bash_prompt
-  fixture_dir 'branch-master'
 
     # Deprecated color by color test, not used because requires double maintenance
     # echo "$(TERM=xterm-256color tput bold)$(TERM=xterm-256color tput setaf 27)" | copy
@@ -169,9 +168,7 @@ esc=$'\033'
     test "$PS1" = "$expected_prompt" || echo '`PS1` is not as expected (256)' 1>&2
 
   # in an 8 color terminal
-  cd $ORIG_PWD
   TERM=xterm . .bash_prompt
-  fixture_dir 'branch-master'
 
     # uses 8 color palette
     # echo "$(TERM=xterm tput bold)$(TERM=xterm tput setaf 4)" | copy
@@ -179,9 +176,7 @@ esc=$'\033'
     test "$PS1" = "$expected_prompt" || echo '`PS1` is not as expected (8)' 1>&2
 
   # in an ANSI terminal
-  cd $ORIG_PWD
   TERM="" . .bash_prompt
-  fixture_dir 'branch-master'
 
     # uses ANSI colors
     expected_prompt='\[\033[1;34m\]\u\[\033[m\] \[\033[1;37m\]at\[\033[m\] \[\033[1;36m\]\h\[\033[m\] \[\033[1;37m\]in\[\033[m\] \[\033[1;32m\]\w\[\033[m\]$( is_on_git &&   echo -n " \[\033[1;37m\]on\[\033[m\] " &&   echo -n "\[\033[1;33m\]$(get_git_info)" &&   echo -n "\[\033[1;37m\]")\n\[\033[m\]\[\]$ \[\033[m\]'
