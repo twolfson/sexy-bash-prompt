@@ -1,4 +1,6 @@
 # sexy-bash-prompt changelog
+0.16.2 - Added regression test for colors and color overrides
+
 0.16.1 - Fixed git status color for non-256 color terminals
 
 0.16.0 - Added ability to override colors via global PROMPT_ variables
