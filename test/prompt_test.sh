@@ -163,7 +163,7 @@ esc=$'\033'
     # test "$prompt_dir_color" = "$esc[1m$esc[38;5;76m" || echo '`prompt_dir_color` is not bold green (256)' 1>&2
     # test "$prompt_git_status_color" = "$esc[1m$esc[38;5;154m" || echo '`prompt_git_status_color` is not bold yellow (256)' 1>&2
     # test "$prompt_symbol_color" = "$esc[1m" || echo '`prompt_symbol_color` is not bold (256)' 1>&2
-    test "$PS1" = "\[$esc[1m$esc[38;5;27m\]\u\[$esc(B$esc[m\] \[$esc[1m$esc[37m\]at\[$esc(B$esc[m\] \[$esc[1m$esc[38;5;39m\]\h\[$esc(B$esc[m\] \[$esc[1m$esc[37m\]in\[$esc(B$esc[m\] \[$esc[1m$esc[38;5;76m\]\w\[$esc(B$esc[m\]$( is_on_git && echo -n " \[$esc[1m$esc[37m\]on\[$esc(B$esc[m\] " && echo -n "\[$esc[1m$esc[38;5;154m\]$(get_git_info)" && echo -n "\[$esc[1m$esc[37m\]")\n\[$esc(B$esc[m\]\[$esc[1m\]$ \[$esc(B$esc[m\]" || echo '`PS1` is not as expected (256)' 1>&2
+    test "$PS1" = "\[$esc[1m$esc[38;5;27m\]\u\[$esc(B$esc[m\] \[$esc[1m$esc[37m\]at\[$esc(B$esc[m\] \[$esc[1m$esc[38;5;39m\]\h\[$esc(B$esc[m\] \[$esc[1m$esc[37m\]in\[$esc(B$esc[m\] \[$esc[1m$esc[38;5;76m\]\w\[$esc(B$esc[m\]\[$esc[1m$esc[37m\]on\[$esc(B$esc[m\]\[$esc[1m$esc[38;5;154m\]master△\[$esc[1m$esc[37m\])\n\[$esc(B$esc[m\]\[$esc[1m\]$ \[$esc(B$esc[m\]" || echo '`PS1` is not as expected (256)' 1>&2
 
   # in an 8 color terminal
   cd $ORIG_PWD
