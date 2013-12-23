@@ -183,9 +183,10 @@ esc=$'\033'
     test "$PS1" = "$expected_prompt" || echo '`PS1` is not as expected (ANSI)' 1>&2
 
   # when overridden
-  TERM=xterm-256color PROMPT_USER_COLOR='\033[1;36m' . .bash_prompt
+  TERM=xterm-256color PROMPT_USER_COLOR='\033[1;32m' PROMPT_PREPOSITION_COLOR='\033[1;33m' PROMPT_DEVICE_COLOR='\033[1;34m' PROMPT_DIR_COLOR='\033[1;35m' PROMPT_GIT_STATUS_COLOR='\033[1;36m' PROMPT_SYMBOL_COLOR='\033[1;37m' . .bash_prompt
 
     # use the new colors
-    expected_prompt='\[\033[1;36m\]\u\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[37m\]at\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[38;5;39m\]\h\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[37m\]in\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[38;5;76m\]\w\['$esc'(B'$esc'[m\]$( is_on_git &&   echo -n " \['$esc'[1m'$esc'[37m\]on\['$esc'(B'$esc'[m\] " &&   echo -n "\['$esc'[1m'$esc'[38;5;154m\]$(get_git_info)" &&   echo -n "\['$esc'[1m'$esc'[37m\]")\n\['$esc'(B'$esc'[m\]\['$esc'[1m\]$ \['$esc'(B'$esc'[m\]'
-    test "$PS1" = "$expected_prompt" || echo '`PS1` is not as expected (256)' 1>&2
-
+    expected_prompt='\[\033[1;32m\]\u\[\033[m\] \[\033[1;33m\]at\[\033[m\] \[\033[1;34m\]\h\[\033[m\] \[\033[1;33m\]in\[\033[m\] \[\033[1;35m\]\w\[\033[m\]$( is_on_git &&   echo -n " \[\033[1;36m\]on\[\033[m\] " &&   echo -n "\[\033[1;37m\]$(get_git_info)" &&   echo -n "\[\033[1;33m\]")\n\[\033[m\]\[\]$ \[\033[m\]'
+    echo $PS1
+    echo $expected_prompt
+    test "$PS1" = "$expected_prompt" || echo '`PS1` is not as expected (overridden)' 1>&2
