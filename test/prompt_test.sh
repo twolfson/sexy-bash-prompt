@@ -175,12 +175,8 @@ esc=$'\033'
 
     # uses 8 color pallete
     # echo "$(TERM=xterm tput bold)$(TERM=xterm tput setaf 4)" | copy
-    test "$prompt_user_color" = "$esc[1m$esc[34m" || echo '`prompt_user_color` is not bold blue (8)' 1>&2
-    test "$prompt_preposition_color" = "$esc[1m$esc[37m" || echo '`prompt_preposition_color` is not bold white (8)' 1>&2
-    test "$prompt_device_color" = "$esc[1m$esc[36m" || echo '`prompt_device_color` is not bold cyan (8)' 1>&2
-    test "$prompt_dir_color" = "$esc[1m$esc[32m" || echo '`prompt_dir_color` is not bold green (8)' 1>&2
-    test "$prompt_git_status_color" = "$esc[1m$esc[33m" || echo '`prompt_git_status_color` is not bold yellow (8)' 1>&2
-    test "$prompt_symbol_color" = "$esc[1m" || echo '`prompt_symbol_color` is not bold (8)' 1>&2
+    expected_prompt='\['$esc'[1m'$esc'[34m\]\u\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[37m\]at\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[36m\]\h\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[37m\]in\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[32m\]\w\['$esc'(B'$esc'[m\]$( is_on_git &&   echo -n " \['$esc'[1m'$esc'[37m\]on\['$esc'(B'$esc'[m\] " &&   echo -n "\['$esc'[1m'$esc'[33m\]$(get_git_info)" &&   echo -n "\['$esc'[1m'$esc'[37m\]")\n\['$esc'(B'$esc'[m\]\['$esc'[1m\]$ \['$esc'(B'$esc'[m\]'
+    test "$PS1" = "$expected_prompt" || echo '`PS1` is not as expected (8)' 1>&2
 
   # in an ANSI terminal
   cd $ORIG_PWD
