@@ -79,4 +79,11 @@ demo:
 	@echo "cd /tmp/git/dirty-unpushed-unpulled"
 	@echo '"""'
 
+color-check:
+	@echo "bash --norc"
+	@echo "TERM=xterm-256color . .bash_prompt"
+	@echo "TERM=xterm . .bash_prompt"
+	@echo "TERM='' . .bash_prompt"
+	@echo "exit"
+
 .PHONY: install install-link clean test demo
