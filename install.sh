@@ -3,7 +3,8 @@
 # Create helper to determine if our PS1 is installed
 ps1_is_installed () {
   # If our prompt is being loaded, exit positively. Otherwise, negatively.
-  [[ -n "$(bash --login -c 'echo $PS1' | grep 'get_git_info')" ]]
+  # DEV: Regression for ps1 check via #24
+  [[ -n "$(bash --login -i -c 'echo $PS1' | grep 'get_git_info')" ]]
 }
 
 # If the PS1 already contains our current prompt, leave
