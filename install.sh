@@ -32,6 +32,8 @@ elif [[ -f ~/.profile ]]; then
   PROFILE_SCRIPT_FULL=~/.profile
 fi
 
+# If the current script already has notes about .bashrc, be cautious and tell the user
+
 # Add a bash invocation to the profile script
 echo "# Adding ~/.bashrc triggers to $PROFILE_SCRIPT_SHORT"
 echo "# Trigger ~/.bashrc commands" >> "$PROFILE_SCRIPT_FULL"
