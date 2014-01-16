@@ -34,7 +34,7 @@ elif [[ -f ~/.profile ]]; then
 fi
 
 # If the current script does not have notes about .bashrc
-if ! grep "$PROFILE_SCRIPT_FULL" .bashrc &> /dev/null;
+if ! grep "$PROFILE_SCRIPT_FULL" .bashrc &> /dev/null; then
   # Add a bash invocation to the profile script
   echo "# Adding ~/.bashrc triggers to $PROFILE_SCRIPT_SHORT"
   echo "# Trigger ~/.bashrc commands" >> "$PROFILE_SCRIPT_FULL"
