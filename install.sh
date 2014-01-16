@@ -42,7 +42,7 @@ if ! grep "$PROFILE_SCRIPT_FULL" .bashrc &> /dev/null; then
 
   # If our prompt is not being loaded, notify the user and leave angrily
   ps1_is_installed || (echo "sexy-bash-prompt was added to ~/.bashrc \
-  and $PROFILE_SCRIPT_SHORT but is not being picked up by bash." 1>&2 && exit 1)
+and $PROFILE_SCRIPT_SHORT but is not being picked up by bash." 1>&2 && exit 1)
 # Otherwise, notify the user about how to add it but do nothing
 else
   echo "# We cannot confirm that sexy-bash-prompt has installed properly" 1>&2
