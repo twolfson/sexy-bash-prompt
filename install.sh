@@ -44,8 +44,8 @@ if ! grep "$PROFILE_SCRIPT_FULL" .bashrc &> /dev/null;
   and $PROFILE_SCRIPT_SHORT but is not being picked up by bash." 1>&2 && exit 1)
 # Otherwise, notify the user about how to add it but do nothing
 else
-  echo "# We cannot confirm that `sexy-bash-prompt` has installed properly" 1>&2
-  echo "# Please open a new tab to confirm" 1>&2
+  echo "# We cannot confirm that sexy-bash-prompt has installed properly" 1>&2
+  echo "# Please open a new terminal window to confirm" 1>&2
   echo "" 1>&2
   echo "# If it has not, please run the following code:" 1>&2
   echo "echo \". ~/.bashrc\" >> \"$PROFILE_SCRIPT_FULL\"" 1>&2
