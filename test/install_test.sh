@@ -7,7 +7,7 @@
 EXPECTED_FILE="test/test-files/ps1/expected.txt"
 
 # Get the output of a new shell
-ACTUAL_PS1="$(bash -i -c 'echo $PS1; exit 0')"
+ACTUAL_PS1="$(bash --login -i -c 'echo $PS1; exit 0')"
 
 # # Save a fixture
 # echo -n "$ACTUAL_PS1" > "$EXPECTED_FILE"
