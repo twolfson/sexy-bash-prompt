@@ -3,7 +3,7 @@
 # Install the prompt
 # make install
 
-bash --login -i -c 'echo hai'
+bash -c 'echo hai'
 
 # # Set up test constants
 # EXPECTED_FILE="test/test-files/ps1/expected.txt"
