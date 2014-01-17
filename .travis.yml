@@ -8,7 +8,7 @@ before_script:
 script:
   - make test # Run normal test
   # DEV: Install test is disabled due to Travis CI not closing --login scripts
-  # - make test-install # Run install-specific test
+  - make test-install # Run install-specific test
 
 notifications:
   email: false
