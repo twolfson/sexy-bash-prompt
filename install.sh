@@ -34,6 +34,7 @@ elif [[ -f ~/.profile ]]; then
 fi
 
 # If the current script does not have notes about .bashrc
+# DEV: Introduced due to #24, a regression that prevented users from logging in
 if ! grep .bashrc "$PROFILE_SCRIPT_FULL" &> /dev/null; then
   # Add a bash invocation to the profile script
   echo "# Adding ~/.bashrc triggers to $PROFILE_SCRIPT_SHORT"
