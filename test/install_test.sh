@@ -3,7 +3,7 @@
 # Install the prompt
 # make install
 
-ACTUAL_PS1="$(bash --login -i -c 'echo $PS1; exit 0')"
+ACTUAL_PS1="$(bash --login -i -c 'echo hai')"
 echo "$ACTUAL_PS1"
 
 # # Set up test constants
