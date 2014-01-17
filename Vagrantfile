@@ -14,10 +14,10 @@ Vagrant.configure("2") do |config|
 SCRIPT
   config.vm.provision "shell", inline: $update_apt_get
 
-  # Install test dependency on `git`
+  # Install dependencies on `git` and `make`
   $install_git = <<SCRIPT
   if ! which git &> /dev/null; then
-    sudo apt-get install git -y
+    sudo apt-get install git make -y
   fi
 SCRIPT
   config.vm.provision "shell", inline: $install_git
