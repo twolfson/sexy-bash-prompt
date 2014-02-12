@@ -122,6 +122,14 @@ fixture_git_init() {
     # is an filled hexagon
     test "$(get_git_status)" = "⬢" || echo '`get_git_status` !== "⬢" on a dirty, unpushed, and unpulled branch' 1>&2
 
+  # DEV: Edge cases where `git status --porcelain` fails
+  # https://github.com/twolfson/sexy-bash-prompt/issues/25
+  # a clean merge-in-progress branch
+  fixture_dir 'merge-in-progress'
+
+    # is represented as dirty
+    test "$(parse_git_dirty)" = "1" || echo '`parse_git_dirty` !== "1" on a clean merge-in-progress branch' 1>&2
+
 # sexy-bash-prompt
 cd $ORIG_PWD
 
