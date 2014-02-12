@@ -135,17 +135,33 @@ parse_git_behind () {
 
 function parse_git_dirty() {
   # If the git status has *any* changes (e.g. dirty), echo our character
-
   # Detect staged/unstaged changes
   if [[ -n "$(git status --porcelain 2> /dev/null)" ]]; then
     echo 1
+    return
   fi
 
-  # Detect in-progress actions (e.g. merge, rebase)
-  # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1199-L1241
-  if [[ -f ".git/MERGE_HEAD" ]]; then
-    echo 1
-  fi
+  # # Detect in-progress actions (e.g. merge, rebase)
+  # # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1199-L1241
+  git_check_dir="$PWD"
+  git_dir=""
+  while (true); do
+    if [[ -d "$git_check_dir/.git/" ]]; then
+      git_dir="$git_check_dir/.git/"
+      break
+    fi
+
+    if [[ "$git_check_dir" = "/" ]]; then
+      break
+    fi
+
+    git_check_dir="$(dirname $git_check_dir)"
+  done
+
+  echo $git_dir
+  # if [[ -f ".git/MERGE_HEAD" ]]; then
+  #   echo 1
+  # fi
 }
 
 function is_on_git() {
