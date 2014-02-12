@@ -130,6 +130,13 @@ fixture_git_init() {
     # is represented as dirty
     test "$(parse_git_dirty)" = "1" || echo '`parse_git_dirty` !== "1" on a clean merge-in-progress branch' 1>&2
 
+    # in a sub-directory
+    mkdir nested
+    cd nested
+
+      # is represented as dirty
+      test "$(parse_git_dirty)" = "1" || echo '`parse_git_dirty` !== "1" in a subdirectory of a clean merge-in-progress branch' 1>&2
+
 # sexy-bash-prompt
 cd $ORIG_PWD
 
