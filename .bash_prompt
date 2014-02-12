@@ -134,13 +134,16 @@ parse_git_behind () {
 }
 
 function parse_git_dirty() {
-  # If the git status has *any* changes (e.g. dirty)
-      # Detect staged/unstaged changes
-  if [[ -n "$(git status --porcelain 2> /dev/null)" || \
-      # Detect in-progress actions (e.g. merge, rebase)
-      # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1199-L1241
-        -f ".git/MERGE_HEAD" ]]; then
-    # echo our character
+  # If the git status has *any* changes (e.g. dirty), echo our character
+
+  # Detect staged/unstaged changes
+  if [[ -n "$(git status --porcelain 2> /dev/null)" ]]; then
+    echo 1
+  fi
+
+  # Detect in-progress actions (e.g. merge, rebase)
+  # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1199-L1241
+  if [[ -f ".git/MERGE_HEAD" ]]; then
     echo 1
   fi
 }
