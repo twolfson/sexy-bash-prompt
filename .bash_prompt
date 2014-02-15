@@ -89,6 +89,15 @@ function get_git_branch() {
   fi
 }
 
+function get_git_progress() {
+  # Detect in-progress actions (e.g. merge, rebase)
+  # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1199-L1241
+  git_dir="$(get_git_dir)"
+  if [[ -f "$git_dir/MERGE_HEAD" ]]; then
+    echo " (merge in progress)"
+  fi
+}
+
 is_branch1_behind_branch2 () {
   # $ git log origin/master..master -1
   # commit 4a633f715caf26f6e9495198f89bba20f3402a32
@@ -151,16 +160,7 @@ parse_git_behind () {
 
 function parse_git_dirty() {
   # If the git status has *any* changes (e.g. dirty), echo our character
-  # Detect staged/unstaged changes
   if [[ -n "$(git status --porcelain 2> /dev/null)" ]]; then
-    echo 1
-    return
-  fi
-
-  # # Detect in-progress actions (e.g. merge, rebase)
-  # # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1199-L1241
-  git_dir="$(get_git_dir)"
-  if [[ -f "$git_dir/MERGE_HEAD" ]]; then
     echo 1
   fi
 }
@@ -202,8 +202,11 @@ get_git_info () {
     # Echo the branch
     output="$branch"
 
+    # Add any in progress events (e.g. merge, rebase)
+    output="$output$(get_git_progress)"
+
     # Add on the git status
-    output=$output"$(get_git_status)"
+    output="$output$(get_git_status)"
 
     # Echo our output
     echo "$output"
