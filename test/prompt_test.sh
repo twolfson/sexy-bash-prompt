@@ -122,20 +122,27 @@ fixture_git_init() {
     # is an filled hexagon
     test "$(get_git_status)" = "⬢" || echo '`get_git_status` !== "⬢" on a dirty, unpushed, and unpulled branch' 1>&2
 
-  # DEV: Edge cases where `git status --porcelain` fails
+# git_progress
+
+  # on a clean branch
+  fixture_dir 'clean-synced'
+
+    # is nothing
+    test "$(get_git_progress)" = "" || echo '`get_git_progress` !== "" on a clean and synced branch' 1>&2
+
   # https://github.com/twolfson/sexy-bash-prompt/issues/25
-  # a clean merge-in-progress branch
+  # on a merge-in-progress branch
   fixture_dir 'merge-in-progress'
 
-    # is represented as dirty
-    test "$(parse_git_dirty)" = "1" || echo '`parse_git_dirty` !== "1" on a clean merge-in-progress branch' 1>&2
+    # shows a merge in progress
+    test "$(get_git_progress)" = " (merge in progress)" || echo '`get_git_progress` !== " (merge in progress)" on a clean merge-in-progress branch' 1>&2
 
     # in a sub-directory
     mkdir nested
     cd nested
 
-      # is represented as dirty
-      test "$(parse_git_dirty)" = "1" || echo '`parse_git_dirty` !== "1" in a subdirectory of a clean merge-in-progress branch' 1>&2
+      # shows a merge in progress
+      test "$(get_git_progress)" = " (merge in progress)" || echo '`get_git_progress` !== " (merge in progress)" in a subdirectory of a clean merge-in-progress branch' 1>&2
 
 # sexy-bash-prompt
 cd $ORIG_PWD
