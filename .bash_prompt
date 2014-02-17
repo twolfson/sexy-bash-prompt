@@ -94,7 +94,7 @@ function get_git_progress() {
   # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1199-L1241
   git_dir="$(get_git_dir)"
   if [[ -f "$git_dir/MERGE_HEAD" ]]; then
-    echo " (merge in progress)"
+    echo " [merge]"
   fi
 }
 
