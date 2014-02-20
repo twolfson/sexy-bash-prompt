@@ -59,6 +59,7 @@ if [[ $UID == 0 ]]; then
   PROMPT_USER_COLOR=$(tput bold)$(tput setaf 1)
 fi
 
+# Apply any color overrides that have been set in the environment
 if [[ -n "$PROMPT_USER_COLOR" ]]; then prompt_user_color="$PROMPT_USER_COLOR"; fi
 if [[ -n "$PROMPT_PREPOSITION_COLOR" ]]; then prompt_preposition_color="$PROMPT_PREPOSITION_COLOR"; fi
 if [[ -n "$PROMPT_DEVICE_COLOR" ]]; then prompt_device_color="$PROMPT_DEVICE_COLOR"; fi
