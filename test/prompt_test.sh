@@ -193,15 +193,14 @@ esc=$'\033'
   TERM=xterm . .bash_prompt
 
     # uses 8 color palette
-    # echo "$(TERM=xterm tput bold)$(TERM=xterm tput setaf 4)" | copy
-    expected_prompt='\['$esc'[1m'$esc'[34m\]\u\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[37m\]at\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[36m\]\h\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[37m\]in\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[32m\]\w\['$esc'(B'$esc'[m\]$( is_on_git &&   echo -n " \['$esc'[1m'$esc'[37m\]on\['$esc'(B'$esc'[m\] " &&   echo -n "\['$esc'[1m'$esc'[33m\]$(get_git_info)" &&   echo -n "\['$esc'[1m'$esc'[37m\]")\n\['$esc'(B'$esc'[m\]\['$esc'[1m\]$ \['$esc'(B'$esc'[m\]'
+    expected_prompt='\['$esc'[1m'$esc'[34m\]\u\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[37m\]at\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[36m\]\h\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[37m\]in\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[32m\]\w\['$esc'(B'$esc'[m\]$( is_on_git &&   echo -n " \['$esc'[1m'$esc'[37m\]on\['$esc'(B'$esc'[m\] " &&   echo -n "\['$esc'[1m'$esc'[33m\]$(get_git_info)" &&   echo -n "\['$esc'[1m'$esc'[31m\]$(get_git_progress)" &&   echo -n "\['$esc'[1m'$esc'[37m\]")\n\['$esc'(B'$esc'[m\]\['$esc'[1m\]$ \['$esc'(B'$esc'[m\]'
     test "$PS1" = "$expected_prompt" || echo '`PS1` is not as expected (8)' 1>&2
 
   # in an ANSI terminal
   TERM="" . .bash_prompt
 
     # uses ANSI colors
-    expected_prompt='\[\033[1;34m\]\u\[\033[m\] \[\033[1;37m\]at\[\033[m\] \[\033[1;36m\]\h\[\033[m\] \[\033[1;37m\]in\[\033[m\] \[\033[1;32m\]\w\[\033[m\]$( is_on_git &&   echo -n " \[\033[1;37m\]on\[\033[m\] " &&   echo -n "\[\033[1;33m\]$(get_git_info)" &&   echo -n "\[\033[1;37m\]")\n\[\033[m\]\[\]$ \[\033[m\]'
+    expected_prompt='\[\033[1;34m\]\u\[\033[m\] \[\033[1;37m\]at\[\033[m\] \[\033[1;36m\]\h\[\033[m\] \[\033[1;37m\]in\[\033[m\] \[\033[1;32m\]\w\[\033[m\]$( is_on_git &&   echo -n " \[\033[1;37m\]on\[\033[m\] " &&   echo -n "\[\033[1;33m\]$(get_git_info)" &&   echo -n "\[\033[1;31m\]$(get_git_progress)" &&   echo -n "\[\033[1;37m\]")\n\[\033[m\]\[\]$ \[\033[m\]'
     test "$PS1" = "$expected_prompt" || echo '`PS1` is not as expected (ANSI)' 1>&2
 
   # when overridden
