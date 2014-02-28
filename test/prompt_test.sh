@@ -135,14 +135,14 @@ fixture_git_init() {
   fixture_dir 'merge-in-progress'
 
     # shows a merge in progress
-    test "$(get_git_progress)" = " (merge in progress)" || echo '`get_git_progress` !== " (merge in progress)" on a clean merge-in-progress branch' 1>&2
+    test "$(get_git_progress)" = " [merge]" || echo '`get_git_progress` !== " [merge]" on a clean merge-in-progress branch' 1>&2
 
     # in a sub-directory
     mkdir nested
     cd nested
 
       # shows a merge in progress
-      test "$(get_git_progress)" = " (merge in progress)" || echo '`get_git_progress` !== " (merge in progress)" in a subdirectory of a clean merge-in-progress branch' 1>&2
+      test "$(get_git_progress)" = " [merge]" || echo '`get_git_progress` !== " [merge]" in a subdirectory of a clean merge-in-progress branch' 1>&2
 
 # sexy-bash-prompt
 cd $ORIG_PWD
