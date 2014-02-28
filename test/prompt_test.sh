@@ -184,9 +184,9 @@ esc=$'\033'
 
     # DEV: To debug, use a diff tool. Don't stare at the code.
     # http://www.diffchecker.com/diff
-    # echo "$PS1"
+    # To get the latest prompt, enable one of the echoes and run `make test | copy`
+    echo "$PS1"
     # echo "$expected_prompt"
-    # make test | copy
     test "$PS1" = "$expected_prompt" || echo '`PS1` is not as expected (256)' 1>&2
 
   # in an 8 color terminal
