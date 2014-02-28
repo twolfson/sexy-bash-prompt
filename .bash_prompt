@@ -66,22 +66,6 @@ if [[ -n "$PROMPT_GIT_STATUS_COLOR" ]]; then prompt_git_status_color="$PROMPT_GI
 if [[ -n "$PROMPT_GIT_PROGRESS_COLOR" ]]; then prompt_git_progress_color="$PROMPT_GIT_PROGRESS_COLOR"; fi
 if [[ -n "$PROMPT_SYMBOL_COLOR" ]]; then prompt_symbol_color="$PROMPT_SYMBOL_COLOR"; fi
 
-get_git_dir () {
-  git_check_dir="$PWD"
-  while (true); do
-    if [[ -d "$git_check_dir/.git/" ]]; then
-      echo "$git_check_dir/.git/"
-      return
-    fi
-
-    if [[ "$git_check_dir" = "/" ]]; then
-      return
-    fi
-
-    git_check_dir="$(dirname $git_check_dir)"
-  done
-}
-
 function get_git_branch() {
   # On branches, this will return the branch name
   # On non-branches, (no branch)
@@ -96,8 +80,8 @@ function get_git_branch() {
 function get_git_progress() {
   # Detect in-progress actions (e.g. merge, rebase)
   # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1199-L1241
-  git_dir="$(get_git_dir)"
-  if [[ -f "$git_dir/MERGE_HEAD" ]]; then
+  git_dir="$(git rev-parse --show-cdup)"
+  if [[ -f "$git_dir.git/MERGE_HEAD" ]]; then
     echo " [merge]"
   fi
 }
