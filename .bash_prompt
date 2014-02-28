@@ -25,6 +25,7 @@ if tput setaf 1 &> /dev/null; then
     prompt_device_color="$prompt_bold$(tput setaf 39)" # BOLD CYAN
     prompt_dir_color="$prompt_bold$(tput setaf 76)" # BOLD GREEN
     prompt_git_status_color="$prompt_bold$(tput setaf 154)" # BOLD YELLOW
+    prompt_git_progress_color="$prompt_bold$(tput setaf 9)" # BOLD RED
   else
   # Otherwise, use colors from our set of 8
     prompt_user_color="$prompt_bold$(tput setaf 4)" # BOLD BLUE
@@ -32,6 +33,7 @@ if tput setaf 1 &> /dev/null; then
     prompt_device_color="$prompt_bold$(tput setaf 6)" # BOLD CYAN
     prompt_dir_color="$prompt_bold$(tput setaf 2)" # BOLD GREEN
     prompt_git_status_color="$prompt_bold$(tput setaf 3)" # BOLD YELLOW
+    prompt_git_progress_color="$prompt_bold$(tput setaf 1)" # BOLD RED
   fi
 
   prompt_symbol_color="$prompt_bold" # BOLD
@@ -51,6 +53,7 @@ else
   prompt_device_color="\033[1;36m" # CYAN
   prompt_dir_color="\033[1;32m" # GREEN
   prompt_git_status_color="\033[1;33m" # YELLOW
+  prompt_git_progress_color="\033[1;31m" # RED
   prompt_symbol_color="" # NORMAL
 fi
 
@@ -60,6 +63,7 @@ if [[ -n "$PROMPT_PREPOSITION_COLOR" ]]; then prompt_preposition_color="$PROMPT_
 if [[ -n "$PROMPT_DEVICE_COLOR" ]]; then prompt_device_color="$PROMPT_DEVICE_COLOR"; fi
 if [[ -n "$PROMPT_DIR_COLOR" ]]; then prompt_dir_color="$PROMPT_DIR_COLOR"; fi
 if [[ -n "$PROMPT_GIT_STATUS_COLOR" ]]; then prompt_git_status_color="$PROMPT_GIT_STATUS_COLOR"; fi
+if [[ -n "$PROMPT_GIT_PROGRESS_COLOR" ]]; then prompt_git_progress_color="$PROMPT_GIT_PROGRESS_COLOR"; fi
 if [[ -n "$PROMPT_SYMBOL_COLOR" ]]; then prompt_symbol_color="$PROMPT_SYMBOL_COLOR"; fi
 
 function get_git_branch() {
@@ -70,6 +74,15 @@ function get_git_branch() {
     echo $ref
   else
     echo "(no branch)"
+  fi
+}
+
+function get_git_progress() {
+  # Detect in-progress actions (e.g. merge, rebase)
+  # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1199-L1241
+  git_dir="$(git rev-parse --git-dir)"
+  if [[ -f "$git_dir/MERGE_HEAD" ]]; then
+    echo " [merge]"
   fi
 }
 
@@ -133,17 +146,9 @@ parse_git_behind () {
   fi
 }
 
-parse_git_dirty () {
-  # ?? file.txt # Unstaged new files
-  # A  file.txt # Staged new files
-  #  M file.txt # Unstaged modified files
-  # M  file.txt # Staged modified files
-  #  D file.txt # Unstaged deleted files
-  # D  file.txt # Staged deleted files
-
-  # If the git status has *any* changes (i.e. dirty)
+function parse_git_dirty() {
+  # If the git status has *any* changes (e.g. dirty), echo our character
   if [[ -n "$(git status --porcelain 2> /dev/null)" ]]; then
-    # echo our character
     echo 1
   fi
 }
@@ -186,7 +191,7 @@ get_git_info () {
     output="$branch"
 
     # Add on the git status
-    output=$output"$(get_git_status)"
+    output="$output$(get_git_status)"
 
     # Echo our output
     echo "$output"
@@ -212,5 +217,6 @@ PS1="\[$prompt_user_color\]\u\[$prompt_reset\] \
 \$( is_on_git && \
   echo -n \" \[$prompt_preposition_color\]on\[$prompt_reset\] \" && \
   echo -n \"\[$prompt_git_status_color\]\$(get_git_info)\" && \
+  echo -n \"\[$prompt_git_progress_color\]\$(get_git_progress)\" && \
   echo -n \"\[$prompt_preposition_color\]\")\n\[$prompt_reset\]\
 \[$prompt_symbol_color\]$(get_prompt_symbol) \[$prompt_reset\]"
