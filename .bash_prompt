@@ -80,8 +80,8 @@ function get_git_branch() {
 function get_git_progress() {
   # Detect in-progress actions (e.g. merge, rebase)
   # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1199-L1241
-  git_dir="$(git rev-parse --show-cdup)"
-  if [[ -f "$git_dir.git/MERGE_HEAD" ]]; then
+  git_dir="$(git rev-parse --git-dir)"
+  if [[ -f "$git_dir/MERGE_HEAD" ]]; then
     echo " [merge]"
   fi
 }
