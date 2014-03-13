@@ -146,6 +146,7 @@ fixture_git_init() {
 
   # when an `am` is in progress (`git am`)
   # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1208-L1211
+  # DEV: To reproduce, `git format-patch SHA; git checkout -; git am PATCH`
   # DEV: Research for determining this was `am` https://github.com/git/git/blob/v1.9-rc2/contrib/completion/git-prompt.sh#L339-L340
   # DEV: The empty check is for better dialog https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L919-L925
     # TODO: Should we include step/total in summary?
