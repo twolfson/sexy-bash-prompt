@@ -1,5 +1,1 @@
-<<<<<<< HEAD
 TestA
-=======
-TestB
->>>>>>> 95d934d... Updated test.txt to B

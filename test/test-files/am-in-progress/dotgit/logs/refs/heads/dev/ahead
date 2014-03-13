@@ -1,2 +1,3 @@
 0000000000000000000000000000000000000000 66b31338aa7a1211cdd73dd722ce04e3103f8c72 Todd Wolfson <todd@twolfson.com> 1392198245 -0800	branch: Created from HEAD
 66b31338aa7a1211cdd73dd722ce04e3103f8c72 9669ec63ab88a011fff2b0846f8bd049e58c1ad9 Todd Wolfson <todd@twolfson.com> 1392198264 -0800	commit: Updated test.txt to A
+9669ec63ab88a011fff2b0846f8bd049e58c1ad9 0537019abfbdb160a1681f972e63894091b2b7f2 Todd Wolfson <todd@twolfson.com> 1394702433 -0700	commit: Saving patch we will `git am` against

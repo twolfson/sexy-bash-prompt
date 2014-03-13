@@ -1,8 +1,19 @@
-9669ec63ab88a011fff2b0846f8bd049e58c1ad9
+From 95d934dd5ae9a72a9f5f6e213a60c010d86b9f6e Mon Sep 17 00:00:00 2001
+From: Todd Wolfson <todd@twolfson.com>
+Date: Wed, 12 Feb 2014 01:44:43 -0800
+Subject: [PATCH] Updated test.txt to B
+
+---
+ test.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
 diff --git a/test.txt b/test.txt
-index 345e6aef713208c8d50cdea23b85e6ad831f0449..a9122211071ee619218d22221decb71293b8a9ce 100644
+index 345e6ae..6ecc466 100644
 --- a/test.txt
 +++ b/test.txt
 @@ -1 +1 @@
 -Test
-+TestA
++TestB
+-- 
+1.8.4-rc0
+
