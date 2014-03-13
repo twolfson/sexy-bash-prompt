@@ -1,4 +1,6 @@
 # sexy-bash-prompt changelog
+0.19.0 - Added `[merge]` indicator when a merge is in progress
+
 0.18.0 - Added conservative check for .bashrc in profile script during install
 
 0.17.0 - Updated install script to check against interactive shell. Fixes #24
