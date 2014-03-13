@@ -96,13 +96,16 @@ function get_git_progress() {
   elif [[ -d "$git_dir/rebase-merge" ]]; then
     # git rebase --interactive/--merge
     echo " [rebase]"
+  elif [[ -f "$git_dir/CHERRY_PICK_HEAD" ]]; then
+    # git cherry-pick
+    echo " [cherry-pick]"
   fi
   if [[ -f "$git_dir/BISECT_LOG" ]]; then
     # git bisect
     echo " [bisect]"
   fi
   if [[ -f "$git_dir/REVERT_HEAD" ]]; then
-    # git revert
+    # git revert --no-commit
     echo " [revert]"
   fi
 }
