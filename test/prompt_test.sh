@@ -178,16 +178,25 @@ fixture_git_init() {
 
   # on an incomplete cherry-pick
   # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1224-L1227
-    # TODO: Complete me
+  fixture_dir 'cherry-pick-in-progress'
+
+    # shows a `cherry-pick` in progress
+    test "$(get_git_progress)" = " [cherry-pick]" || echo '`get_git_progress` !== " [cherry-pick]" in a cherry-pick-in-progress repo' 1>&2
 
   # in an incomplete bisect
   # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1229-L1232
-    # TODO: Complete me
+  fixture_dir 'bisect-in-progress'
+
+    # shows a `bisect` in progress
+    test "$(get_git_progress)" = " [bisect]" || echo '`get_git_progress` !== " [bisect]" in a bisect-in-progress repo' 1>&2
 
   # in an incomplete revert
   # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1233-L1237
   # DEV: To reproduce, `git revert HEAD --no-commit`
-    # TODO: Complete me
+  fixture_dir 'revert-in-progress'
+
+    # shows a `revert` in progress
+    test "$(get_git_progress)" = " [revert]" || echo '`get_git_progress` !== " [revert]" in a revert-in-progress repo' 1>&2
 
 # sexy-bash-prompt
 cd $ORIG_PWD
