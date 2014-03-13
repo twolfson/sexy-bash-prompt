@@ -1,0 +1,7 @@
+diff --git a/test.txt b/test.txt
+index 345e6aef713208c8d50cdea23b85e6ad831f0449..a9122211071ee619218d22221decb71293b8a9ce 100644
+--- a/test.txt
++++ b/test.txt
+@@ -1 +1 @@
+-Test
++TestA
