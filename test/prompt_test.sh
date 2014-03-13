@@ -172,6 +172,7 @@ fixture_git_init() {
 
   # in an incomplete revert
   # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1233-L1237
+  # DEV: To reproduce, `git revert HEAD --no-commit`
     # TODO: Complete me
 
 # sexy-bash-prompt
