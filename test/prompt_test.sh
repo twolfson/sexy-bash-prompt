@@ -157,12 +157,24 @@ fixture_git_init() {
   # when a `git rebase` is in progress (no `--interactive` or `--merge`)
   # DEV: This is caused by `git rebase`
   # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1212-L1216
+  fixture_dir 'rebase-in-progress'
+
+    # shows a `rebase` in progress
+    test "$(get_git_progress)" = " [rebase]" || echo '`get_git_progress` !== " [rebase]" in a rebase-in-progress repo' 1>&2
 
   # when an interactive rebase is in progress(`git rebase --interactive`)
   # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1218-L1219
+  fixture_dir 'rebase-interactive-in-progress'
+
+    # shows a `rebase` in progress
+    test "$(get_git_progress)" = " [rebase]" || echo '`get_git_progress` !== " [rebase]" in a rebase-interactive-in-progress repo' 1>&2
 
   # when a merge based rebase is in progress (`git rebase --merge`)
   # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1220-L1223
+  fixture_dir 'rebase-merge-in-progress'
+
+    # shows a `rebase` in progress
+    test "$(get_git_progress)" = " [rebase]" || echo '`get_git_progress` !== " [rebase]" in a rebase-merge-in-progress repo' 1>&2
 
   # on an incomplete cherry-pick
   # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1224-L1227
