@@ -151,11 +151,9 @@ fixture_git_init() {
     # TODO: Should we include step/total in summary?
     # https://github.com/git/git/blob/v1.9-rc2/contrib/completion/git-prompt.sh#L334-L335
 
-  # when a `git rebase` is in progress
+  # when a `git rebase` is in progress (no `--interactive` or `--merge`)
   # DEV: This is caused by `git rebase`
-  # TODO: Figure out how this is different from rebase-merge
   # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1212-L1216
-  # This is for a rebase without any `-i` flag, not sure how it differs from uninteractive rebase-merge
 
   # when an interactive rebase is in progress(`git rebase --interactive`)
   # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1218-L1219
