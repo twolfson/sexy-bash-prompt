@@ -78,6 +78,14 @@ demo:
 	@echo "cd /tmp/git/unpushed-unpulled"
 	@echo "cd /tmp/git/dirty-unpushed-unpulled"
 	@echo '"""'
+	@echo ''
+	@echo "Showcase in progress keywords:"
+	@echo '"""'
+	@echo "cd /tmp/git/merge-in-progress"
+	@echo "cd /tmp/git/rebase-in-progress"
+	@echo "cd /tmp/git/bisect-in-progress"
+	@echo "cd /tmp/git/cherry-pick-in-progress"
+	@echo '"""'
 
 color-check:
 	@echo 'bash --norc'
