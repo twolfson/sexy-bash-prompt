@@ -144,6 +144,35 @@ fixture_git_init() {
       # shows a merge in progress
       test "$(get_git_progress)" = " [merge]" || echo '`get_git_progress` !== " [merge]" in a subdirectory of a clean merge-in-progress branch' 1>&2
 
+  # on a rebase-apply/applying
+  # TODO: Figure out what this is
+  # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1208-L1211
+  # TODO: Is there something for an empty am-patch?
+
+  # on a rebase-apply in progress
+  # TODO: Figure out how this is different from rebase-merge
+  # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1212-L1216
+
+  # on a rebase-merge/interactive in progress
+  # TODO: Figure out *how* different this is from rebase_in_progress
+  # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1218-L1219
+
+  # on a rebase-merge in progress
+  # TODO: Figure out what this means in rebase terms
+  # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1220-L1223
+
+  # on an incomplete cherry-pick
+     # TODO: Complete me
+     # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1224-L1227
+
+  # in an incomplete bisect
+     # TODO: Complete me
+     # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1229-L1232
+
+  # in an incomplete revert
+     # TODO: Complete me
+     # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1233-L1237
+
 # sexy-bash-prompt
 cd $ORIG_PWD
 
