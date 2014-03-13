@@ -144,13 +144,12 @@ fixture_git_init() {
       # shows a merge in progress
       test "$(get_git_progress)" = " [merge]" || echo '`get_git_progress` !== " [merge]" in a subdirectory of a clean merge-in-progress branch' 1>&2
 
-  # when an `am` is in progress
-  # DEV: This is caused by `git am`
-  # TODO: Should we include step/total in summary?
-  # https://github.com/git/git/blob/v1.9-rc2/contrib/completion/git-prompt.sh#L334-L335
+  # when an `am` is in progress (`git am`)
   # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1208-L1211
   # DEV: Research for determining this was `am` https://github.com/git/git/blob/v1.9-rc2/contrib/completion/git-prompt.sh#L339-L340
   # DEV: The empty check is for better dialog https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L919-L925
+    # TODO: Should we include step/total in summary?
+    # https://github.com/git/git/blob/v1.9-rc2/contrib/completion/git-prompt.sh#L334-L335
 
   # when a `git rebase` is in progress
   # DEV: This is caused by `git rebase`
@@ -158,25 +157,23 @@ fixture_git_init() {
   # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1212-L1216
   # This is for a rebase without any `-i` flag, not sure how it differs from uninteractive rebase-merge
 
-  # on a rebase-merge/interactive in progress
-  # DEV: This is caused by `git rebase --interactive`
+  # when an interactive rebase is in progress(`git rebase --interactive`)
   # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1218-L1219
 
-  # on a rebase-merge in progress
-  # DEV: This is caused by `git rebase --merge`
+  # when a merge based rebase is in progress (`git rebase --merge`)
   # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1220-L1223
 
   # on an incomplete cherry-pick
-     # TODO: Complete me
-     # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1224-L1227
+  # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1224-L1227
+    # TODO: Complete me
 
   # in an incomplete bisect
-     # TODO: Complete me
-     # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1229-L1232
+  # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1229-L1232
+    # TODO: Complete me
 
   # in an incomplete revert
-     # TODO: Complete me
-     # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1233-L1237
+  # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1233-L1237
+    # TODO: Complete me
 
 # sexy-bash-prompt
 cd $ORIG_PWD
