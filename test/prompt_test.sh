@@ -149,8 +149,6 @@ fixture_git_init() {
   # DEV: To reproduce, `git format-patch SHA; git checkout -; git am PATCH`
   # DEV: Research for determining this was `am` https://github.com/git/git/blob/v1.9-rc2/contrib/completion/git-prompt.sh#L339-L340
   # DEV: The empty check is for better dialog https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L919-L925
-    # TODO: Should we include step/total in summary?
-    # https://github.com/git/git/blob/v1.9-rc2/contrib/completion/git-prompt.sh#L334-L335
 
   # when a `git rebase` is in progress (no `--interactive` or `--merge`)
   # DEV: This is caused by `git rebase`
