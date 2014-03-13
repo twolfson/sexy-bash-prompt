@@ -83,8 +83,8 @@ function get_git_progress() {
   git_dir="$(git rev-parse --git-dir)"
   if [[ -f "$git_dir/MERGE_HEAD" ]]; then
     echo " [merge]"
-  elif [[ -d "$git_dir/rebase-applying" ]]; then
-    if [[ -f "$git_dir/rebase-applying/applying" ]]; then
+  elif [[ -d "$git_dir/rebase-apply" ]]; then
+    if [[ -f "$git_dir/rebase-apply/applying" ]]; then
       echo " [am]"
     else
       echo " [rebase]"
