@@ -149,6 +149,10 @@ fixture_git_init() {
   # DEV: To reproduce, `git format-patch SHA; git checkout -; git am PATCH`
   # DEV: Research for determining this was `am` https://github.com/git/git/blob/v1.9-rc2/contrib/completion/git-prompt.sh#L339-L340
   # DEV: The empty check is for better dialog https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L919-L925
+  fixture_dir 'am-in-progress'
+
+    # shows an `am` in progress
+    test "$(get_git_progress)" = " [am]" || echo '`get_git_progress` !== " [am]" in an am-in-progress repo' 1>&2
 
   # when a `git rebase` is in progress (no `--interactive` or `--merge`)
   # DEV: This is caused by `git rebase`
