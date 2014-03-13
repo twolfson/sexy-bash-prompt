@@ -1,0 +1,5 @@
+<<<<<<< master
+TestB
+=======
+TestA
+>>>>>>> HEAD~0
