@@ -19,7 +19,7 @@ if tput setaf 1 &> /dev/null; then
   prompt_reset="$(tput sgr0)"
 
   # If the terminal supports at least 256 colors, write out our 256 color based set
-  if [[ $(tput colors) -ge 256 ]] &> /dev/null; then
+  if [[ "$(tput colors)" -ge 256 ]] &> /dev/null; then
     prompt_user_color="$prompt_bold$(tput setaf 27)" # BOLD BLUE
     prompt_preposition_color="$prompt_bold$(tput setaf 7)" # BOLD WHITE
     prompt_device_color="$prompt_bold$(tput setaf 39)" # BOLD CYAN
@@ -70,8 +70,8 @@ function get_git_branch() {
   # On branches, this will return the branch name
   # On non-branches, (no branch)
   ref="$(git symbolic-ref HEAD 2> /dev/null | sed -e 's/refs\/heads\///')"
-  if [[ $ref != "" ]]; then
-    echo $ref
+  if [[ "$ref" != "" ]]; then
+    echo "$ref"
   else
     echo "(no branch)"
   fi
@@ -109,7 +109,7 @@ branch_exists () {
 parse_git_ahead () {
   # Grab the local and remote branch
   branch="$(get_git_branch)"
-  remote_branch=origin/"$branch"
+  remote_branch="origin/$branch"
 
   # $ git log origin/master..master
   # commit 4a633f715caf26f6e9495198f89bba20f3402a32
@@ -130,7 +130,7 @@ parse_git_ahead () {
 parse_git_behind () {
   # Grab the branch
   branch="$(get_git_branch)"
-  remote_branch=origin/"$branch"
+  remote_branch="origin/$branch"
 
   # $ git log master..origin/master
   # commit 4a633f715caf26f6e9495198f89bba20f3402a32
@@ -164,19 +164,19 @@ function get_git_status() {
   branch_behind="$(parse_git_behind)"
 
   # Iterate through all the cases and if it matches, then echo
-  if [[ $dirty_branch == 1 && $branch_ahead == 1 && $branch_behind == 1 ]]; then
+  if [[ "$dirty_branch" == 1 && "$branch_ahead" == 1 && "$branch_behind" == 1 ]]; then
     echo "⬢"
-  elif [[ $dirty_branch == 1 && $branch_ahead == 1 ]]; then
+  elif [[ "$dirty_branch" == 1 && "$branch_ahead" == 1 ]]; then
     echo "▲"
-  elif [[ $dirty_branch == 1 && $branch_behind == 1 ]]; then
+  elif [[ "$dirty_branch" == 1 && "$branch_behind" == 1 ]]; then
     echo "▼"
-  elif [[ $branch_ahead == 1 && $branch_behind == 1 ]]; then
+  elif [[ "$branch_ahead" == 1 && "$branch_behind" == 1 ]]; then
     echo "⬡"
-  elif [[ $branch_ahead == 1 ]]; then
+  elif [[ "$branch_ahead" == 1 ]]; then
     echo "△"
-  elif [[ $branch_behind == 1 ]]; then
+  elif [[ "$branch_behind" == 1 ]]; then
     echo "▽"
-  elif [[ $dirty_branch == 1 ]]; then
+  elif [[ "$dirty_branch" == 1 ]]; then
     echo "*"
   fi
 }
@@ -201,7 +201,7 @@ get_git_info () {
 # Symbol displayed at the line of every prompt
 function get_prompt_symbol() {
   # If we are root, display `#`. Otherwise, `$`
-  if [[ $UID == 0 ]]; then
+  if [[ "$UID" == 0 ]]; then
     echo "#"
   else
     echo "\$"
