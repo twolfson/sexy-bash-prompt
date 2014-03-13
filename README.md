@@ -5,7 +5,6 @@
 Providing a unique symbol for every combination of a dirty, unpulled, and unpushed `git` branch.
 
 ![sexy-bash-prompt screenshot][screenshot]
-![in-progress showcase](docs/in-progress.png)
 
 [screenshot]: screenshot.png
 
