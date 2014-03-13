@@ -145,24 +145,25 @@ fixture_git_init() {
       test "$(get_git_progress)" = " [merge]" || echo '`get_git_progress` !== " [merge]" in a subdirectory of a clean merge-in-progress branch' 1>&2
 
   # when an `am` is in progress
+  # DEV: This is caused by `git am`
   # TODO: Should we include step/total in summary?
   # https://github.com/git/git/blob/v1.9-rc2/contrib/completion/git-prompt.sh#L334-L335
   # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1208-L1211
   # DEV: Research for determining this was `am` https://github.com/git/git/blob/v1.9-rc2/contrib/completion/git-prompt.sh#L339-L340
   # DEV: The empty check is for better dialog https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L919-L925
 
-  # on a rebase-apply in progress
+  # when a `git rebase` is in progress
+  # DEV: This is caused by `git rebase`
   # TODO: Figure out how this is different from rebase-merge
   # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1212-L1216
   # This is for a rebase without any `-i` flag, not sure how it differs from uninteractive rebase-merge
 
   # on a rebase-merge/interactive in progress
-  # DEV: Research https://github.com/git/git/blob/v1.9-rc2/contrib/completion/git-prompt.sh#L327-L328
-  # TODO: Figure out *how* different this is from rebase_in_progress
+  # DEV: This is caused by `git rebase --interactive`
   # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1218-L1219
 
   # on a rebase-merge in progress
-  # TODO: Figure out what this means in rebase terms
+  # DEV: This is caused by `git rebase --merge`
   # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1220-L1223
 
   # on an incomplete cherry-pick
