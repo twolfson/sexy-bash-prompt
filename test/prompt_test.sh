@@ -144,16 +144,20 @@ fixture_git_init() {
       # shows a merge in progress
       test "$(get_git_progress)" = " [merge]" || echo '`get_git_progress` !== " [merge]" in a subdirectory of a clean merge-in-progress branch' 1>&2
 
-  # on a rebase-apply/applying
-  # TODO: Figure out what this is
+  # when an `am` is in progress
+  # TODO: Should we include step/total in summary?
+  # https://github.com/git/git/blob/v1.9-rc2/contrib/completion/git-prompt.sh#L334-L335
   # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1208-L1211
-  # TODO: Is there something for an empty am-patch?
+  # DEV: Research for determining this was `am` https://github.com/git/git/blob/v1.9-rc2/contrib/completion/git-prompt.sh#L339-L340
+  # DEV: The empty check is for better dialog https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L919-L925
 
   # on a rebase-apply in progress
   # TODO: Figure out how this is different from rebase-merge
   # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1212-L1216
+  # This is for a rebase without any `-i` flag, not sure how it differs from uninteractive rebase-merge
 
   # on a rebase-merge/interactive in progress
+  # DEV: Research https://github.com/git/git/blob/v1.9-rc2/contrib/completion/git-prompt.sh#L327-L328
   # TODO: Figure out *how* different this is from rebase_in_progress
   # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1218-L1219
 
