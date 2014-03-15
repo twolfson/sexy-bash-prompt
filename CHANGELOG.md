@@ -1,4 +1,6 @@
 # sexy-bash-prompt changelog
+0.20.0 - Added missing quotes and made quote style consistent
+
 0.19.0 - Added `[merge]` indicator when a merge is in progress
 
 0.18.0 - Added conservative check for .bashrc in profile script during install
