@@ -232,8 +232,8 @@ function get_prompt_symbol() {
   fi
 }
 
-# Define the sexy-bash-prompt
-PS1="\[$prompt_user_color\]\u\[$prompt_reset\] \
+function get_prompt() {
+  echo "\[$prompt_user_color\]\u\[$prompt_reset\] \
 \[$prompt_preposition_color\]at\[$prompt_reset\] \
 \[$prompt_device_color\]\h\[$prompt_reset\] \
 \[$prompt_preposition_color\]in\[$prompt_reset\] \
@@ -244,3 +244,7 @@ PS1="\[$prompt_user_color\]\u\[$prompt_reset\] \
   echo -n \"\[$prompt_git_progress_color\]\$(get_git_progress)\" && \
   echo -n \"\[$prompt_preposition_color\]\")\n\[$prompt_reset\]\
 \[$prompt_symbol_color\]$(get_prompt_symbol) \[$prompt_reset\]"
+}
+
+# Define the sexy-bash-prompt
+PS1="$(get_prompt)"
