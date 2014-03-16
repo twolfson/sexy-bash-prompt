@@ -1,20 +1,20 @@
 # Navigate to test directory
-ORIG_PWD=$PWD
-TEST_DIR=$PWD/test
+ORIG_PWD="$PWD"
+TEST_DIR="$PWD/test"
 
 # Move any test .git directories back to dotgit
 make move-git-to-dotgit > /dev/null
 
 fixture_dir() {
-  TMP_DIR=$(mktemp -d)
-  cp -r "$TEST_DIR"/test-files/$1/* $TMP_DIR
-  cd $TMP_DIR
+  TMP_DIR="$(mktemp -d)"
+  cp -r "$TEST_DIR"/test-files/$1/* "$TMP_DIR"
+  cd "$TMP_DIR"
   test -d dotgit && mv dotgit .git
 }
 
 fixture_git_init() {
-  TMP_DIR=$(mktemp -d)
-  cd $TMP_DIR
+  TMP_DIR="$(mktemp -d)"
+  cd "$TMP_DIR"
   git init 1> /dev/null
 }
 
@@ -199,7 +199,7 @@ fixture_git_init() {
     test "$(get_git_progress)" = " [revert]" || echo '`get_git_progress` !== " [revert]" in a revert-in-progress repo' 1>&2
 
 # sexy-bash-prompt
-cd $ORIG_PWD
+cd "$ORIG_PWD"
 
   # when run as a script
   prompt_output="$(bash --norc --noprofile -i -c '. .bash_prompt')"
@@ -208,7 +208,7 @@ cd $ORIG_PWD
     test ${#prompt_output} -eq 0 || echo '`prompt_output` did not have length 0' 1>&2
 
 # get_prompt_symbol
-cd $ORIG_PWD
+cd "$ORIG_PWD"
 
   # with a normal user
   bash_symbol="$(bash --norc --noprofile -i -c '. .bash_prompt; echo $(get_prompt_symbol)')"
@@ -223,7 +223,7 @@ cd $ORIG_PWD
     test "$bash_symbol" = "#" || echo '`get_prompt_symbol` !== "#" for root' 1>&2
 
 # prompt colors
-cd $ORIG_PWD
+cd "$ORIG_PWD"
 esc=$'\033'
 
   # in a 256 color terminal
