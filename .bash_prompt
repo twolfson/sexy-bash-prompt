@@ -233,17 +233,18 @@ function get_prompt_symbol() {
 }
 
 function get_prompt() {
-  echo "\[$prompt_user_color\]\u\[$prompt_reset\] \
-\[$prompt_preposition_color\]at\[$prompt_reset\] \
-\[$prompt_device_color\]\h\[$prompt_reset\] \
-\[$prompt_preposition_color\]in\[$prompt_reset\] \
-\[$prompt_dir_color\]\w\[$prompt_reset\]\
-\$( is_on_git && \
-  echo -n \" \[$prompt_preposition_color\]on\[$prompt_reset\] \" && \
-  echo -n \"\[$prompt_git_status_color\]\$(get_git_info)\" && \
-  echo -n \"\[$prompt_git_progress_color\]\$(get_git_progress)\" && \
-  echo -n \"\[$prompt_preposition_color\]\")\n\[$prompt_reset\]\
-\[$prompt_symbol_color\]$(get_prompt_symbol) \[$prompt_reset\]"
+  echo -n "\[$prompt_user_color\]\u\[$prompt_reset\] "
+  echo -n "\[$prompt_preposition_color\]at\[$prompt_reset\] "
+  echo -n "\[$prompt_device_color\]\h\[$prompt_reset\] "
+  echo -n "\[$prompt_preposition_color\]in\[$prompt_reset\] "
+  echo -n "\[$prompt_dir_color\]\w\[$prompt_reset\]"
+  if is_on_git; then
+    echo -n " \[$prompt_preposition_color\]on\[$prompt_reset\] "
+    echo -n "\[$prompt_git_status_color\]$(get_git_info)"
+    echo -n "\[$prompt_git_progress_color\]$(get_git_progress)"
+    echo -n "\[$prompt_preposition_color\]\[$prompt_reset\]"
+  fi
+  echo -n "\n\[$prompt_symbol_color\]$(get_prompt_symbol) \[$prompt_reset\]"
 }
 
 # Define the sexy-bash-prompt
