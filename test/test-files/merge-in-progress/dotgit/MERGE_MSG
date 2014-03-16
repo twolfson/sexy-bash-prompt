@@ -1,4 +1,4 @@
-Merge branch 'master' into dev/ahead
+Merge branch 'master' into HEAD
 
 Conflicts:
 	test.txt

@@ -1,0 +1,9 @@
+0000000000000000000000000000000000000000 66b31338aa7a1211cdd73dd722ce04e3103f8c72 Todd Wolfson <todd@twolfson.com> 1392198233 -0800	commit (initial): Initial commit
+66b31338aa7a1211cdd73dd722ce04e3103f8c72 66b31338aa7a1211cdd73dd722ce04e3103f8c72 Todd Wolfson <todd@twolfson.com> 1392198245 -0800	checkout: moving from master to dev/ahead
+66b31338aa7a1211cdd73dd722ce04e3103f8c72 9669ec63ab88a011fff2b0846f8bd049e58c1ad9 Todd Wolfson <todd@twolfson.com> 1392198264 -0800	commit: Updated test.txt to A
+9669ec63ab88a011fff2b0846f8bd049e58c1ad9 66b31338aa7a1211cdd73dd722ce04e3103f8c72 Todd Wolfson <todd@twolfson.com> 1392198266 -0800	checkout: moving from dev/ahead to master
+66b31338aa7a1211cdd73dd722ce04e3103f8c72 95d934dd5ae9a72a9f5f6e213a60c010d86b9f6e Todd Wolfson <todd@twolfson.com> 1392198283 -0800	commit: Updated test.txt to B
+95d934dd5ae9a72a9f5f6e213a60c010d86b9f6e 9669ec63ab88a011fff2b0846f8bd049e58c1ad9 Todd Wolfson <todd@twolfson.com> 1392198285 -0800	checkout: moving from master to dev/ahead
+9669ec63ab88a011fff2b0846f8bd049e58c1ad9 95d934dd5ae9a72a9f5f6e213a60c010d86b9f6e Todd Wolfson <todd@twolfson.com> 1394695600 -0700	rebase: checkout master
+95d934dd5ae9a72a9f5f6e213a60c010d86b9f6e 9669ec63ab88a011fff2b0846f8bd049e58c1ad9 Todd Wolfson <todd@twolfson.com> 1394697080 -0700	rebase: aborting
+9669ec63ab88a011fff2b0846f8bd049e58c1ad9 9669ec63ab88a011fff2b0846f8bd049e58c1ad9 Todd Wolfson <todd@twolfson.com> 1394702480 -0700	checkout: moving from dev/ahead to 9669ec63ab88a011fff2b0846f8bd049e58c1ad9

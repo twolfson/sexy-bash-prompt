@@ -1,0 +1,19 @@
+From 9669ec63ab88a011fff2b0846f8bd049e58c1ad9 Mon Sep 17 00:00:00 2001
+From: Todd Wolfson <todd@twolfson.com>
+Date: Wed, 12 Feb 2014 01:44:24 -0800
+Subject: Updated test.txt to A
+
+---
+ test.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/test.txt b/test.txt
+index 345e6aef713208c8d50cdea23b85e6ad831f0449..a9122211071ee619218d22221decb71293b8a9ce 100644
+--- a/test.txt
++++ b/test.txt
+@@ -1 +1 @@
+-Test
++TestA
+-- 
+1.8.4-rc0
+

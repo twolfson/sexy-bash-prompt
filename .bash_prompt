@@ -81,8 +81,32 @@ function get_git_progress() {
   # Detect in-progress actions (e.g. merge, rebase)
   # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1199-L1241
   git_dir="$(git rev-parse --git-dir)"
+
+  # git merge
   if [[ -f "$git_dir/MERGE_HEAD" ]]; then
     echo " [merge]"
+  elif [[ -d "$git_dir/rebase-apply" ]]; then
+    # git am
+    if [[ -f "$git_dir/rebase-apply/applying" ]]; then
+      echo " [am]"
+    # git rebase
+    else
+      echo " [rebase]"
+    fi
+  elif [[ -d "$git_dir/rebase-merge" ]]; then
+    # git rebase --interactive/--merge
+    echo " [rebase]"
+  elif [[ -f "$git_dir/CHERRY_PICK_HEAD" ]]; then
+    # git cherry-pick
+    echo " [cherry-pick]"
+  fi
+  if [[ -f "$git_dir/BISECT_LOG" ]]; then
+    # git bisect
+    echo " [bisect]"
+  fi
+  if [[ -f "$git_dir/REVERT_HEAD" ]]; then
+    # git revert --no-commit
+    echo " [revert]"
   fi
 }
 

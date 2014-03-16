@@ -144,6 +144,60 @@ fixture_git_init() {
       # shows a merge in progress
       test "$(get_git_progress)" = " [merge]" || echo '`get_git_progress` !== " [merge]" in a subdirectory of a clean merge-in-progress branch' 1>&2
 
+  # when an `am` is in progress (`git am`)
+  # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1208-L1211
+  # DEV: To reproduce, `git format-patch SHA; git checkout -; git am PATCH`
+  # DEV: Research for determining this was `am` https://github.com/git/git/blob/v1.9-rc2/contrib/completion/git-prompt.sh#L339-L340
+  # DEV: The empty check is for better dialog https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L919-L925
+  fixture_dir 'am-in-progress'
+
+    # shows an `am` in progress
+    test "$(get_git_progress)" = " [am]" || echo '`get_git_progress` !== " [am]" in an am-in-progress repo' 1>&2
+
+  # when a `git rebase` is in progress (no `--interactive` or `--merge`)
+  # DEV: This is caused by `git rebase`
+  # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1212-L1216
+  fixture_dir 'rebase-in-progress'
+
+    # shows a `rebase` in progress
+    test "$(get_git_progress)" = " [rebase]" || echo '`get_git_progress` !== " [rebase]" in a rebase-in-progress repo' 1>&2
+
+  # when an interactive rebase is in progress(`git rebase --interactive`)
+  # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1218-L1219
+  fixture_dir 'rebase-interactive-in-progress'
+
+    # shows a `rebase` in progress
+    test "$(get_git_progress)" = " [rebase]" || echo '`get_git_progress` !== " [rebase]" in a rebase-interactive-in-progress repo' 1>&2
+
+  # when a merge based rebase is in progress (`git rebase --merge`)
+  # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1220-L1223
+  fixture_dir 'rebase-merge-in-progress'
+
+    # shows a `rebase` in progress
+    test "$(get_git_progress)" = " [rebase]" || echo '`get_git_progress` !== " [rebase]" in a rebase-merge-in-progress repo' 1>&2
+
+  # on an incomplete cherry-pick
+  # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1224-L1227
+  fixture_dir 'cherry-pick-in-progress'
+
+    # shows a `cherry-pick` in progress
+    test "$(get_git_progress)" = " [cherry-pick]" || echo '`get_git_progress` !== " [cherry-pick]" in a cherry-pick-in-progress repo' 1>&2
+
+  # in an incomplete bisect
+  # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1229-L1232
+  fixture_dir 'bisect-in-progress'
+
+    # shows a `bisect` in progress
+    test "$(get_git_progress)" = " [bisect]" || echo '`get_git_progress` !== " [bisect]" in a bisect-in-progress repo' 1>&2
+
+  # in an incomplete revert
+  # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1233-L1237
+  # DEV: To reproduce, `git revert HEAD --no-commit`
+  fixture_dir 'revert-in-progress'
+
+    # shows a `revert` in progress
+    test "$(get_git_progress)" = " [revert]" || echo '`get_git_progress` !== " [revert]" in a revert-in-progress repo' 1>&2
+
 # sexy-bash-prompt
 cd "$ORIG_PWD"
 

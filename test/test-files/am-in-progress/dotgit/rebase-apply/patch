@@ -1,0 +1,14 @@
+---
+ test.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/test.txt b/test.txt
+index 345e6ae..6ecc466 100644
+--- a/test.txt
++++ b/test.txt
+@@ -1 +1 @@
+-Test
++TestB
+-- 
+1.8.4-rc0
+
