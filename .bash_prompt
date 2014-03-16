@@ -205,23 +205,6 @@ function get_git_status() {
   fi
 }
 
-get_git_info () {
-  # Grab the branch
-  branch="$(get_git_branch)"
-
-  # If there are any branches
-  if [[ "$branch" != "" ]]; then
-    # Echo the branch
-    output="$branch"
-
-    # Add on the git status
-    output="$output$(get_git_status)"
-
-    # Echo our output
-    echo "$output"
-  fi
-}
-
 # Symbol displayed at the line of every prompt
 function get_prompt_symbol() {
   # If we are root, display `#`. Otherwise, `$`
@@ -239,8 +222,9 @@ function get_prompt() {
   echo -n "\[$prompt_preposition_color\]in\[$prompt_reset\] "
   echo -n "\[$prompt_dir_color\]\w\[$prompt_reset\]"
   if is_on_git; then
+    git_branch="$(get_git_branch)"
     echo -n " \[$prompt_preposition_color\]on\[$prompt_reset\] "
-    echo -n "\[$prompt_git_status_color\]$(get_git_info)"
+    echo -n "\[$prompt_git_status_color\]$git_branch$(get_git_status)"
     echo -n "\[$prompt_git_progress_color\]$(get_git_progress)"
     echo -n "\[$prompt_preposition_color\]\[$prompt_reset\]"
   fi
