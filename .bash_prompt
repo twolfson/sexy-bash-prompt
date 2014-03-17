@@ -232,4 +232,4 @@ function get_prompt() {
 }
 
 # Define the sexy-bash-prompt
-PS1="$(get_prompt)"
+PS1="\$(get_prompt)"
