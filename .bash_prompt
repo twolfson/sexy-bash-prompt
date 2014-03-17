@@ -216,9 +216,11 @@ function get_prompt_symbol() {
 }
 
 function get_prompt() {
-  echo -n "${prompt_user_color}$1${prompt_reset} "
-  echo -n "${prompt_preposition_color}at${prompt_reset} "
-  echo -n "${prompt_device_color}$2${prompt_reset} "
+  # echo -n "${prompt_user_color}$1${prompt_reset} "
+  echo -n "$1$prompt_reset "
+  echo 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+  # echo -n "${prompt_preposition_color}at${prompt_reset} "
+  # echo -n "${prompt_device_color}$2${prompt_reset} "
   # echo -n "${prompt_preposition_color}in${prompt_reset} "
   # echo -n "${prompt_dir_color}$3${prompt_reset}"
   # if is_on_git; then
