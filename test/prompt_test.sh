@@ -217,10 +217,14 @@ cd "$ORIG_PWD"
     test "$bash_symbol" = "$" || echo '`get_prompt_symbol` !== "$" for a normal user' 1>&2
 
   # with root
-  bash_symbol="$(sudo bash --norc --noprofile -i -c '. .bash_prompt; echo $(get_prompt_symbol)')"
+  if type sudo &> /dev/null && sudo -n true; then
+    bash_symbol="$(sudo bash --norc --noprofile -i -c '. .bash_prompt; echo $(get_prompt_symbol)')";
 
     # is #
     test "$bash_symbol" = "#" || echo '`get_prompt_symbol` !== "#" for root' 1>&2
+  else
+    echo "WARNING: sudo not found or insufficient privileges. Test skipped." 1>&2
+  fi
 
 # prompt colors
 cd "$ORIG_PWD"
