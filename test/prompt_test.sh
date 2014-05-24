@@ -217,7 +217,7 @@ cd "$ORIG_PWD"
     test "$bash_symbol" = "$" || echo '`get_prompt_symbol` !== "$" for a normal user' 1>&2
 
   # with root
-  if type sudo &> /dev/null && sudo -n true; then
+  if which sudo &> /dev/null && sudo -n true; then
     bash_symbol="$(sudo bash --norc --noprofile -i -c '. .bash_prompt; echo $(get_prompt_symbol)')";
 
     # is #
