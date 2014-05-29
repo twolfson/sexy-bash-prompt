@@ -1,4 +1,6 @@
 # sexy-bash-prompt changelog
+0.21.1 - Added `sudo` check inside of tests via @rpdelaney in #34
+
 0.21.0 - Added remaining 'in progress' keywords (e.g. `rebase`, `cherry-pick`)
 
 0.20.0 - Added missing quotes and made quote style consistent
