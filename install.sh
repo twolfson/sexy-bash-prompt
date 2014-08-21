@@ -18,19 +18,20 @@ echo ". ~/.bash_prompt" >> ~/.bashrc
 # If our prompt is being loaded, leave
 ps1_is_installed && exit 0
 
-# By default, .bash_profile is our profile script
-profile_script_short="~/.bash_profile"
-profile_script_full=~/.bash_profile
-
 # Find which exists .bash_profile, .bash_login, or .profile
+# By default, .bash_profile is our profile script
 if [[ -f ~/.bash_profile ]]; then
-  : # Use defaults
+  profile_script_short="~/.bash_profile"
+  profile_script_full=~/.bash_profile
 elif [[ -f ~/.bash_login ]]; then
   profile_script_short="~/.bash_login"
   profile_script_full=~/.bash_login
 elif [[ -f ~/.profile ]]; then
   profile_script_short="~/.profile"
   profile_script_full=~/.profile
+else
+  echo "FATAL: Profile script not found." 1>&2
+  exit 1
 fi
 
 # If the current script does not have notes about .bashrc
