@@ -8,7 +8,7 @@ if [[ "$GIT_PPA" != "ppa:git-core/v1.8" ]]; then
 
   # If we want to use a bleeding edge one
   if [[ "$GIT_PPA" != "1.7.9.5-1" ]]; then
-    sudo add-apt-repository "$GIT_PPA"
+    sudo add-apt-repository "$GIT_PPA" -y
   fi
   # Otherwise, use the Ubuntu one by default
 fi
