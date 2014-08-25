@@ -1,9 +1,11 @@
 language: bash
 env:
   - GIT_PPA='ppa:pdoes/ppa' # Near bleeding edge, http://blog.avirtualhome.com/git-ppa-for-ubuntu/
-  - GIT_PPA='1.7.9.5-1' # Ubuntu Precis stable, https://launchpad.net/ubuntu/+source/git
+  # - GIT_PPA='1.7.9.5-1' # Ubuntu Precise stable, https://launchpad.net/ubuntu/+source/git
 before_script:
-  - ./test/before_script.sh # Take care of git version
+  # List current sources
+  - cat /etc/apt/sources.list; for X in /etc/apt/sources.list.d/*; do echo; echo; echo "** $X:"; echo; cat $X; done
+  # - ./test/before_script.sh # Take care of git version
   - git --version # Spit out the git version
 script:
   - make test # Run normal test
