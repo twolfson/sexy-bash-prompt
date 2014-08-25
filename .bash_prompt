@@ -69,7 +69,7 @@ if [[ -n "$PROMPT_SYMBOL_COLOR" ]]; then prompt_symbol_color="$PROMPT_SYMBOL_COL
 function get_git_branch() {
   # On branches, this will return the branch name
   # On non-branches, (no branch)
-  ref="$(git symbolic-ref --short HEAD 2> /dev/null)"
+  ref="$(git symbolic-ref HEAD 2> /dev/null | cut -d/ -f3)"
   if [[ "$ref" != "" ]]; then
     echo "$ref"
   else
