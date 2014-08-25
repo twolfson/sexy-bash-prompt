@@ -8,7 +8,10 @@ if [[ "$GIT_PPA" != "ppa:git-core/v1.8" ]]; then
 
   # If we want to use a bleeding edge one
   if [[ "$GIT_PPA" != "1.7.9.5-1" ]]; then
+    # Add the repository, pull the location, and upgrade `git`
     sudo add-apt-repository -y "$GIT_PPA"
+    sudo apt-get -y update
+    sudo apt-get install -y git
   fi
   # Otherwise, use the Ubuntu one by default
 fi
