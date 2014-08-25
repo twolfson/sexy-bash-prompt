@@ -7,7 +7,7 @@ install:
 	cp -f .bash_prompt ~/.bash_prompt
 
 	@# Run install script
-	./install.sh
+	./install.bash
 
 	@echo "# twolfson/sexy-bash-prompt installation complete!"
 	exit 0
@@ -17,7 +17,7 @@ install-link:
 	ln -f -s $(PWD)/.bash_prompt $(HOME)/.bash_prompt
 
 	@# Run install script
-	./install.sh
+	./install.bash
 
 	@echo "# twolfson/sexy-bash-prompt installation complete!"
 	exit 0
