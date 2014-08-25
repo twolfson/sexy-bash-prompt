@@ -1,13 +1,11 @@
 language: bash
 env:
   - GIT_PPA='ppa:pdoes/ppa' # Near bleeding edge, http://blog.avirtualhome.com/git-ppa-for-ubuntu/
-  # - GIT_PPA='1.7.9.5-1' # Ubuntu Precise stable, https://launchpad.net/ubuntu/+source/git
+  - GIT_PPA='ppa:git-core/v1.8' # Default `git` provided by Travis CI, see 2c84541
+  - GIT_PPA='1.7.9.5-1' # Ubuntu Precise stable, https://launchpad.net/ubuntu/+source/git
 before_script:
-  # List current sources
-  - cat /etc/apt/sources.list; for X in /etc/apt/sources.list.d/*; do echo; echo; echo "** $X:"; echo; cat $X; done
-  # Determine git PPA source
-  - apt-cache policy git
-  # - ./test/before_script.sh # Take care of git version
+  - ./test/before_script.sh # Take care of git version
+  - apt-cache policy git # Determine git PPA source
   - git --version # Spit out the git version
 script:
   - make test # Run normal test
