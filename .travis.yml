@@ -5,6 +5,8 @@ env:
 before_script:
   # List current sources
   - cat /etc/apt/sources.list; for X in /etc/apt/sources.list.d/*; do echo; echo; echo "** $X:"; echo; cat $X; done
+  # Determine git PPA source
+  - apt-cache policy git
   # - ./test/before_script.sh # Take care of git version
   - git --version # Spit out the git version
 script:
