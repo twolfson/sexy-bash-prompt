@@ -1,4 +1,6 @@
 # sexy-bash-prompt changelog
+0.22.0 - Lowercased install script variables and moved to `.bash` extension. Via @rpdelaney in #37
+
 0.21.2 - Fixed up Travis CI PPA issues and started testing against `git@2.x.x`
 
 0.21.1 - Added `sudo` check inside of tests via @rpdelaney in #34
