@@ -51,3 +51,5 @@ for i in $(seq $(printf '%d' 0xC3) $(printf '%d' 0xDF)); do
     echo "$(echo -e "$hex_i $hex_j: \x${hex_i}\x${hex_j}")"
   done
 done
+
+# wtf, D0 BB is an arrow in `getty`
