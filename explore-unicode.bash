@@ -42,14 +42,13 @@
 
 # http://stackoverflow.com/questions/5517500/simple-shell-script-for-generating-hex-numbers-of-a-certain-range
 # for i in $(seq 0 255); do
-  # hex_i="$(printf "%02X" $i)"
-  hex_i="C3"
-#   for j in $(seq 0 255); do
-    # hex_j="$(printf "%02X" $j)"
-    hex_j="9D"
+for i in $(seq 192 196); do
+  hex_i="$(printf "%02X" $i)"
+  for j in $(seq 156 158); do
+    hex_j="$(printf "%02X" $j)"
     echo "$(echo -e "$hex_i $hex_j: \x${hex_i}\x${hex_j}")"
-  # done
-# done
+  done
+done
 
 # TODO: Consider copy/paste from here:
 # http://www.utf8-chartable.de/
