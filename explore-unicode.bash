@@ -10,10 +10,10 @@
 # echo -n "*" | hexdump -C; # 00000000  2a
 
 # Output our symbols from their hex equivalents
-echo -e "\xE2\xAC\xA2" # Filled hexagon
-echo -e "\xE2\x96\xB2" # Filled up triangle
-echo -e "\xE2\x96\xBC" # Filled down triangle
-echo -e "\xE2\xAC\xA1" # Empty hexagon
-echo -e "\xE2\x96\xB3" # Empty up triangle
-echo -e "\xE2\x96\xBD" # Empty down triangle
+echo -e "\xE2\xAC" # Filled hexagon
+echo -e "\xE2\x96" # Filled up triangle
+echo -e "\xE2\x96" # Filled down triangle
+echo -e "\xE2\xAC" # Empty hexagon
+echo -e "\xE2\x96" # Empty up triangle
+echo -e "\xE2\x96" # Empty down triangle
 echo -e "\x2A" # Asterisk
