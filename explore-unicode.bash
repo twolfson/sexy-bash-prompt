@@ -10,13 +10,13 @@
 # echo -n "*" | hexdump -C; # 00000000  2a
 
 # # Output our symbols from their hex equivalents
-echo -e "\xE2\xAC\xA2" # Filled hexagon
-echo -e "\xE2\x96\xB2" # Filled up triangle
-echo -e "\xE2\x96\xBC" # Filled down triangle
-echo -e "\xE2\xAC\xA1" # Empty hexagon
-echo -e "\xE2\x96\xB3" # Empty up triangle
-echo -e "\xE2\x96\xBD" # Empty down triangle
-echo -e "\x2A" # Asterisk
+echo -e "\xE2\xAC\xA2" # Filled hexagon # In getty, diamond
+echo -e "\xE2\x96\xB2" # Filled up triangle # In getty, up arrow
+echo -e "\xE2\x96\xBC" # Filled down triangle # In getty, down arrow
+echo -e "\xE2\xAC\xA1" # Empty hexagon # In getty, diamond
+echo -e "\xE2\x96\xB3" # Empty up triangle # In getty, diamond
+echo -e "\xE2\x96\xBD" # Empty down triangle # In getty, diamond
+echo -e "\x2A" # Asterisk # In getty, asterisk
 
 # $ echo -n "↑" | hexdump -C
 # 00000000  e2 86 91                                          |...|
