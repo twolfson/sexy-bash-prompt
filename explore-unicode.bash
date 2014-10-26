@@ -51,16 +51,18 @@ hex_range () {
 }
 
 # ASCII sans control (20-7E)
+for i in $(hex_range 20 7E); do
+  echo "$(echo -e "$i: \x${i}")"
+done
 
 # Output C2 A0-BF
 
 # Output C3-DF 80-BF
-hex_range C3 DF
-for i in $(hex_range C3 DF); do
-  for j in $(hex_range 80 BF); do
-    echo "$(echo -e "$i $j: \x${i}\x${j}")"
-  done
-done
+# for i in $(hex_range C3 DF); do
+#   for j in $(hex_range 80 BF); do
+#     echo "$(echo -e "$i $j: \x${i}\x${j}")"
+#   done
+# done
 
 # wtf, D0 BB is an arrow in `getty`
 
