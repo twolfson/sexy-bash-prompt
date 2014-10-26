@@ -80,7 +80,7 @@ fixture_git_init() {
     test "$(get_git_status)" = "" || echo '`get_git_status` !== "" on a synced branch' 1>&2
 
   # on a dirty synced branch
-  fixture_dir 'dirty'
+  fixture_dir 'dirty-synced'
 
     # is an asterisk
     test "$(get_git_status)" = "*" || echo '`get_git_status` !== "*" on a dirty synced branch' 1>&2
@@ -125,10 +125,10 @@ fixture_git_init() {
 # git_progress
 
   # on a clean branch
-  fixture_dir 'clean-synced'
+  fixture_dir 'synced'
 
     # is nothing
-    test "$(get_git_progress)" = "" || echo '`get_git_progress` !== "" on a clean and synced branch' 1>&2
+    test "$(get_git_progress)" = "" || echo '`get_git_progress` !== "" on a clean branch' 1>&2
 
   # https://github.com/twolfson/sexy-bash-prompt/issues/25
   # on a merge-in-progress branch
