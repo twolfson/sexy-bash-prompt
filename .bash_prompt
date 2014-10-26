@@ -69,11 +69,11 @@ if [[ -n "$PROMPT_SYMBOL_COLOR" ]]; then prompt_symbol_color="$PROMPT_SYMBOL_COL
 # Set up symbols
 prompt_synced_symbol=""
 prompt_dirty_synced_symbol="*"
-prompt_unpushed_symbol="▲"
-prompt_dirty_unpushed_symbol="△"
-prompt_unpulled_symbol="⬡"
+prompt_unpushed_symbol="△"
+prompt_dirty_unpushed_symbol="▲"
+prompt_unpulled_symbol="▽"
 prompt_dirty_unpulled_symbol="▼"
-prompt_unpushed_unpulled_symbol="▽"
+prompt_unpushed_unpulled_symbol="⬡"
 prompt_dirty_unpushed_unpulled_symbol="⬢"
 
 # Apply symbol overrides that have been set in the environment
