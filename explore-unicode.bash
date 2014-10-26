@@ -51,26 +51,39 @@ hex_range () {
 }
 
 # ASCII sans control (20-7E)
+# "Basic Latin" from utf8-chartable.de
 for i in $(hex_range 20 7E); do
   echo "$(echo -e "$i: \x${i}")"
 done
 
 # Output C2 A0-BF
+# "Basic Latin" from utf8-chartable.de
 i="C2"
 for j in $(hex_range A0 BF); do
   echo "$(echo -e "$i $j: \x${i}\x${j}")"
 done
 
 # Output C3-DF 80-BF
+# Up to "NKo" from utf8-chartable.de
 for i in $(hex_range C3 DF); do
   for j in $(hex_range 80 BF); do
     echo "$(echo -e "$i $j: \x${i}\x${j}")"
   done
 done
 
-# Output E0-EF A0-BF 80-BF
-for i in $(hex_range E0 EF); do
-  for j in $(hex_range A0 BF); do
+# Output E0 A0-BF 80-BF
+# Up to "Tibetan" from utf8-chartable.de
+i="E0"
+for j in $(hex_range A0 BF); do
+  for k in $(hex_range 80 BF); do
+    echo "$(echo -e "$i $j $k: \x${i}\x${j}\x${k}")"
+  done
+done
+
+# Output E1-EF 80-BF 80-BF
+# Remaining from utf8-chartable.de
+for i in $(hex_range E1 EF); do
+  for j in $(hex_range 80 BF); do
     for k in $(hex_range 80 BF); do
       echo "$(echo -e "$i $j $k: \x${i}\x${j}\x${k}")"
     done
