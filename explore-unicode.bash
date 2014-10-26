@@ -56,13 +56,17 @@ for i in $(hex_range 20 7E); do
 done
 
 # Output C2 A0-BF
+i="C2"
+for j in $(hex_range A0 BF); do
+  echo "$(echo -e "$i $j: \x${i}\x${j}")"
+done
 
 # Output C3-DF 80-BF
-# for i in $(hex_range C3 DF); do
-#   for j in $(hex_range 80 BF); do
-#     echo "$(echo -e "$i $j: \x${i}\x${j}")"
-#   done
-# done
+for i in $(hex_range C3 DF); do
+  for j in $(hex_range 80 BF); do
+    echo "$(echo -e "$i $j: \x${i}\x${j}")"
+  done
+done
 
 # wtf, D0 BB is an arrow in `getty`
 
