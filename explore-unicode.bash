@@ -45,8 +45,8 @@
 hex_range () {
   from="$1"
   to="$2"
-  for i in $(seq $(printf '%d' "0x$from") $(printf '%d' "0x$to")); do
-    printf "%02X\n" $i
+  for i in $(seq "$(printf "%d" "0x$from")" "$(printf "%d" "0x$to")"); do
+    printf "%02X\n" "$i"
   done
 }
 
