@@ -9,14 +9,14 @@
 # echo -n "▽" | hexdump -C; # 00000000  e2 96 bd
 # echo -n "*" | hexdump -C; # 00000000  2a
 
-# Output our symbols from their hex equivalents
-echo -e "\xE2\xAC" # Filled hexagon
-echo -e "\xE2\x96" # Filled up triangle
-echo -e "\xE2\x96" # Filled down triangle
-echo -e "\xE2\xAC" # Empty hexagon
-echo -e "\xE2\x96" # Empty up triangle
-echo -e "\xE2\x96" # Empty down triangle
-echo -e "\x2A" # Asterisk
+# # Output our symbols from their hex equivalents
+# echo -e "\xE2\xAC" # Filled hexagon
+# echo -e "\xE2\x96" # Filled up triangle
+# echo -e "\xE2\x96" # Filled down triangle
+# echo -e "\xE2\xAC" # Empty hexagon
+# echo -e "\xE2\x96" # Empty up triangle
+# echo -e "\xE2\x96" # Empty down triangle
+# echo -e "\x2A" # Asterisk
 
 # $ echo -n "↑" | hexdump -C
 # 00000000  e2 86 91                                          |...|
@@ -25,3 +25,6 @@ echo -e "\x2A" # Asterisk
 # $ echo -n "˄" | hexdump -C
 # 00000000  cb 84                                             |..|
 # 00000002
+
+echo -e "\xE2\x86\x91" # Works but not sure why such a high range one does
+echo -e "\xCB\x84" # Doesn't work
