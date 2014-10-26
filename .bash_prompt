@@ -66,6 +66,26 @@ if [[ -n "$PROMPT_GIT_STATUS_COLOR" ]]; then prompt_git_status_color="$PROMPT_GI
 if [[ -n "$PROMPT_GIT_PROGRESS_COLOR" ]]; then prompt_git_progress_color="$PROMPT_GIT_PROGRESS_COLOR"; fi
 if [[ -n "$PROMPT_SYMBOL_COLOR" ]]; then prompt_symbol_color="$PROMPT_SYMBOL_COLOR"; fi
 
+# Set up symbols
+prompt_synced_symbol=""
+prompt_dirty_synced_symbol="*"
+prompt_unpushed_symbol="▲"
+prompt_dirty_unpushed_symbol="△"
+prompt_unpulled_symbol="⬡"
+prompt_dirty_unpulled_symbol="▼"
+prompt_unpushed_unpulled_symbol="▽"
+prompt_dirty_unpushed_unpulled_symbol="⬢"
+
+# Apply symbol overrides that have been set in the environment
+if [[ -n "$PROMPT_SYNCED_SYMBOL" ]]; then prompt_synced_symbol="$PROMPT_SYNCED_SYMBOL"; fi
+if [[ -n "$PROMPT_DIRTY_SYNCED_SYMBOL" ]]; then prompt_dirty_synced_symbol="$PROMPT_DIRTY_SYNCED_SYMBOL"; fi
+if [[ -n "$PROMPT_UNPUSHED_SYMBOL" ]]; then prompt_unpushed_symbol="$PROMPT_UNPUSHED_SYMBOL"; fi
+if [[ -n "$PROMPT_DIRTY_UNPUSHED_SYMBOL" ]]; then prompt_dirty_unpushed_symbol="$PROMPT_DIRTY_UNPUSHED_SYMBOL"; fi
+if [[ -n "$PROMPT_UNPULLED_SYMBOL" ]]; then prompt_unpulled_symbol="$PROMPT_UNPULLED_SYMBOL"; fi
+if [[ -n "$PROMPT_DIRTY_UNPULLED_SYMBOL" ]]; then prompt_dirty_unpulled_symbol="$PROMPT_DIRTY_UNPULLED_SYMBOL"; fi
+if [[ -n "$PROMPT_UNPUSHED_UNPULLED_SYMBOL" ]]; then prompt_unpushed_unpulled_symbol="$PROMPT_UNPUSHED_UNPULLED_SYMBOL"; fi
+if [[ -n "$PROMPT_DIRTY_UNPUSHED_UNPULLED_SYMBOL" ]]; then prompt_dirty_unpushed_unpulled_symbol="$PROMPT_DIRTY_UNPUSHED_UNPULLED_SYMBOL"; fi
+
 function get_git_branch() {
   # On branches, this will return the branch name
   # On non-branches, (no branch)
