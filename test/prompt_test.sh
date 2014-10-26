@@ -73,54 +73,54 @@ fixture_git_init() {
 
 # git_status
 
-  # on a clean and synced branch
+  # on a clean synced branch
   fixture_dir 'clean-synced'
 
     # is nothing
-    test "$(get_git_status)" = "" || echo '`get_git_status` !== "" on a clean and synced branch' 1>&2
+    test "$(get_git_status)" = "" || echo '`get_git_status` !== "" on a clean synced branch' 1>&2
 
-  # on a dirty branch
-  fixture_dir 'dirty'
+  # on a dirty synced branch
+  fixture_dir 'dirty-synced'
 
     # is an asterisk
-    test "$(get_git_status)" = "*" || echo '`get_git_status` !== "*" on a dirty branch' 1>&2
+    test "$(get_git_status)" = "*" || echo '`get_git_status` !== "*" on a dirty synced branch' 1>&2
 
-  # on an unpushed branch
+  # on a clean unpushed branch
   # DEV: This covers new branches (for now)
-  fixture_dir 'unpushed'
+  fixture_dir 'clean-unpushed'
 
     # is an empty up triangle
-    test "$(get_git_status)" = "△" || echo '`get_git_status` !== "△" on an unpushed branch' 1>&2
+    test "$(get_git_status)" = "△" || echo '`get_git_status` !== "△" on a clean unpushed branch' 1>&2
 
-  # on a dirty and unpushed branch
+  # on a dirty unpushed branch
   fixture_dir 'dirty-unpushed'
 
     # is a filled up triangle
-    test "$(get_git_status)" = "▲" || echo '`get_git_status` !== "▲" on a dirty and unpushed branch' 1>&2
+    test "$(get_git_status)" = "▲" || echo '`get_git_status` !== "▲" on a dirty unpushed branch' 1>&2
 
-  # on an unpulled branch
-  fixture_dir 'unpulled'
+  # on a clean unpulled branch
+  fixture_dir 'clean-unpulled'
 
     # is an empty down triangle
-    test "$(get_git_status)" = "▽" || echo '`get_git_status` !== "▽" on an unpulled branch' 1>&2
+    test "$(get_git_status)" = "▽" || echo '`get_git_status` !== "▽" on a clean unpulled branch' 1>&2
 
-  # on a dirty and unpulled branch
+  # on a dirty unpulled branch
   fixture_dir 'dirty-unpulled'
 
     # is an filled down triangle
     test "$(get_git_status)" = "▼" || echo '`get_git_status` !== "▼" on a dirty unpulled branch' 1>&2
 
-  # on an unpushed and an unpulled branch
-  fixture_dir 'unpushed-unpulled'
+  # on a clean conflicted branch
+  fixture_dir 'clean-conflicted'
 
     # is an empty hexagon
-    test "$(get_git_status)" = "⬡" || echo '`get_git_status` !== "⬡" on an unpushed and unpulled branch' 1>&2
+    test "$(get_git_status)" = "⬡" || echo '`get_git_status` !== "⬡" on a clean conflicted branch' 1>&2
 
-  # on a dirty, unpushed, and unpulled branch
-  fixture_dir 'dirty-unpushed-unpulled'
+  # on a dirty conflicted branch
+  fixture_dir 'dirty-conflicted'
 
     # is an filled hexagon
-    test "$(get_git_status)" = "⬢" || echo '`get_git_status` !== "⬢" on a dirty, unpushed, and unpulled branch' 1>&2
+    test "$(get_git_status)" = "⬢" || echo '`get_git_status` !== "⬢" on a dirty conflicted branch' 1>&2
 
 # git_progress
 
