@@ -73,17 +73,17 @@ fixture_git_init() {
 
 # git_status
 
-  # on a clean and synced branch
-  fixture_dir 'clean-synced'
+  # on a synced branch
+  fixture_dir 'synced'
 
     # is nothing
-    test "$(get_git_status)" = "" || echo '`get_git_status` !== "" on a clean and synced branch' 1>&2
+    test "$(get_git_status)" = "" || echo '`get_git_status` !== "" on a synced branch' 1>&2
 
-  # on a dirty branch
+  # on a dirty synced branch
   fixture_dir 'dirty'
 
     # is an asterisk
-    test "$(get_git_status)" = "*" || echo '`get_git_status` !== "*" on a dirty branch' 1>&2
+    test "$(get_git_status)" = "*" || echo '`get_git_status` !== "*" on a dirty synced branch' 1>&2
 
   # on an unpushed branch
   # DEV: This covers new branches (for now)
@@ -110,7 +110,7 @@ fixture_git_init() {
     # is an filled down triangle
     test "$(get_git_status)" = "▼" || echo '`get_git_status` !== "▼" on a dirty unpulled branch' 1>&2
 
-  # on an unpushed and an unpulled branch
+  # on an unpushed and unpulled branch
   fixture_dir 'unpushed-unpulled'
 
     # is an empty hexagon
