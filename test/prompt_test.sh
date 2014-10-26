@@ -110,17 +110,17 @@ fixture_git_init() {
     # is an filled down triangle
     test "$(get_git_status)" = "▼" || echo '`get_git_status` !== "▼" on a dirty unpulled branch' 1>&2
 
-  # on a clean conflicted branch
-  fixture_dir 'clean-conflicted'
+  # on a clean diverged branch
+  fixture_dir 'clean-diverged'
 
     # is an empty hexagon
-    test "$(get_git_status)" = "⬡" || echo '`get_git_status` !== "⬡" on a clean conflicted branch' 1>&2
+    test "$(get_git_status)" = "⬡" || echo '`get_git_status` !== "⬡" on a clean diverged branch' 1>&2
 
-  # on a dirty conflicted branch
-  fixture_dir 'dirty-conflicted'
+  # on a dirty diverged branch
+  fixture_dir 'dirty-diverged'
 
     # is an filled hexagon
-    test "$(get_git_status)" = "⬢" || echo '`get_git_status` !== "⬢" on a dirty conflicted branch' 1>&2
+    test "$(get_git_status)" = "⬢" || echo '`get_git_status` !== "⬢" on a dirty diverged branch' 1>&2
 
 # git_progress
 
