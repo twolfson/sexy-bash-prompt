@@ -70,13 +70,13 @@ demo:
 	@echo '"""'
 	@echo "cd ~/non-git"
 	@echo "cd /tmp/git/clean-synced"
-	@echo "cd /tmp/git/dirty"
-	@echo "cd /tmp/git/unpushed"
+	@echo "cd /tmp/git/dirty-synced"
+	@echo "cd /tmp/git/clean-unpushed"
 	@echo "cd /tmp/git/dirty-unpushed"
-	@echo "cd /tmp/git/unpulled"
+	@echo "cd /tmp/git/clean-unpulled"
 	@echo "cd /tmp/git/dirty-unpulled"
-	@echo "cd /tmp/git/unpushed-unpulled"
-	@echo "cd /tmp/git/dirty-unpushed-unpulled"
+	@echo "cd /tmp/git/clean-diverged"
+	@echo "cd /tmp/git/dirty-diverged"
 	@echo '"""'
 	@echo ''
 	@echo "Showcase in progress keywords:"
