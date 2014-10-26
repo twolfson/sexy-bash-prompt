@@ -44,9 +44,9 @@
 # http://www.utf8-chartable.de/
 # Skip boring ASCII
 # Output C3-DF 80-BF
-for i in $(seq 10 255); do
+for i in $(seq $(printf '%d' 0xC3) $(printf '%d' 0xDF)); do
   hex_i="$(printf "%02X" $i)"
-  for j in $(seq 0 255); do
+  for j in $(seq $(printf '%d' 0x80) $(printf '%d' 0xBF)); do
     hex_j="$(printf "%02X" $j)"
     echo "$(echo -e "$hex_i $hex_j: \x${hex_i}\x${hex_j}")"
   done
