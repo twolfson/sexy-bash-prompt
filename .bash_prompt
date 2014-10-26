@@ -212,21 +212,19 @@ function get_git_status() {
 
   # Iterate through all the cases and if it matches, then echo
   if [[ "$dirty_branch" == 1 && "$branch_ahead" == 1 && "$branch_behind" == 1 ]]; then
-    echo "$PROMPT_DIRTY_UNPUSHED_UNPULLED_SYMBOL"
-  elif [[ "$branch_ahead" == 1 && "$branch_behind" == 1 ]]; then
-    echo "$PROMPT_UNPUSHED_UNPULLED_SYMBOL"
+    echo "⬢"
   elif [[ "$dirty_branch" == 1 && "$branch_ahead" == 1 ]]; then
-    echo "$PROMPT_DIRTY_UNPUSHED_SYMBOL"
-  elif [[ "$branch_ahead" == 1 ]]; then
-    echo "$PROMPT_UNPUSHED_SYMBOL"
+    echo "▲"
   elif [[ "$dirty_branch" == 1 && "$branch_behind" == 1 ]]; then
-    echo "$PROMPT_DIRTY_UNPULLED_SYMBOL"
+    echo "▼"
+  elif [[ "$branch_ahead" == 1 && "$branch_behind" == 1 ]]; then
+    echo "⬡"
+  elif [[ "$branch_ahead" == 1 ]]; then
+    echo "△"
   elif [[ "$branch_behind" == 1 ]]; then
-    echo "$PROMPT_UNPULLED_SYMBOL"
+    echo "▽"
   elif [[ "$dirty_branch" == 1 ]]; then
-    echo "$PROMPT_DIRTY_SYNCED_SYMBOL"
-  else
-    echo "$PROMPT_SYNCED_SYMBOL"
+    echo "*"
   fi
 }
 
