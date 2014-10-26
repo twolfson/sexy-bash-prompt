@@ -42,15 +42,25 @@
 
 # http://stackoverflow.com/questions/5517500/simple-shell-script-for-generating-hex-numbers-of-a-certain-range
 # http://www.utf8-chartable.de/
-# Skip boring ASCII
+hex_range () {
+  from="$1"
+  to="$2"
+  for i in $(seq $(printf '%d' "0x$from") $(printf '%d' "0x$to")); do
+    printf "%02X\n" $i
+  done
+}
+
+# ASCII sans control (20-7E)
+
+# Output C2 A0-BF
+
 # Output C3-DF 80-BF
-# for i in $(seq $(printf '%d' 0xC3) $(printf '%d' 0xDF)); do
-#   hex_i="$(printf "%02X" $i)"
-#   for j in $(seq $(printf '%d' 0x80) $(printf '%d' 0xBF)); do
-#     hex_j="$(printf "%02X" $j)"
-#     echo "$(echo -e "$hex_i $hex_j: \x${hex_i}\x${hex_j}")"
-#   done
-# done
+hex_range C3 DF
+for i in $(hex_range C3 DF); do
+  for j in $(hex_range 80 BF); do
+    echo "$(echo -e "$i $j: \x${i}\x${j}")"
+  done
+done
 
 # wtf, D0 BB is an arrow in `getty`
 
