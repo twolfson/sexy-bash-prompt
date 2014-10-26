@@ -35,7 +35,14 @@
 # echo -e "\x91" # Doens't work
 # # echo -e "\xCB\x84" # Doesn't work
 
-# http://unix.stackexchange.com/questions/15139/how-to-print-all-printable-ascii-chars-in-cli
-for ((i=32;i<=127;i++)); do
-  printf "\\$((i/64*100+i%64/8*10+i%8))\t";
+# # http://unix.stackexchange.com/questions/15139/how-to-print-all-printable-ascii-chars-in-cli
+# for ((i=32;i<=512;i++)); do
+#   printf "\\$((i/64*100+i%64/8*10+i%8))\t";
+# done
+
+# http://stackoverflow.com/questions/5517500/simple-shell-script-for-generating-hex-numbers-of-a-certain-range
+for i in $(seq 0 255); do
+  for j in $(seq 0 255); do
+    echo "$(printf "%02X %02X" $i $j)"
+  done
 done
