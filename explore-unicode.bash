@@ -98,3 +98,5 @@ done
 # echo -e "\xE2\x86\x92"
 # echo -e "\xE2\x86\x93"
 # echo -e "\xE2\x86\x94"
+
+# E2 96 B2 is another arrow
