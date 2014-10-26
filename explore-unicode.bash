@@ -27,4 +27,10 @@
 # 00000002
 
 echo -e "\xE2\x86\x91" # Works but not sure why such a high range one does
-echo -e "\xCB\x84" # Doesn't work
+echo -e "\xE2\x86" # Doesn't work
+echo -e "\xE2\x91" # Doens't work
+echo -e "\x86\x91" # Doens't work
+echo -e "\xE2" # Doens't work
+echo -e "\x86" # Doens't work
+echo -e "\x91" # Doens't work
+# echo -e "\xCB\x84" # Doesn't work
