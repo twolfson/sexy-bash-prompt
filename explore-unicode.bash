@@ -41,18 +41,13 @@
 # done
 
 # http://stackoverflow.com/questions/5517500/simple-shell-script-for-generating-hex-numbers-of-a-certain-range
-hex_i="00"
-for j in $(seq 10 255); do
-  hex_j="$(printf "%02X" $j)"
-  echo "$(echo -e "$hex_i $hex_j: \x${hex_i}\x${hex_j}")"
-done
-for i in $(seq 1 255); do
+# http://www.utf8-chartable.de/
+# Skip boring ASCII
+# Output C3-DF 80-BF
+for i in $(seq 10 255); do
   hex_i="$(printf "%02X" $i)"
   for j in $(seq 0 255); do
     hex_j="$(printf "%02X" $j)"
     echo "$(echo -e "$hex_i $hex_j: \x${hex_i}\x${hex_j}")"
   done
 done
-
-# TODO: Consider copy/paste from here:
-# http://www.utf8-chartable.de/
