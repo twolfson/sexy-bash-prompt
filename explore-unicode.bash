@@ -66,8 +66,9 @@ done
 
 # wtf, D0 BB is an arrow in `getty`
 
-echo -e "\xE2\x86\x90"
-echo -e "\xE2\x86\x91"
-echo -e "\xE2\x86\x92"
-echo -e "\xE2\x86\x93"
-echo -e "\xE2\x86\x94"
+# The first 4 work in getty as arrows
+# echo -e "\xE2\x86\x90"
+# echo -e "\xE2\x86\x91"
+# echo -e "\xE2\x86\x92"
+# echo -e "\xE2\x86\x93"
+# echo -e "\xE2\x86\x94"
