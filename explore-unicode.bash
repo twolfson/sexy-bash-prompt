@@ -68,6 +68,15 @@ for i in $(hex_range C3 DF); do
   done
 done
 
+# Output E0-EF A0-BF 80-BF
+for i in $(hex_range E0 EF); do
+  for j in $(hex_range A0 BF); do
+    for k in $(hex_range 80 BF); do
+      echo "$(echo -e "$i $j $k: \x${i}\x${j}\x${k}")"
+    done
+  done
+done
+
 # wtf, D0 BB is an arrow in `getty`
 
 # The first 4 work in getty as arrows
