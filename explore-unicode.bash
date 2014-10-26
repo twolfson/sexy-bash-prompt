@@ -17,3 +17,11 @@ echo -e "\xE2\xAC" # Empty hexagon
 echo -e "\xE2\x96" # Empty up triangle
 echo -e "\xE2\x96" # Empty down triangle
 echo -e "\x2A" # Asterisk
+
+# $ echo -n "↑" | hexdump -C
+# 00000000  e2 86 91                                          |...|
+# 00000003
+# todd at Euclid in ~/github/sexy-bash-prompt on dev/explore.unicode*
+# $ echo -n "˄" | hexdump -C
+# 00000000  cb 84                                             |..|
+# 00000002
