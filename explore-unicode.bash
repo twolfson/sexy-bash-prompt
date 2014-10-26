@@ -41,8 +41,11 @@
 # done
 
 # http://stackoverflow.com/questions/5517500/simple-shell-script-for-generating-hex-numbers-of-a-certain-range
-for i in $(seq 0 255); do
+# for i in $(seq 0 255); do
+i="0"
+  hex_i="$(printf "%02X" $i)"
   for j in $(seq 0 255); do
-    echo "$(printf "%02X %02X" $i $j)"
+    hex_j="$(printf "%02X" $j)"
+    echo "$(echo -e "$hex_i $hex_j: \x${hex_i}\x${hex_j}")"
   done
-done
+# done
