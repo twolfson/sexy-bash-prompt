@@ -89,7 +89,7 @@ if [[ -n "$PROMPT_DIRTY_UNPULLED_SYMBOL" ]]; then prompt_dirty_unpulled_symbol="
 if [[ -n "$PROMPT_UNPUSHED_UNPULLED_SYMBOL" ]]; then prompt_unpushed_unpulled_symbol="$PROMPT_UNPUSHED_UNPULLED_SYMBOL"; fi
 if [[ -n "$PROMPT_DIRTY_UNPUSHED_UNPULLED_SYMBOL" ]]; then prompt_dirty_unpushed_unpulled_symbol="$PROMPT_DIRTY_UNPUSHED_UNPULLED_SYMBOL"; fi
 
-function get_git_branch() {
+function prompt_get_git_branch() {
   # On branches, this will return the branch name
   # On non-branches, (no branch)
   ref="$(git symbolic-ref HEAD 2> /dev/null | sed -e 's/refs\/heads\///')"
