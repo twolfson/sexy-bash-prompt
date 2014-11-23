@@ -69,8 +69,8 @@ demo:
 	@echo "Demo environment set up. Please run the following commands:"
 	@echo '"""'
 	@echo "cd ~/non-git"
-	@echo "cd /tmp/git/clean-synced"
-	@echo "cd /tmp/git/dirty"
+	@echo "cd /tmp/git/synced"
+	@echo "cd /tmp/git/dirty-synced"
 	@echo "cd /tmp/git/unpushed"
 	@echo "cd /tmp/git/dirty-unpushed"
 	@echo "cd /tmp/git/unpulled"

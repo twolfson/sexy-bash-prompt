@@ -64,7 +64,8 @@ $ # Your PS1 should now look like this!
 ```
 
 ## Configuration
-The styles can be customized by editing `.bash_prompt` directly, or by setting the following environment variables:
+### Colors
+Colors can be customized by editing `.bash_prompt` directly, or by setting the following environment variables:
 
 - `PROMPT_USER_COLOR` - Color for username (e.g. `todd`)
 - `PROMPT_PREPOSITION_COLOR` - Color for 'at', 'in', 'on'
@@ -86,6 +87,26 @@ source ~/.bash_prompt
 ```
 
 ![Color overridden prompt](docs/color_override.png)
+
+### Symbols
+Similarly, symbols can be customized with the following environment variables:
+
+- `PROMPT_SYNCED_SYMBOL` - Symbol for clean and synced branch (e.g. empty string)
+- `PROMPT_DIRTY_SYNCED_SYMBOL` - Symbol for dirty and synced branch (e.g. `*`)
+- `PROMPT_UNPUSHED_SYMBOL` - Symbol for unpushed branch (e.g. `△`)
+- `PROMPT_DIRTY_UNPUSHED_SYMBOL` - Symbol for dirty and unpushed branch (e.g. `▲`)
+- `PROMPT_UNPULLED_SYMBOL` - Symbol for unpulled branch (e.g. `▽`)
+- `PROMPT_DIRTY_UNPULLED_SYMBOL` - Symbol for dirty and unpulled branch (e.g. `▼`)
+- `PROMPT_UNPUSHED_UNPULLED_SYMBOL` - Symbol for dirty and unpulled branch (e.g. `⬡`)
+- `PROMPT_DIRTY_UNPUSHED_UNPULLED_SYMBOL` - Symbol for dirty, unpushed, and unpulled branch (e.g. `⬢`)
+
+```bash
+# Inside your `.bashrc` or `.bash_profile`
+PROMPT_UNPUSHED_SYMBOL="↑"
+source ~/.bash_prompt
+```
+
+![Symbol overridden prompt](docs/symbol_override.png)
 
 ## How does it work?
 [bash][bash] provides a special set of [variables for your prompts][ps-vars]. `PS1` is the one used by default. The install script adds a command to `~/.bashrc`, a file that is run every time a new terminal opens. Inside of the new command, we run our script and set your `PS1` which runs some `git` commands to determine its current state and outputs them as a string.

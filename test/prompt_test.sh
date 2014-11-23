@@ -77,13 +77,13 @@ fixture_git_init() {
   fixture_dir 'clean-synced'
 
     # is nothing
-    test "$(prompt_get_git_status)" = "" || echo '`prompt_get_git_status` !== "" on a clean and synced branch' 1>&2
+    test "$(prompt_get_git_status)" = "" || echo '`prompt_get_git_status` !== "" on a synced branch' 1>&2
 
   # on a dirty branch
   fixture_dir 'dirty'
 
     # is an asterisk
-    test "$(prompt_get_git_status)" = "*" || echo '`prompt_get_git_status` !== "*" on a dirty branch' 1>&2
+    test "$(prompt_get_git_status)" = "*" || echo '`prompt_get_git_status` !== "*" on a dirty synced branch' 1>&2
 
   # on an unpushed branch
   # DEV: This covers new branches (for now)
@@ -110,7 +110,7 @@ fixture_git_init() {
     # is an filled down triangle
     test "$(prompt_get_git_status)" = "▼" || echo '`prompt_get_git_status` !== "▼" on a dirty unpulled branch' 1>&2
 
-  # on an unpushed and an unpulled branch
+  # on an unpushed and unpulled branch
   fixture_dir 'unpushed-unpulled'
 
     # is an empty hexagon
@@ -125,10 +125,10 @@ fixture_git_init() {
 # git_progress
 
   # on a clean branch
-  fixture_dir 'clean-synced'
+  fixture_dir 'synced'
 
     # is nothing
-    test "$(prompt_get_git_progress)" = "" || echo '`prompt_get_git_progress` !== "" on a clean and synced branch' 1>&2
+    test "$(prompt_get_git_progress)" = "" || echo '`prompt_get_git_progress` !== "" on a clean branch' 1>&2
 
   # https://github.com/twolfson/sexy-bash-prompt/issues/25
   # on a merge-in-progress branch

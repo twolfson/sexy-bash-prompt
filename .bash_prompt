@@ -66,7 +66,30 @@ if [[ -n "$PROMPT_GIT_STATUS_COLOR" ]]; then prompt_git_status_color="$PROMPT_GI
 if [[ -n "$PROMPT_GIT_PROGRESS_COLOR" ]]; then prompt_git_progress_color="$PROMPT_GIT_PROGRESS_COLOR"; fi
 if [[ -n "$PROMPT_SYMBOL_COLOR" ]]; then prompt_symbol_color="$PROMPT_SYMBOL_COLOR"; fi
 
-function prompt_get_git_branch() {
+# Set up symbols
+prompt_synced_symbol=""
+prompt_dirty_synced_symbol="*"
+prompt_unpushed_symbol="△"
+prompt_dirty_unpushed_symbol="▲"
+prompt_unpulled_symbol="▽"
+prompt_dirty_unpulled_symbol="▼"
+prompt_unpushed_unpulled_symbol="⬡"
+prompt_dirty_unpushed_unpulled_symbol="⬢"
+
+# Apply symbol overrides that have been set in the environment
+# DEV: Working unicode symbols can be determined via the following gist
+#   **WARNING: The following gist has 64k lines and may freeze your browser**
+#   https://gist.github.com/twolfson/9cc7968eb6ee8b9ad877
+if [[ -n "$PROMPT_SYNCED_SYMBOL" ]]; then prompt_synced_symbol="$PROMPT_SYNCED_SYMBOL"; fi
+if [[ -n "$PROMPT_DIRTY_SYNCED_SYMBOL" ]]; then prompt_dirty_synced_symbol="$PROMPT_DIRTY_SYNCED_SYMBOL"; fi
+if [[ -n "$PROMPT_UNPUSHED_SYMBOL" ]]; then prompt_unpushed_symbol="$PROMPT_UNPUSHED_SYMBOL"; fi
+if [[ -n "$PROMPT_DIRTY_UNPUSHED_SYMBOL" ]]; then prompt_dirty_unpushed_symbol="$PROMPT_DIRTY_UNPUSHED_SYMBOL"; fi
+if [[ -n "$PROMPT_UNPULLED_SYMBOL" ]]; then prompt_unpulled_symbol="$PROMPT_UNPULLED_SYMBOL"; fi
+if [[ -n "$PROMPT_DIRTY_UNPULLED_SYMBOL" ]]; then prompt_dirty_unpulled_symbol="$PROMPT_DIRTY_UNPULLED_SYMBOL"; fi
+if [[ -n "$PROMPT_UNPUSHED_UNPULLED_SYMBOL" ]]; then prompt_unpushed_unpulled_symbol="$PROMPT_UNPUSHED_UNPULLED_SYMBOL"; fi
+if [[ -n "$PROMPT_DIRTY_UNPUSHED_UNPULLED_SYMBOL" ]]; then prompt_dirty_unpushed_unpulled_symbol="$PROMPT_DIRTY_UNPUSHED_UNPULLED_SYMBOL"; fi
+
+function get_git_branch() {
   # On branches, this will return the branch name
   # On non-branches, (no branch)
   ref="$(git symbolic-ref HEAD 2> /dev/null | sed -e 's/refs\/heads\///')"
@@ -189,19 +212,21 @@ function prompt_get_git_status() {
 
   # Iterate through all the cases and if it matches, then echo
   if [[ "$dirty_branch" == 1 && "$branch_ahead" == 1 && "$branch_behind" == 1 ]]; then
-    echo "⬢"
-  elif [[ "$dirty_branch" == 1 && "$branch_ahead" == 1 ]]; then
-    echo "▲"
-  elif [[ "$dirty_branch" == 1 && "$branch_behind" == 1 ]]; then
-    echo "▼"
+    echo "$prompt_dirty_unpushed_unpulled_symbol"
   elif [[ "$branch_ahead" == 1 && "$branch_behind" == 1 ]]; then
-    echo "⬡"
+    echo "$prompt_unpushed_unpulled_symbol"
+  elif [[ "$dirty_branch" == 1 && "$branch_ahead" == 1 ]]; then
+    echo "$prompt_dirty_unpushed_symbol"
   elif [[ "$branch_ahead" == 1 ]]; then
-    echo "△"
+    echo "$prompt_unpushed_symbol"
+  elif [[ "$dirty_branch" == 1 && "$branch_behind" == 1 ]]; then
+    echo "$prompt_dirty_unpulled_symbol"
   elif [[ "$branch_behind" == 1 ]]; then
-    echo "▽"
+    echo "$prompt_unpulled_symbol"
   elif [[ "$dirty_branch" == 1 ]]; then
-    echo "*"
+    echo "$prompt_dirty_synced_symbol"
+  else # clean
+    echo "$prompt_synced_symbol"
   fi
 }
 
