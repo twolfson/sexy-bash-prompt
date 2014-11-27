@@ -262,7 +262,11 @@ esc=$'\033'
     test "$PS1" = "$expected_prompt" || echo '`PS1` is not as expected (ANSI)' 1>&2
 
   # when overridden
-  TERM=xterm-256color SEXY_BASH_PROMPT_USER_COLOR='\033[1;32m' SEXY_BASH_PROMPT_PREPOSITION_COLOR='\033[1;33m' SEXY_BASH_PROMPT_DEVICE_COLOR='\033[1;34m' SEXY_BASH_PROMPT_DIR_COLOR='\033[1;35m' SEXY_BASH_PROMPT_GIT_STATUS_COLOR='\033[1;36m'  SEXY_BASH_PROMPT_GIT_PROGRESS_COLOR='\033[1;37m' SEXY_BASH_PROMPT_SYMBOL_COLOR='\033[1;38m' . .bash_prompt
+  TERM=xterm-256color PROMPT_USER_COLOR='\033[1;32m' \
+    PROMPT_PREPOSITION_COLOR='\033[1;33m' PROMPT_DEVICE_COLOR='\033[1;34m' \
+    PROMPT_DIR_COLOR='\033[1;35m' PROMPT_GIT_STATUS_COLOR='\033[1;36m'  \
+    PROMPT_GIT_PROGRESS_COLOR='\033[1;37m' PROMPT_SYMBOL_COLOR='\033[1;38m' \
+    . .bash_prompt
 
     # use the new colors
     expected_prompt='\[\033[1;32m\]\u\['$esc'(B'$esc'[m\] \[\033[1;33m\]at\['$esc'(B'$esc'[m\] \[\033[1;34m\]\h\['$esc'(B'$esc'[m\] \[\033[1;33m\]in\['$esc'(B'$esc'[m\] \[\033[1;35m\]\w\['$esc'(B'$esc'[m\]$( sexy_bash_prompt_is_on_git &&   echo -n " \[\033[1;33m\]on\['$esc'(B'$esc'[m\] " &&   echo -n "\[\033[1;36m\]$(sexy_bash_prompt_get_git_info)" &&   echo -n "\[\033[1;37m\]$(sexy_bash_prompt_get_git_progress)" &&   echo -n "\[\033[1;33m\]")\n\['$esc'(B'$esc'[m\]\[\033[1;38m\]$ \['$esc'(B'$esc'[m\]'
@@ -270,10 +274,10 @@ esc=$'\033'
 
 # prompt status symbols
   # when overridden
-  SEXY_BASH_PROMPT_SYNCED_SYMBOL='#synced' SEXY_BASH_PROMPT_DIRTY_SYNCED_SYMBOL='#dirty-synced' \
-    SEXY_BASH_PROMPT_UNPUSHED_SYMBOL='#unpushed' SEXY_BASH_PROMPT_DIRTY_UNPUSHED_SYMBOL='#dirty-unpushed' \
-    SEXY_BASH_PROMPT_UNPULLED_SYMBOL='#unpulled' SEXY_BASH_PROMPT_DIRTY_UNPULLED_SYMBOL='#dirty-unpulled' \
-    SEXY_BASH_PROMPT_UNPUSHED_UNPULLED_SYMBOL='#unpushed-unpulled' SEXY_BASH_PROMPT_DIRTY_UNPUSHED_UNPULLED_SYMBOL='#dirty-unpushed-unpulled' \
+  PROMPT_SYNCED_SYMBOL='#synced' PROMPT_DIRTY_SYNCED_SYMBOL='#dirty-synced' \
+    PROMPT_UNPUSHED_SYMBOL='#unpushed' PROMPT_DIRTY_UNPUSHED_SYMBOL='#dirty-unpushed' \
+    PROMPT_UNPULLED_SYMBOL='#unpulled' PROMPT_DIRTY_UNPULLED_SYMBOL='#dirty-unpulled' \
+    PROMPT_UNPUSHED_UNPULLED_SYMBOL='#unpushed-unpulled' PROMPT_DIRTY_UNPUSHED_UNPULLED_SYMBOL='#dirty-unpushed-unpulled' \
     . .bash_prompt
 
     # a synced prompt uses the new symbol

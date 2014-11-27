@@ -58,13 +58,13 @@ else
 fi
 
 # Apply any color overrides that have been set in the environment
-if [[ -n "$SEXY_BASH_PROMPT_USER_COLOR" ]]; then sexy_bash_prompt_user_color="$SEXY_BASH_PROMPT_USER_COLOR"; fi
-if [[ -n "$SEXY_BASH_PROMPT_PREPOSITION_COLOR" ]]; then sexy_bash_prompt_preposition_color="$SEXY_BASH_PROMPT_PREPOSITION_COLOR"; fi
-if [[ -n "$SEXY_BASH_PROMPT_DEVICE_COLOR" ]]; then sexy_bash_prompt_device_color="$SEXY_BASH_PROMPT_DEVICE_COLOR"; fi
-if [[ -n "$SEXY_BASH_PROMPT_DIR_COLOR" ]]; then sexy_bash_prompt_dir_color="$SEXY_BASH_PROMPT_DIR_COLOR"; fi
-if [[ -n "$SEXY_BASH_PROMPT_GIT_STATUS_COLOR" ]]; then sexy_bash_prompt_git_status_color="$SEXY_BASH_PROMPT_GIT_STATUS_COLOR"; fi
-if [[ -n "$SEXY_BASH_PROMPT_GIT_PROGRESS_COLOR" ]]; then sexy_bash_prompt_git_progress_color="$SEXY_BASH_PROMPT_GIT_PROGRESS_COLOR"; fi
-if [[ -n "$SEXY_BASH_PROMPT_SYMBOL_COLOR" ]]; then sexy_bash_prompt_symbol_color="$SEXY_BASH_PROMPT_SYMBOL_COLOR"; fi
+if [[ -n "$PROMPT_USER_COLOR" ]]; then sexy_bash_prompt_user_color="$PROMPT_USER_COLOR"; fi
+if [[ -n "$PROMPT_PREPOSITION_COLOR" ]]; then sexy_bash_prompt_preposition_color="$PROMPT_PREPOSITION_COLOR"; fi
+if [[ -n "$PROMPT_DEVICE_COLOR" ]]; then sexy_bash_prompt_device_color="$PROMPT_DEVICE_COLOR"; fi
+if [[ -n "$PROMPT_DIR_COLOR" ]]; then sexy_bash_prompt_dir_color="$PROMPT_DIR_COLOR"; fi
+if [[ -n "$PROMPT_GIT_STATUS_COLOR" ]]; then sexy_bash_prompt_git_status_color="$PROMPT_GIT_STATUS_COLOR"; fi
+if [[ -n "$PROMPT_GIT_PROGRESS_COLOR" ]]; then sexy_bash_prompt_git_progress_color="$PROMPT_GIT_PROGRESS_COLOR"; fi
+if [[ -n "$PROMPT_SYMBOL_COLOR" ]]; then sexy_bash_prompt_symbol_color="$PROMPT_SYMBOL_COLOR"; fi
 
 # Set up symbols
 sexy_bash_prompt_synced_symbol=""
@@ -80,14 +80,14 @@ sexy_bash_prompt_dirty_unpushed_unpulled_symbol="⬢"
 # DEV: Working unicode symbols can be determined via the following gist
 #   **WARNING: The following gist has 64k lines and may freeze your browser**
 #   https://gist.github.com/twolfson/9cc7968eb6ee8b9ad877
-if [[ -n "$SEXY_BASH_PROMPT_SYNCED_SYMBOL" ]]; then sexy_bash_prompt_synced_symbol="$SEXY_BASH_PROMPT_SYNCED_SYMBOL"; fi
-if [[ -n "$SEXY_BASH_PROMPT_DIRTY_SYNCED_SYMBOL" ]]; then sexy_bash_prompt_dirty_synced_symbol="$SEXY_BASH_PROMPT_DIRTY_SYNCED_SYMBOL"; fi
-if [[ -n "$SEXY_BASH_PROMPT_UNPUSHED_SYMBOL" ]]; then sexy_bash_prompt_unpushed_symbol="$SEXY_BASH_PROMPT_UNPUSHED_SYMBOL"; fi
-if [[ -n "$SEXY_BASH_PROMPT_DIRTY_UNPUSHED_SYMBOL" ]]; then sexy_bash_prompt_dirty_unpushed_symbol="$SEXY_BASH_PROMPT_DIRTY_UNPUSHED_SYMBOL"; fi
-if [[ -n "$SEXY_BASH_PROMPT_UNPULLED_SYMBOL" ]]; then sexy_bash_prompt_unpulled_symbol="$SEXY_BASH_PROMPT_UNPULLED_SYMBOL"; fi
-if [[ -n "$SEXY_BASH_PROMPT_DIRTY_UNPULLED_SYMBOL" ]]; then sexy_bash_prompt_dirty_unpulled_symbol="$SEXY_BASH_PROMPT_DIRTY_UNPULLED_SYMBOL"; fi
-if [[ -n "$SEXY_BASH_PROMPT_UNPUSHED_UNPULLED_SYMBOL" ]]; then sexy_bash_prompt_unpushed_unpulled_symbol="$SEXY_BASH_PROMPT_UNPUSHED_UNPULLED_SYMBOL"; fi
-if [[ -n "$SEXY_BASH_PROMPT_DIRTY_UNPUSHED_UNPULLED_SYMBOL" ]]; then sexy_bash_prompt_dirty_unpushed_unpulled_symbol="$SEXY_BASH_PROMPT_DIRTY_UNPUSHED_UNPULLED_SYMBOL"; fi
+if [[ -n "$PROMPT_SYNCED_SYMBOL" ]]; then sexy_bash_prompt_synced_symbol="$PROMPT_SYNCED_SYMBOL"; fi
+if [[ -n "$PROMPT_DIRTY_SYNCED_SYMBOL" ]]; then sexy_bash_prompt_dirty_synced_symbol="$PROMPT_DIRTY_SYNCED_SYMBOL"; fi
+if [[ -n "$PROMPT_UNPUSHED_SYMBOL" ]]; then sexy_bash_prompt_unpushed_symbol="$PROMPT_UNPUSHED_SYMBOL"; fi
+if [[ -n "$PROMPT_DIRTY_UNPUSHED_SYMBOL" ]]; then sexy_bash_prompt_dirty_unpushed_symbol="$PROMPT_DIRTY_UNPUSHED_SYMBOL"; fi
+if [[ -n "$PROMPT_UNPULLED_SYMBOL" ]]; then sexy_bash_prompt_unpulled_symbol="$PROMPT_UNPULLED_SYMBOL"; fi
+if [[ -n "$PROMPT_DIRTY_UNPULLED_SYMBOL" ]]; then sexy_bash_prompt_dirty_unpulled_symbol="$PROMPT_DIRTY_UNPULLED_SYMBOL"; fi
+if [[ -n "$PROMPT_UNPUSHED_UNPULLED_SYMBOL" ]]; then sexy_bash_prompt_unpushed_unpulled_symbol="$PROMPT_UNPUSHED_UNPULLED_SYMBOL"; fi
+if [[ -n "$PROMPT_DIRTY_UNPUSHED_UNPULLED_SYMBOL" ]]; then sexy_bash_prompt_dirty_unpushed_unpulled_symbol="$PROMPT_DIRTY_UNPUSHED_UNPULLED_SYMBOL"; fi
 
 function sexy_bash_prompt_get_git_branch() {
   # On branches, this will return the branch name
