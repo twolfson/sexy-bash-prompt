@@ -92,8 +92,8 @@ color-check:
 	@echo 'TERM=xterm-256color . .bash_prompt'
 	@echo 'TERM=xterm . .bash_prompt'
 	@echo 'TERM="" . .bash_prompt'
-	@echo 'TERM=xterm-256color SEXY_BASH_PROMPT_USER_COLOR="\033[1;32m" SEXY_BASH_PROMPT_PREPOSITION_COLOR="\033[1;33m" SEXY_BASH_PROMPT_DEVICE_COLOR="\033[1;34m" SEXY_BASH_PROMPT_DIR_COLOR="\033[1;35m" SEXY_BASH_PROMPT_GIT_STATUS_COLOR="\033[1;36m" SEXY_BASH_PROMPT_SYMBOL_COLOR="\033[1;37m" . .bash_prompt'
-	@echo 'TERM='' SEXY_BASH_PROMPT_USER_COLOR="$$(TERM=xterm-256color tput bold)$$(TERM=xterm-256color tput setaf 100)" . .bash_prompt'
+	@echo 'TERM=xterm-256color PROMPT_USER_COLOR="\033[1;32m" PROMPT_PREPOSITION_COLOR="\033[1;33m" PROMPT_DEVICE_COLOR="\033[1;34m" PROMPT_DIR_COLOR="\033[1;35m" PROMPT_GIT_STATUS_COLOR="\033[1;36m" PROMPT_SYMBOL_COLOR="\033[1;37m" . .bash_prompt'
+	@echo 'TERM='' PROMPT_USER_COLOR="$$(TERM=xterm-256color tput bold)$$(TERM=xterm-256color tput setaf 100)" . .bash_prompt'
 	@echo 'exit'
 
 .PHONY: install install-link clean test demo

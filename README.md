@@ -67,13 +67,13 @@ $ # Your PS1 should now look like this!
 ### Colors
 Colors can be customized by editing `.bash_prompt` directly, or by setting the following environment variables:
 
-- `SEXY_BASH_PROMPT_USER_COLOR` - Color for username (e.g. `todd`)
-- `SEXY_BASH_PROMPT_PREPOSITION_COLOR` - Color for 'at', 'in', 'on'
-- `SEXY_BASH_PROMPT_DEVICE_COLOR` - Color for machine name (e.g. `Euclid`)
-- `SEXY_BASH_PROMPT_DIR_COLOR` - Color for directory (e.g. `~/github/sexy-bash-prompt`)
-- `SEXY_BASH_PROMPT_GIT_STATUS_COLOR` - Color for git branch and symbol (e.g. `master`)
-- `SEXY_BASH_PROMPT_GIT_PROGRESS_COLOR` - Color for in progress git actions (e.g. `[merge]`)
-- `SEXY_BASH_PROMPT_SYMBOL_COLOR` - Color for prompt symbol (e.g. `$`)
+- `PROMPT_USER_COLOR` - Color for username (e.g. `todd`)
+- `PROMPT_PREPOSITION_COLOR` - Color for 'at', 'in', 'on'
+- `PROMPT_DEVICE_COLOR` - Color for machine name (e.g. `Euclid`)
+- `PROMPT_DIR_COLOR` - Color for directory (e.g. `~/github/sexy-bash-prompt`)
+- `PROMPT_GIT_STATUS_COLOR` - Color for git branch and symbol (e.g. `master`)
+- `PROMPT_GIT_PROGRESS_COLOR` - Color for in progress git actions (e.g. `[merge]`)
+- `PROMPT_SYMBOL_COLOR` - Color for prompt symbol (e.g. `$`)
 
 You can set colors via [`tput`][] or [ANSI escape codes][]. For example:
 
@@ -82,7 +82,7 @@ You can set colors via [`tput`][] or [ANSI escape codes][]. For example:
 
 ```bash
 # Inside your `.bashrc` or `.bash_profile`
-SEXY_BASH_PROMPT_USER_COLOR="$(tput bold)$(tput setaf 9)" # BOLD RED
+PROMPT_USER_COLOR="$(tput bold)$(tput setaf 9)" # BOLD RED
 source ~/.bash_prompt
 ```
 
@@ -91,18 +91,18 @@ source ~/.bash_prompt
 ### Symbols
 Similarly, symbols can be customized with the following environment variables:
 
-- `SEXY_BASH_PROMPT_SYNCED_SYMBOL` - Symbol for clean and synced branch (e.g. empty string)
-- `SEXY_BASH_PROMPT_DIRTY_SYNCED_SYMBOL` - Symbol for dirty and synced branch (e.g. `*`)
-- `SEXY_BASH_PROMPT_UNPUSHED_SYMBOL` - Symbol for unpushed branch (e.g. `△`)
-- `SEXY_BASH_PROMPT_DIRTY_UNPUSHED_SYMBOL` - Symbol for dirty and unpushed branch (e.g. `▲`)
-- `SEXY_BASH_PROMPT_UNPULLED_SYMBOL` - Symbol for unpulled branch (e.g. `▽`)
-- `SEXY_BASH_PROMPT_DIRTY_UNPULLED_SYMBOL` - Symbol for dirty and unpulled branch (e.g. `▼`)
-- `SEXY_BASH_PROMPT_UNPUSHED_UNPULLED_SYMBOL` - Symbol for dirty and unpulled branch (e.g. `⬡`)
-- `SEXY_BASH_PROMPT_DIRTY_UNPUSHED_UNPULLED_SYMBOL` - Symbol for dirty, unpushed, and unpulled branch (e.g. `⬢`)
+- `PROMPT_SYNCED_SYMBOL` - Symbol for clean and synced branch (e.g. empty string)
+- `PROMPT_DIRTY_SYNCED_SYMBOL` - Symbol for dirty and synced branch (e.g. `*`)
+- `PROMPT_UNPUSHED_SYMBOL` - Symbol for unpushed branch (e.g. `△`)
+- `PROMPT_DIRTY_UNPUSHED_SYMBOL` - Symbol for dirty and unpushed branch (e.g. `▲`)
+- `PROMPT_UNPULLED_SYMBOL` - Symbol for unpulled branch (e.g. `▽`)
+- `PROMPT_DIRTY_UNPULLED_SYMBOL` - Symbol for dirty and unpulled branch (e.g. `▼`)
+- `PROMPT_UNPUSHED_UNPULLED_SYMBOL` - Symbol for dirty and unpulled branch (e.g. `⬡`)
+- `PROMPT_DIRTY_UNPUSHED_UNPULLED_SYMBOL` - Symbol for dirty, unpushed, and unpulled branch (e.g. `⬢`)
 
 ```bash
 # Inside your `.bashrc` or `.bash_profile`
-SEXY_BASH_PROMPT_UNPUSHED_SYMBOL="↑"
+PROMPT_UNPUSHED_SYMBOL="↑"
 source ~/.bash_prompt
 ```
 
