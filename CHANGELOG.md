@@ -1,4 +1,6 @@
 # sexy-bash-prompt changelog
+0.24.0 - Prefixed all local variables and functions with `sexy_bash_prompt_` via @luizfb in #40 and @twolfson in #44
+
 0.23.0 - Added support for symbol overrides
 
 0.22.0 - Lowercased install script variables and moved to `.bash` extension. Via @rpdelaney in #37
