@@ -12,6 +12,12 @@ Forked from [a gist by gf3][sexy-bash-orig].
 
 [sexy-bash-orig]: https://gist.github.com/gf3/306785/a35d28b6bdd0f7c54318cce510738438f04dabaa
 
+### Do you like `sexy-bash-prompt`?
+[Support us via gratipay][gratipay] or [spread word on Twitter][twitter]
+
+[gratipay]: https://gratipay.com/sexybashprompt/
+[twitter]: https://twitter.com/intent/tweet?text=Bash%20prompt%20with%20colors%2C%20git%20statuses%2C%20and%20git%20branches&url=https%3A%2F%2Fgithub.com%2Ftwolfson%2Fsexy-bash-prompt&via=sexybashprompt
+
 ## Installation
 One line install:
 
@@ -127,14 +133,6 @@ PROMPT_DIRTY_UNPUSHED_UNPULLED_SYMBOL="*↑↓"
 
 [bash]: https://en.wikipedia.org/wiki/Bash_%28Unix_shell%29
 [ps-vars]: http://www.gnu.org/software/bash/manual/bashref.html#index-PS1
-
-## Donating
-Support this project and [others by twolfson][gittip] via [gittip][].
-
-[![Support via Gittip][gittip-badge]][gittip]
-
-[gittip-badge]: https://rawgithub.com/twolfson/gittip-badge/master/dist/gittip.png
-[gittip]: https://www.gittip.com/twolfson/
 
 ## Support
 Linux and Mac OSX are supported platforms.
