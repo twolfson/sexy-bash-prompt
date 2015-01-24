@@ -1,4 +1,6 @@
 # sexy-bash-prompt changelog
+0.24.2 - Moved from gratipay-badge to text prompt for support
+
 0.24.1 - Added low level symbol suggestions to README
 
 0.24.0 - Prefixed all local variables and functions with `sexy_bash_prompt_` via @luizfb in #40 and @twolfson in #44
