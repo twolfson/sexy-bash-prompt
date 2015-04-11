@@ -1,4 +1,6 @@
 # sexy-bash-prompt changelog
+0.25.0 - Added support for overriding prompt symbol via `PROMPT_SYMBOL`. Via @rpdelaney in #53
+
 0.24.2 - Moved from gratipay-badge to text prompt for support
 
 0.24.1 - Added low level symbol suggestions to README
