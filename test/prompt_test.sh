@@ -278,7 +278,11 @@ esc=$'\033'
     PROMPT_UNPUSHED_SYMBOL='#unpushed' PROMPT_DIRTY_UNPUSHED_SYMBOL='#dirty-unpushed' \
     PROMPT_UNPULLED_SYMBOL='#unpulled' PROMPT_DIRTY_UNPULLED_SYMBOL='#dirty-unpulled' \
     PROMPT_UNPUSHED_UNPULLED_SYMBOL='#unpushed-unpulled' PROMPT_DIRTY_UNPUSHED_UNPULLED_SYMBOL='#dirty-unpushed-unpulled' \
+    PROMPT_SYMBOL='#prompt-symbol' \
     . .bash_prompt
+
+    # the prompt always uses the PROMPT_SYMBOL
+    test "$sexy_bash_prompt_symbol" = "#prompt-symbol" || echo 'sexy_bash_prompt_symbol was not overridden by PROMPT_SYMBOL as expected' 1>&2
 
     # a synced prompt uses the new symbol
     fixture_dir 'synced'
