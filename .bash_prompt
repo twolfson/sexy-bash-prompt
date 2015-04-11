@@ -57,6 +57,13 @@ else
   sexy_bash_prompt_symbol_color="" # NORMAL
 fi
 
+# Define the default prompt terminator character '$'
+if [[ "$UID" == 0 ]]; then
+  sexy_bash_prompt_symbol="#"
+else
+  sexy_bash_prompt_symbol="\$"
+fi
+
 # Apply any color overrides that have been set in the environment
 if [[ -n "$PROMPT_USER_COLOR" ]]; then sexy_bash_prompt_user_color="$PROMPT_USER_COLOR"; fi
 if [[ -n "$PROMPT_PREPOSITION_COLOR" ]]; then sexy_bash_prompt_preposition_color="$PROMPT_PREPOSITION_COLOR"; fi
@@ -64,6 +71,7 @@ if [[ -n "$PROMPT_DEVICE_COLOR" ]]; then sexy_bash_prompt_device_color="$PROMPT_
 if [[ -n "$PROMPT_DIR_COLOR" ]]; then sexy_bash_prompt_dir_color="$PROMPT_DIR_COLOR"; fi
 if [[ -n "$PROMPT_GIT_STATUS_COLOR" ]]; then sexy_bash_prompt_git_status_color="$PROMPT_GIT_STATUS_COLOR"; fi
 if [[ -n "$PROMPT_GIT_PROGRESS_COLOR" ]]; then sexy_bash_prompt_git_progress_color="$PROMPT_GIT_PROGRESS_COLOR"; fi
+if [[ -n "$PROMPT_SYMBOL" ]]; then sexy_bash_prompt_symbol="$PROMPT_SYMBOL"; fi
 if [[ -n "$PROMPT_SYMBOL_COLOR" ]]; then sexy_bash_prompt_symbol_color="$PROMPT_SYMBOL_COLOR"; fi
 
 # Set up symbols
@@ -247,16 +255,6 @@ sexy_bash_prompt_get_git_info () {
   fi
 }
 
-# Symbol displayed at the line of every prompt
-function sexy_bash_prompt_get_prompt_symbol() {
-  # If we are root, display `#`. Otherwise, `$`
-  if [[ "$UID" == 0 ]]; then
-    echo "#"
-  else
-    echo "\$"
-  fi
-}
-
 # Define the sexy-bash-prompt
 PS1="\[$sexy_bash_prompt_user_color\]\u\[$sexy_bash_prompt_reset\] \
 \[$sexy_bash_prompt_preposition_color\]at\[$sexy_bash_prompt_reset\] \
@@ -268,4 +266,4 @@ PS1="\[$sexy_bash_prompt_user_color\]\u\[$sexy_bash_prompt_reset\] \
   echo -n \"\[$sexy_bash_prompt_git_status_color\]\$(sexy_bash_prompt_get_git_info)\" && \
   echo -n \"\[$sexy_bash_prompt_git_progress_color\]\$(sexy_bash_prompt_get_git_progress)\" && \
   echo -n \"\[$sexy_bash_prompt_preposition_color\]\")\n\[$sexy_bash_prompt_reset\]\
-\[$sexy_bash_prompt_symbol_color\]$(sexy_bash_prompt_get_prompt_symbol) \[$sexy_bash_prompt_reset\]"
+\[$sexy_bash_prompt_symbol_color\]$sexy_bash_prompt_symbol \[$sexy_bash_prompt_reset\]"

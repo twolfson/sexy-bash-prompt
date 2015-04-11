@@ -207,21 +207,21 @@ cd "$ORIG_PWD"
     # does not have any output
     test ${#prompt_output} -eq 0 || echo '`prompt_output` did not have length 0' 1>&2
 
-# sexy_bash_prompt_get_prompt_symbol
+# sexy_bash_prompt_symbol
 cd "$ORIG_PWD"
 
   # with a normal user
-  bash_symbol="$(bash --norc --noprofile -i -c '. .bash_prompt; echo $(sexy_bash_prompt_get_prompt_symbol)')"
+  bash_symbol="$(bash --norc --noprofile -i -c '. .bash_prompt; echo "$sexy_bash_prompt_symbol"')"
 
     # is $
-    test "$bash_symbol" = "$" || echo '`sexy_bash_prompt_get_prompt_symbol` !== "$" for a normal user' 1>&2
+    test "$bash_symbol" = "$" || echo '`sexy_bash_prompt_symbol` !== "$" for a normal user' 1>&2
 
   # with root
   if which sudo &> /dev/null; then
-    bash_symbol="$(sudo bash --norc --noprofile -i -c '. .bash_prompt; echo $(sexy_bash_prompt_get_prompt_symbol)')";
+    bash_symbol="$(sudo bash --norc --noprofile -i -c '. .bash_prompt; echo "$sexy_bash_prompt_symbol"')";
 
     # is #
-    test "$bash_symbol" = "#" || echo '`sexy_bash_prompt_get_prompt_symbol` !== "#" for root' 1>&2
+    test "$bash_symbol" = "#" || echo '`sexy_bash_prompt_symbol` !== "#" for root' 1>&2
   else
     echo "WARNING: sudo not found or insufficient privileges. Test skipped." 1>&2
   fi
