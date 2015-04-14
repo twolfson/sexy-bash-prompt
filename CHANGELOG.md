@@ -1,4 +1,6 @@
 # sexy-bash-prompt changelog
+0.26.0 - Updated install script for better Windows support. Fixes #45
+
 0.25.0 - Added support for overriding prompt symbol via `PROMPT_SYMBOL`. Via @rpdelaney in #53
 
 0.24.2 - Moved from gratipay-badge to text prompt for support
