@@ -4,7 +4,7 @@ GIT_DIRS := $(wildcard test/test-files/*/.git)
 
 install:
 	@echo "# Copying .bash_prompt to ~/.bash_prompt"
-	cp -f .bash_prompt ~/.bash_prompt
+	cp -f ".bash_prompt" "$(HOME)/.bash_prompt"
 
 	@# Run install script
 	./install.bash
@@ -14,7 +14,7 @@ install:
 
 install-link:
 	@echo "# Linking .bash_prompt to ~/.bash_prompt"
-	ln -f -s $(PWD)/.bash_prompt $(HOME)/.bash_prompt
+	ln -f -s "$(PWD)/.bash_prompt" "$(HOME)/.bash_prompt"
 
 	@# Run install script
 	./install.bash

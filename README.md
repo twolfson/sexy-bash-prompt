@@ -49,24 +49,25 @@ rm /tmp/.bash_prompt_term
 
 ### Manual install
 ```bash
-$ # Clone the repository
-$ git clone --depth 1 https://github.com/twolfson/sexy-bash-prompt
-Cloning into 'sexy-bash-prompt'...
-...
-Resolving deltas: 100% (13/13), done.
-$ # Go into the directory
-$ cd sexy-bash-prompt
-$ # Install the script
-$ make install
-# Copying .bash_prompt to ~/.bash_prompt
-cp --force .bash_prompt ~/.bash_prompt
-# Adding ~/.bash_prompt to ~/.bashrc
-echo ". ~/.bash_prompt" >> ~/.bashrc
-# twolfson/sexy-bash-prompt installation complete!
-$ # Rerun your ~/.bashrc
-$ source ~/.bashrc
-todd at Euclid in ~/github/sexy-bash-prompt on master
-$ # Your PS1 should now look like this!
+# Clone the repository
+git clone --depth 1 https://github.com/twolfson/sexy-bash-prompt
+# Cloning into 'sexy-bash-prompt'...
+# ...
+# Resolving deltas: 100% (13/13), done.
+
+# Go into the directory
+cd sexy-bash-prompt
+# Install the script
+make install
+# # Copying .bash_prompt to ~/.bash_prompt
+# cp -f ".bash_prompt" "/home/todd/.bash_prompt"
+# ./install.bash
+# # twolfson/sexy-bash-prompt installation complete!
+
+# Rerun your ~/.bashrc
+source ~/.bashrc
+# todd at Euclid in ~/github/sexy-bash-prompt on master
+# Your PS1 should now look like this!
 ```
 
 ## Configuration
