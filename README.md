@@ -104,7 +104,7 @@ Similarly, symbols can be customized with the following environment variables:
 - `PROMPT_DIRTY_UNPUSHED_SYMBOL` - Symbol for dirty and unpushed branch (e.g. `▲`)
 - `PROMPT_UNPULLED_SYMBOL` - Symbol for unpulled branch (e.g. `▽`)
 - `PROMPT_DIRTY_UNPULLED_SYMBOL` - Symbol for dirty and unpulled branch (e.g. `▼`)
-- `PROMPT_UNPUSHED_UNPULLED_SYMBOL` - Symbol for dirty and unpulled branch (e.g. `⬡`)
+- `PROMPT_UNPUSHED_UNPULLED_SYMBOL` - Symbol for unpushed and unpulled branch (e.g. `⬡`)
 - `PROMPT_DIRTY_UNPUSHED_UNPULLED_SYMBOL` - Symbol for dirty, unpushed, and unpulled branch (e.g. `⬢`)
 - `PROMPT_SYMBOL` - Symbol given after each prompt (e.g. `$`)
     - By default, this is `$` for normal users and `#` for root
