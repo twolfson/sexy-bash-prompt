@@ -1,0 +1,5 @@
+{
+  "releaseCommands": [
+    "foundry-release-git"
+  ]
+}
