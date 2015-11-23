@@ -13,9 +13,9 @@ Forked from [a gist by gf3][sexy-bash-orig].
 [sexy-bash-orig]: https://gist.github.com/gf3/306785/a35d28b6bdd0f7c54318cce510738438f04dabaa
 
 ### Do you like `sexy-bash-prompt`?
-[Support us via gratipay][gratipay] or [spread word on Twitter][twitter]
+[Support us via donations][donations] or [spread word on Twitter][twitter]
 
-[gratipay]: https://gratipay.com/sexybashprompt/
+[donations]: http://bit.ly/support-sexy-bash-prompt
 [twitter]: https://twitter.com/intent/tweet?text=Bash%20prompt%20with%20colors%2C%20git%20statuses%2C%20and%20git%20branches&url=https%3A%2F%2Fgithub.com%2Ftwolfson%2Fsexy-bash-prompt&via=sexybashprompt
 
 ## Installation
