@@ -1,4 +1,6 @@
 # sexy-bash-prompt changelog
+0.26.3 - Added missing `node_modules` to `.gitignore`
+
 0.26.2 - Added foundry for release
 
 0.26.1 - Fixed symbol documentation via @theseyi in #54
