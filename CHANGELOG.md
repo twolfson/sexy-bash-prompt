@@ -1,4 +1,6 @@
 # sexy-bash-prompt changelog
+0.26.2 - Added foundry for release
+
 0.26.1 - Fixed symbol documentation via @theseyi in #54
 
 0.26.0 - Updated install script for better Windows support. Fixes #45
