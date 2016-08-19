@@ -22,7 +22,7 @@ Forked from [a gist by gf3][sexy-bash-orig].
 One line install:
 
 ```bash
-(cd /tmp && git clone --depth 1 https://github.com/twolfson/sexy-bash-prompt && cd sexy-bash-prompt && make install) && source ~/.bashrc
+(cd /tmp && git clone --depth 1 --config core.autocrlf=false https://github.com/twolfson/sexy-bash-prompt && cd sexy-bash-prompt && make install) && source ~/.bashrc
 ```
 
 ### My colors don't look as advertised
@@ -50,7 +50,7 @@ rm /tmp/.bash_prompt_term
 ### Manual install
 ```bash
 # Clone the repository
-git clone --depth 1 https://github.com/twolfson/sexy-bash-prompt
+git clone --depth 1 --config core.autocrlf=false https://github.com/twolfson/sexy-bash-prompt
 # Cloning into 'sexy-bash-prompt'...
 # ...
 # Resolving deltas: 100% (13/13), done.
