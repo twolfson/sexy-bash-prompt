@@ -1,4 +1,6 @@
 # sexy-bash-prompt changelog
+0.26.5 - Updated installation documentation to ignore CRLF configuration. Fixes #63
+
 0.26.4 - Updated donation link
 
 0.26.3 - Added missing `node_modules` to `.gitignore`
