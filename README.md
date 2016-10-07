@@ -145,6 +145,15 @@ Windows is supported to the best of my abilities. However, there have been [font
 [PuTTY]: http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html
 [putty-issue]: https://github.com/twolfson/sexy-bash-prompt/issues/7
 
+## Uninstallation
+To uninstall `sexy-bash-prompt`, perform the following steps:
+
+- Remove `. ~/.bash_prompt` from `~/.bashrc`
+- Delete `~/.bash_prompt` (e.g. `rm ~/.bash_prompt`)
+- During installation, we may have added a `. ~/.bashrc` invocation to `~/.bash_profile`, `~/.bash_login`, or `~/.profile`
+    - Feel free to remove this if it's no longer necessary
+
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Test via `make test`.
 
