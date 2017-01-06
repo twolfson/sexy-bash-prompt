@@ -169,7 +169,7 @@ sexy_bash_prompt_parse_git_ahead () {
   #Compute the remote tracking branch, if no remote branch then echo 0
   branchnamefull=$(git symbolic-ref -q HEAD);
   remote_branch=$(git for-each-ref --format='%(upstream:short)' $branchnamefull)
-  if [ "$remote_branch" = "" ]
+  if [[  "$remote_branch" == "" ]]
     then
       echo 0; return;
   fi
@@ -198,7 +198,7 @@ sexy_bash_prompt_parse_git_behind () {
   #Compute the remote tracking branch, if no remote branch then echo 0
   branchnamefull=$(git symbolic-ref -q HEAD);
   remote_branch=$(git for-each-ref --format='%(upstream:short)' $branchnamefull)
-  if [ "$remote_branch" = "" ]
+  if [[ "$remote_branch" == "" ]]
     then
       echo 0; return;
   fi
