@@ -167,7 +167,7 @@ sexy_bash_prompt_parse_git_ahead () {
   
   # remote_branch="origin/$branch"
   # Compute the remote tracking branch, if no remote branch then echo 0
-  remote_branch="$(git rev-parse --symbolic-full-name "@{upstream}" 2>/dev/null )"
+  remote_branch="$(git rev-parse --symbolic-full-name "@{upstream}" 2>/dev/null || echo -n "origin/$branch")"
   if [[  "$remote_branch" == "" ]]
     then
       echo 0; return;
@@ -195,7 +195,7 @@ sexy_bash_prompt_parse_git_behind () {
 
   # remote_branch="origin/$branch"
   # Compute the remote tracking branch, if no remote branch then echo 0
-  remote_branch="$(git rev-parse --symbolic-full-name "@{upstream}" 2>/dev/null )"
+  remote_branch="$(git rev-parse --symbolic-full-name "@{upstream}" 2>/dev/null || echo -n "origin/$branch")"
   if [[ "$remote_branch" == "" ]]
     then
       echo 0; return;
