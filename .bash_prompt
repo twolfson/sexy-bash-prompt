@@ -164,7 +164,15 @@ sexy_bash_prompt_branch_exists () {
 sexy_bash_prompt_parse_git_ahead () {
   # Grab the local and remote branch
   branch="$(sexy_bash_prompt_get_git_branch)"
-  remote_branch="origin/$branch"
+  
+  #remote_branch="origin/$branch"
+  #Compute the remote tracking branch, if no remote branch then echo 0
+  branchnamefull=$(git symbolic-ref -q HEAD);
+  remote_branch=$(git for-each-ref --format='%(upstream:short)' $branchnamefull)
+  if [ "$remote_branch" = "" ]
+    then
+      echo 0; return;
+  fi
 
   # $ git log origin/master..master
   # commit 4a633f715caf26f6e9495198f89bba20f3402a32
@@ -185,7 +193,15 @@ sexy_bash_prompt_parse_git_ahead () {
 sexy_bash_prompt_parse_git_behind () {
   # Grab the branch
   branch="$(sexy_bash_prompt_get_git_branch)"
-  remote_branch="origin/$branch"
+
+  #remote_branch="origin/$branch"
+  #Compute the remote tracking branch, if no remote branch then echo 0
+  branchnamefull=$(git symbolic-ref -q HEAD);
+  remote_branch=$(git for-each-ref --format='%(upstream:short)' $branchnamefull)
+  if [ "$remote_branch" = "" ]
+    then
+      echo 0; return;
+  fi
 
   # $ git log master..origin/master
   # commit 4a633f715caf26f6e9495198f89bba20f3402a32
