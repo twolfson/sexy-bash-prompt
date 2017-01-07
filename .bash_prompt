@@ -164,14 +164,13 @@ sexy_bash_prompt_branch_exists () {
 sexy_bash_prompt_parse_git_ahead () {
   # Grab the local and remote branch
   branch="$(sexy_bash_prompt_get_git_branch)"
-  
-  # remote_branch="origin/$branch"
-  # Compute the remote tracking branch, if no remote branch then echo 0
-  remote_branch="$(git rev-parse --symbolic-full-name "@{upstream}" 2>/dev/null || echo -n "origin/$branch")"
-  if [[  "$remote_branch" == "" ]]
+  remote="$(git config --get "branch.${branch}.remote" || echo -n "origin")"
+
+  if [[  "$remote" == "" ]]
     then
       echo 0; return;
   fi
+remote_branch="$remote/$branch"
 
   # $ git log origin/master..master
   # commit 4a633f715caf26f6e9495198f89bba20f3402a32
@@ -192,14 +191,13 @@ sexy_bash_prompt_parse_git_ahead () {
 sexy_bash_prompt_parse_git_behind () {
   # Grab the branch
   branch="$(sexy_bash_prompt_get_git_branch)"
+  remote="$(git config --get "branch.${branch}.remote" || echo -n "origin")"
 
-  # remote_branch="origin/$branch"
-  # Compute the remote tracking branch, if no remote branch then echo 0
-  remote_branch="$(git rev-parse --symbolic-full-name "@{upstream}" 2>/dev/null || echo -n "origin/$branch")"
-  if [[ "$remote_branch" == "" ]]
+  if [[  "$remote" == "" ]]
     then
       echo 0; return;
   fi
+  remote_branch="$remote/$branch"
 
   # $ git log master..origin/master
   # commit 4a633f715caf26f6e9495198f89bba20f3402a32
