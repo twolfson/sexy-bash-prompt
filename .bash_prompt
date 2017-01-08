@@ -165,12 +165,7 @@ sexy_bash_prompt_parse_git_ahead () {
   # Grab the local and remote branch
   branch="$(sexy_bash_prompt_get_git_branch)"
   remote="$(git config --get "branch.${branch}.remote" || echo -n "origin")"
-
-  if [[  "$remote" == "" ]]
-    then
-      echo 0; return;
-  fi
-remote_branch="$remote/$branch"
+  remote_branch="$remote/$branch"
 
   # $ git log origin/master..master
   # commit 4a633f715caf26f6e9495198f89bba20f3402a32
@@ -192,11 +187,6 @@ sexy_bash_prompt_parse_git_behind () {
   # Grab the branch
   branch="$(sexy_bash_prompt_get_git_branch)"
   remote="$(git config --get "branch.${branch}.remote" || echo -n "origin")"
-
-  if [[  "$remote" == "" ]]
-    then
-      echo 0; return;
-  fi
   remote_branch="$remote/$branch"
 
   # $ git log master..origin/master

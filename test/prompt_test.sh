@@ -122,6 +122,38 @@ fixture_git_init() {
     # is an filled hexagon
     test "$(sexy_bash_prompt_get_git_status)" = "⬢" || echo '`sexy_bash_prompt_get_git_status` !== "⬢" on a dirty, unpushed, and unpulled branch' 1>&2
 
+  # on an unpushed and unpulled branch with a tracked origin remote
+  fixture_dir 'unpushed-unpulled'
+  test "$(git rev-parse --symbolic-full-name "@{upstream}")" != "" || echo 'Expected unpushed-unpulled to have tracked origin but it did not' 1>&2
+
+    # is an empty hexagon
+    test "$(sexy_bash_prompt_get_git_status)" = "⬡" || echo '`sexy_bash_prompt_get_git_status` !== "⬡" on an unpushed and unpulled branch with a tracked origin remote' 1>&2
+
+  # on an unpushed and unpulled branch with a tracked non-origin remote
+  fixture_dir 'unpushed-unpulled'
+  git remote rename origin non-origin
+
+    # is an empty hexagon
+    test "$(sexy_bash_prompt_get_git_status)" = "⬡" || echo '`sexy_bash_prompt_get_git_status` !== "⬡" on an unpushed and unpulled branch with a tracked non-origin remote' 1>&2
+
+  # on an unpushed and unpulled branch with an untracked origin remote
+  # DEV: Due to git@1.7, we need to use `config --unset` instead of `git branch --unset-upstream`
+  # DEV: On git@1.7 `git rev-parse --symbolic-full-name "@{upstream}"` returns `@{upstream}` instead of erroring out
+  fixture_dir 'unpushed-unpulled'
+  git config --unset branch.master.remote
+  git config --unset branch.master.merge
+  test "$(git rev-parse --symbolic-full-name "@{upstream}" 2> /dev/null | grep --invert-match "@{upstream}")" = "" || echo 'Expected untracked unpushed-unpulled to have no tracked origin but it did not' 1>&2
+
+    # is an empty hexagon
+    test "$(sexy_bash_prompt_get_git_status)" = "⬡" || echo '`sexy_bash_prompt_get_git_status` !== "⬡" on an unpushed and unpulled branch with an untracked origin remote' 1>&2
+
+  # on an unpushed branch with no remote
+  fixture_dir 'unpushed'
+  git remote rm origin
+
+    # is an empty up triangle
+    test "$(sexy_bash_prompt_get_git_status)" = "△" || echo '`sexy_bash_prompt_get_git_status` !== "△" on an unpushed branch with no remote' 1>&2
+
 # git_progress
 
   # on a clean branch
