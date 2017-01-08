@@ -1,4 +1,6 @@
 # sexy-bash-prompt changelog
+0.27.0 - Added support for non-origin remotes via @abhijit86k in #69
+
 0.26.7 - Moved from Flattr to OpenCollective
 
 0.26.6 - Documented uninstall steps. Fixes #65
