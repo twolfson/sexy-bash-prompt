@@ -100,7 +100,7 @@ if [[ -n "$PROMPT_DIRTY_UNPUSHED_UNPULLED_SYMBOL" ]]; then sexy_bash_prompt_dirt
 function sexy_bash_prompt_get_git_branch() {
   # On branches, this will return the branch name
   # On non-branches, (no branch)
-  ref="$(git symbolic-ref HEAD 2> /dev/null | sed -e 's/refs\/heads\///')"
+  ref="$(git symbolic-ref HEAD 2> /dev/null | cut -d/ -f3)"
   if [[ "$ref" != "" ]]; then
     echo "$ref"
   else
