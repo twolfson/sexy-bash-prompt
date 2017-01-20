@@ -64,6 +64,11 @@ else
   sexy_bash_prompt_symbol="\$"
 fi
 
+# Red Prompt if User = root
+if [[ $UID == 0 ]]; then
+  PROMPT_USER_COLOR=$(tput bold)$(tput setaf 1)
+fi
+
 # Apply any color overrides that have been set in the environment
 if [[ -n "$PROMPT_USER_COLOR" ]]; then sexy_bash_prompt_user_color="$PROMPT_USER_COLOR"; fi
 if [[ -n "$PROMPT_PREPOSITION_COLOR" ]]; then sexy_bash_prompt_preposition_color="$PROMPT_PREPOSITION_COLOR"; fi
