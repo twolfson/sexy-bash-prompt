@@ -129,7 +129,7 @@ function sexy_bash_prompt_get_git_progress() {
     echo " [rebase]"
   elif [[ -f "$git_dir/CHERRY_PICK_HEAD" ]]; then
     # git cherry-pick
-    echo " [cherry-pick]"
+    echo " [cherry-pick from $(git branch -vv | grep '\*' | awk '{print $7}')]"
   fi
   if [[ -f "$git_dir/BISECT_LOG" ]]; then
     # git bisect
