@@ -117,6 +117,24 @@ function sexy_bash_prompt_get_git_progress() {
   # Instructions:
   #   Enable a setting via `MERGE_HEAD='abcdef'`
   #   Reset a setting via `unset MERGE_HEAD`
+  # Personal run-list:
+  #   MERGE_HEAD='abcdef'
+  #   MERGE_HEAD='origin/master'
+  #   unset MERGE_HEAD
+  #   REBASE_APPLY='applying'
+  #   REBASE_APPLY='abcdef'
+  #   REBASE_APPLY='origin/master'
+  #   unset REBASE_APPLY
+  #   REBASE_MERGE='origin/master'
+  #   unset REBASE_MERGE
+  #   CHERRY_PICK_HEAD='abcdef'
+  #   CHERRY_PICK_HEAD='dev-branch'
+  #   unset CHERRY_PICK_HEAD
+  #   BISECT_LOG='abc123...def456'
+  #   unset BISECT_LOG
+  #   REVERT_HEAD='abcdef'
+  #   unset REVERT_HEAD
+
   if [[ -n "$MERGE_HEAD" ]]; then
     echo " [merge from $MERGE_HEAD]"
   elif [[ -n "$REBASE_APPLY" ]]; then
