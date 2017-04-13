@@ -114,8 +114,9 @@ function sexy_bash_prompt_get_git_progress() {
   git_dir="$(git rev-parse --git-dir)"
 
   # git merge
-  # TEST: MERGE_HEAD='abcdef'
-  # TEST: MERGE_HEAD='origin/master'
+  # Instructions:
+  #   Enable a setting via `MERGE_HEAD='abcdef'`
+  #   Reset a setting via `unset MERGE_HEAD`
   if [[ -n "$MERGE_HEAD" ]]; then
     echo " [merge from $MERGE_HEAD]"
   elif [[ -n "$REBASE_APPLY" ]]; then
