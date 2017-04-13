@@ -114,6 +114,8 @@ function sexy_bash_prompt_get_git_progress() {
   git_dir="$(git rev-parse --git-dir)"
 
   # git merge
+  # TEST: MERGE_HEAD='abcdef'
+  # TEST: MERGE_HEAD='origin/master'
   if [[ -n "$MERGE_HEAD" ]]; then
     echo " [merge from $MERGE_HEAD]"
   elif [[ -n "$REBASE_APPLY" ]]; then
@@ -122,22 +124,22 @@ function sexy_bash_prompt_get_git_progress() {
       echo " [am]"
     # git rebase
     else
-      echo " [rebase]"
+      echo " [rebase from $REBASE_APPLY]"
     fi
   elif [[ -n "$REBASE_MERGE" ]]; then
     # git rebase --interactive/--merge
-    echo " [rebase]"
+    echo " [rebase from $REBASE_MERGE]"
   elif [[ -n "$CHERRY_PICK_HEAD" ]]; then
     # git cherry-pick
-    echo " [cherry-pick]"
+    echo " [cherry-pick from $CHERRY_PICK_HEAD]"
   fi
   if [[ -n "$BISECT_LOG" ]]; then
     # git bisect
-    echo " [bisect]"
+    echo " [bisect between $BISECT_LOG]"
   fi
   if [[ -n "$REVERT_HEAD" ]]; then
     # git revert --no-commit
-    echo " [revert]"
+    echo " [revert from $REVERT_HEAD]"
   fi
 }
 
