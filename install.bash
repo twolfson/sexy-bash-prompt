@@ -30,8 +30,9 @@ elif [[ -f ~/.profile ]]; then
   profile_script_short="~/.profile"
   profile_script_full=~/.profile
 else
-  echo "FATAL: Profile script not found." 1>&2
-  exit 1
+  touch ~/.bash_profile
+  profile_script_short="~/.bash_profile"
+  profile_script_full=~/.bash_profile
 fi
 
 # If the current script does not have notes about .bashrc
