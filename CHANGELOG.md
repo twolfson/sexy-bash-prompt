@@ -1,4 +1,6 @@
 # sexy-bash-prompt changelog
+0.29.0 - Added failure case instructions for installation. Fixes #84
+
 0.28.0 - Fixed reset locations inside of shell via @jservice-rvbd in #75
 
 0.27.0 - Added support for non-origin remotes via @abhijit86k in #69
