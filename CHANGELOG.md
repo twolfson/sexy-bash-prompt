@@ -1,4 +1,6 @@
 # sexy-bash-prompt changelog
+0.30.0 - Added one-line install retry via conditionals and documented install dependencies via @tnatanael
+
 0.29.0 - Added failure case instructions for installation. Fixes #84
 
 0.28.0 - Fixed reset locations inside of shell via @jservice-rvbd in #75
