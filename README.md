@@ -88,7 +88,7 @@ Become a sponsor and get your logo on our README on GitHub with a link to your s
 One line install:
 
 ```bash
-(cd /tmp && rm -rf sexy-bash-prompt && git clone --depth 1 --config core.autocrlf=false https://github.com/twolfson/sexy-bash-prompt && cd sexy-bash-prompt && make install) && source ~/.bashrc
+(cd /tmp && (test -d sexy-bash-prompt || git clone --depth 1 --config core.autocrlf=false https://github.com/twolfson/sexy-bash-prompt) && cd sexy-bash-prompt && make install) && source ~/.bashrc
 
 ```
 
