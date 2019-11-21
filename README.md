@@ -85,10 +85,11 @@ Become a sponsor and get your logo on our README on GitHub with a link to your s
 <a href="https://opencollective.com/sexy-bash-prompt/sponsor/29/website" target="_blank"><img src="https://opencollective.com/sexy-bash-prompt/sponsor/29/avatar.svg"></a>
 
 ## Installation
-One line install:
+One line install (requires `git`, `make`):
 
 ```bash
-(cd /tmp && git clone --depth 1 --config core.autocrlf=false https://github.com/twolfson/sexy-bash-prompt && cd sexy-bash-prompt && make install) && source ~/.bashrc
+(cd /tmp && ([[ -d sexy-bash-prompt ]] || git clone --depth 1 --config core.autocrlf=false https://github.com/twolfson/sexy-bash-prompt) && cd sexy-bash-prompt && make install) && source ~/.bashrc
+
 ```
 
 ### My colors don't look as advertised
@@ -114,6 +115,8 @@ rm /tmp/.bash_prompt_term
 ```
 
 ### Manual install
+Requirements: `git`, `make`
+
 ```bash
 # Clone the repository
 git clone --depth 1 --config core.autocrlf=false https://github.com/twolfson/sexy-bash-prompt
