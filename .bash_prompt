@@ -37,7 +37,7 @@ if tput setaf 1 &> /dev/null; then
   fi
 
   sexy_bash_prompt_symbol_color="$sexy_bash_prompt_bold" # BOLD
-
+  sexy_bash_prompt_symbol_error_color="$sexy_bash_prompt_bold$(tput setaf 1)" # BOLD RED
 else
 # Otherwise, use ANSI escape sequences for coloring
   # If you would like to customize your colors, use
@@ -55,6 +55,7 @@ else
   sexy_bash_prompt_git_status_color="\033[1;33m" # YELLOW
   sexy_bash_prompt_git_progress_color="\033[1;31m" # RED
   sexy_bash_prompt_symbol_color="" # NORMAL
+  sexy_bash_prompt_symbol_error_color="\033[1;31m" # RED
 fi
 
 # Define the default prompt terminator character '$'
@@ -73,6 +74,7 @@ if [[ -n "$PROMPT_GIT_STATUS_COLOR" ]]; then sexy_bash_prompt_git_status_color="
 if [[ -n "$PROMPT_GIT_PROGRESS_COLOR" ]]; then sexy_bash_prompt_git_progress_color="$PROMPT_GIT_PROGRESS_COLOR"; fi
 if [[ -n "$PROMPT_SYMBOL" ]]; then sexy_bash_prompt_symbol="$PROMPT_SYMBOL"; fi
 if [[ -n "$PROMPT_SYMBOL_COLOR" ]]; then sexy_bash_prompt_symbol_color="$PROMPT_SYMBOL_COLOR"; fi
+if [[ -n "$PROMPT_SYMBOL_ERROR_COLOR" ]]; then sexy_bash_prompt_symbol_error_color="$PROMPT_SYMBOL_ERROR_COLOR"; fi
 
 # Set up symbols
 sexy_bash_prompt_synced_symbol=""
@@ -261,15 +263,20 @@ sexy_bash_prompt_command () {
   # Pull down exit code before anything else (otherwise unsets it)
   # https://stackoverflow.com/a/16715681
   # https://gist.github.com/weibeld/f3b6e6187029924a9b3d
-  exit_code="$?"
+  # DEV: Use `local` to prevent contaminating scope outside of `PROMPT_COMMAND`
+  local exit_code="$?"
 
-  # Reset our PS1 prompt and start building it up
+  # Reset our PS1 prompt
   PS1="\[$sexy_bash_prompt_reset\]"
+
+  # Build out our non-git section (e.g. "todd at Euclid in ~/github/sexy-bash-prompt")
   PS1="$PS1\[$sexy_bash_prompt_user_color\]\u\[$sexy_bash_prompt_reset\] "
   PS1="$PS1\[$sexy_bash_prompt_preposition_color\]at\[$sexy_bash_prompt_reset\] "
   PS1="$PS1\[$sexy_bash_prompt_device_color\]\h\[$sexy_bash_prompt_reset\] "
   PS1="$PS1\[$sexy_bash_prompt_preposition_color\]in\[$sexy_bash_prompt_reset\] "
   PS1="$PS1\[$sexy_bash_prompt_dir_color\]\w\[$sexy_bash_prompt_reset\]"
+
+  # If we're in a git repo, then add in git-specific content (e.g. "on master*")
   if sexy_bash_prompt_is_on_git; then
     PS1="$PS1 \[$sexy_bash_prompt_preposition_color\]on\[$sexy_bash_prompt_reset\] "
     PS1="$PS1\[$sexy_bash_prompt_git_status_color\]\$(sexy_bash_prompt_get_git_info)"
@@ -277,7 +284,13 @@ sexy_bash_prompt_command () {
     PS1="$PS1\[$sexy_bash_prompt_reset\]"
   fi
   PS1="$PS1\n"
-  PS1="$PS1\[$sexy_bash_prompt_symbol_color\]$sexy_bash_prompt_symbol \[$sexy_bash_prompt_reset\]"
+
+  # Determine our symbol color
+  local symbol_color="$sexy_bash_prompt_symbol_color"
+  if [[ "$exit_code" != "0" ]]; then
+    symbol_color="$sexy_bash_prompt_symbol_error_color"
+  fi
+  PS1="$PS1\[$symbol_color\]$sexy_bash_prompt_symbol \[$sexy_bash_prompt_reset\]"
 }
 
 # Define the sexy-bash-prompt
