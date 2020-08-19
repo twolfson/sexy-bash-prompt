@@ -259,12 +259,22 @@ sexy_bash_prompt_get_git_info () {
   fi
 }
 
+sexy_bash_prompt_last_command=""
 sexy_bash_prompt_command () {
   # Pull down exit code before anything else (otherwise unsets it)
   # https://stackoverflow.com/a/16715681
   # https://gist.github.com/weibeld/f3b6e6187029924a9b3d
   # DEV: Use `local` to prevent contaminating scope outside of `PROMPT_COMMAND`
   local exit_code="$?"
+
+  # If the last command has not changed, then ignore our exit code
+  # DEV: This is a personal preference around seeing a red $ on any failing command consistently
+  # 501  2020-08-19T14:25:09-0700 echo hi
+  local last_command="$(history 1)"
+  if [[ "$sexy_bash_prompt_last_command" == "$last_command" ]]; then
+    exit_code="0"
+  fi
+  sexy_bash_prompt_last_command="$last_command"
 
   # Reset our PS1 prompt
   PS1="\[$sexy_bash_prompt_reset\]"
