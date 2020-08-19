@@ -270,7 +270,7 @@ sexy_bash_prompt_command () {
   PS1="$PS1\[$sexy_bash_prompt_device_color\]\h\[$sexy_bash_prompt_reset\] "
   PS1="$PS1\[$sexy_bash_prompt_preposition_color\]in\[$sexy_bash_prompt_reset\] "
   PS1="$PS1\[$sexy_bash_prompt_dir_color\]\w\[$sexy_bash_prompt_reset\]"
-  if [[ sexy_bash_prompt_is_on_git ]]; then
+  if sexy_bash_prompt_is_on_git; then
     PS1="$PS1 \[$sexy_bash_prompt_preposition_color\]on\[$sexy_bash_prompt_reset\] "
     PS1="$PS1\[$sexy_bash_prompt_git_status_color\]\$(sexy_bash_prompt_get_git_info)"
     PS1="$PS1\[$sexy_bash_prompt_git_progress_color\]\$(sexy_bash_prompt_get_git_progress)"
