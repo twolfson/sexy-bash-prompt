@@ -267,9 +267,11 @@ sexy_bash_prompt_command () {
   # DEV: Use `local` to prevent contaminating scope outside of `PROMPT_COMMAND`
   local exit_code="$?"
 
-  # If the last command has not changed, then ignore our exit code
+  # If the last command has not changed (including its timestamp), then ignore our exit code
   # DEV: This is a personal preference around seeing a red $ on any failing command consistently
-  # 501  2020-08-19T14:25:09-0700 echo hi
+  # DEV: This also works to ignore keyboard interrupts in the prompt itself (normally exit code 130)
+  #   This will respect keyboard interrupt in running programs though (e.g. `time cat`)
+  # last_command="501  2020-08-19T14:25:09-0700 echo hi"
   local last_command="$(history 1)"
   if [[ "$sexy_bash_prompt_last_command" == "$last_command" ]]; then
     exit_code="0"
