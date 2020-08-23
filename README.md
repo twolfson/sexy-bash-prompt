@@ -143,10 +143,9 @@ source ~/.bashrc
 ### Behavior
 Behavior can be customized with the following environment variables:
 
-- `PROMPT_SAME_PROMPT_COLOR_ON_MISSING_COMMAND` - If the
-  - `bash` will persist the previous exit code on any missing command (e.g. comment line only, keyboard interrupt, empty command)
-  - Setting to `0` means only show error status for any new command, `1` means show it until overridden by a new command
-  - This behavior doesn't alter the exit code, only the prompt symbol color
+- `PROMPT_SHOW_ERROR_ONCE` - If enabled (default), then will only show error color once per command execution
+  - `bash` persists a non-zero exit code across missing commands (e.g. comment line only, keyboard interrupt, empty command)
+  - Setting this to `1` (default) means show error status once, `0` means always show same error status until a new command is executed
 
 ### Colors
 Colors can be customized by editing `.bash_prompt` directly, or by setting the following environment variables:
