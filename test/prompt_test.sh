@@ -311,12 +311,12 @@ esc=$'\033'
   # with an error code
   TERM=xterm-256color . .bash_prompt
   # DEV: Stub out last command being checked against
-  sexy_bash_prompt_last_command=""
+  sexy_bash_prompt_last_command="invalid command"
   false
   $PROMPT_COMMAND
 
     # uses red prompt symbol
-    expected_prompt='\['$esc'(B'$esc'[m\]\['$esc'[1m'$esc'[38;5;27m\]\u\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[37m\]at\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[38;5;39m\]\h\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[37m\]in\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[38;5;76m\]\w\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[37m\]on\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[38;5;154m\]$(sexy_bash_prompt_get_git_info)\['$esc'[1m'$esc'[91m\]$(sexy_bash_prompt_get_git_progress)\['$esc'(B'$esc'[m\]\n\['$esc'[1m\]$ \['$esc'(B'$esc'[m\]'
+    expected_prompt='\['$esc'(B'$esc'[m\]\['$esc'[1m'$esc'[38;5;27m\]\u\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[37m\]at\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[38;5;39m\]\h\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[37m\]in\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[38;5;76m\]\w\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[37m\]on\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[38;5;154m\]$(sexy_bash_prompt_get_git_info)\['$esc'[1m'$esc'[91m\]$(sexy_bash_prompt_get_git_progress)\['$esc'(B'$esc'[m\]\n\['$esc'[1m'$esc'[31m\]$ \['$esc'(B'$esc'[m\]'
     test "$PS1" = "$expected_prompt" || echo '`PS1` is not as expected (error-code)' 1>&2
 
 # prompt status symbols
