@@ -272,6 +272,7 @@ esc=$'\033'
 
     # uses 256 color palette
     expected_prompt='\['$esc'(B'$esc'[m\]\['$esc'[1m'$esc'[38;5;27m\]\u\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[37m\]at\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[38;5;39m\]\h\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[37m\]in\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[38;5;76m\]\w\['$esc'(B'$esc'[m\]$( sexy_bash_prompt_is_on_git &&   echo -n " \['$esc'[1m'$esc'[37m\]on\['$esc'(B'$esc'[m\] " &&   echo -n "\['$esc'[1m'$esc'[38;5;154m\]$(sexy_bash_prompt_get_git_info)" &&   echo -n "\['$esc'[1m'$esc'[91m\]$(sexy_bash_prompt_get_git_progress)" &&   echo -n "\['$esc'(B'$esc'[m\]")\n\['$esc'[1m\]$ \['$esc'(B'$esc'[m\]'
+    expected_prompt='\['$esc'(B'$esc'[m\]\['$esc'[1m'$esc'[38;5;27m\]\u\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[37m\]at\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[38;5;39m\]\h\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[37m\]in\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[38;5;76m\]\w\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[37m\]on\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[38;5;154m\]$(sexy_bash_prompt_get_git_info)\['$esc'[1m'$esc'[91m\]$(sexy_bash_prompt_get_git_progress)\['$esc'(B'$esc'[m\]\n\['$esc'[1m\]$ \['$esc'(B'$esc'[m\]'
 
     # DEV: To debug, use a diff tool. Don't stare at the code.
     # http://www.diffchecker.com/diff
