@@ -210,7 +210,7 @@ PROMPT_DIRTY_UNPUSHED_UNPULLED_SYMBOL="*↑↓"
 ```
 
 ## How does it work?
-[bash][bash] provides a special set of [variables for your prompts][ps-vars]. `PS1` is the one used by default. The install script adds a command to `~/.bashrc`, a file that is run every time a new terminal opens. Inside of the new command, we run our script and set your `PS1` which runs some `git` commands to determine its current state and outputs them as a string.
+[bash][bash] provides a special set of [variables for your prompts][ps-vars]. `PS1` is the one used by default. The install script adds a command to `~/.bashrc`, a file that is run every time a new terminal opens. Inside of the new command, we run our script and set your `PROMPT_COMMAND` and `PS1` which runs some `git` commands to determine its current state and outputs them as a string.
 
 [bash]: https://en.wikipedia.org/wiki/Bash_%28Unix_shell%29
 [ps-vars]: http://www.gnu.org/software/bash/manual/bashref.html#index-PS1
