@@ -99,6 +99,13 @@ if [[ -n "$PROMPT_DIRTY_UNPULLED_SYMBOL" ]]; then sexy_bash_prompt_dirty_unpulle
 if [[ -n "$PROMPT_UNPUSHED_UNPULLED_SYMBOL" ]]; then sexy_bash_prompt_unpushed_unpulled_symbol="$PROMPT_UNPUSHED_UNPULLED_SYMBOL"; fi
 if [[ -n "$PROMPT_DIRTY_UNPUSHED_UNPULLED_SYMBOL" ]]; then sexy_bash_prompt_dirty_unpushed_unpulled_symbol="$PROMPT_DIRTY_UNPUSHED_UNPULLED_SYMBOL"; fi
 
+# Set up configuration options
+sexy_bash_prompt_same_prompt_on_missing_command="0"
+
+# Apply configuration overrides that have been set in the environment
+if [[ -n "$PROMPT_SAME_PROMPT_ON_MISSING_COMMAND" ]]; then sexy_bash_prompt_same_prompt_on_missing_command="$PROMPT_SAME_PROMPT_ON_MISSING_COMMAND"; fi
+
+# Define all our helper functions
 function sexy_bash_prompt_get_git_branch() {
   # On branches, this will return the branch name
   # On non-branches, (no branch)
@@ -267,16 +274,23 @@ sexy_bash_prompt_command () {
   # DEV: Use `local` to prevent contaminating scope outside of `PROMPT_COMMAND`
   local exit_code="$?"
 
-  # If the last command has not changed (including its timestamp), then ignore our exit code
-  # DEV: This is a personal preference around seeing a red $ on any failing command consistently
-  # DEV: This also works to ignore keyboard interrupts in the prompt itself (normally exit code 130)
-  #   This will respect keyboard interrupt in running programs though (e.g. `time cat`)
-  # last_command="501  2020-08-19T14:25:09-0700 echo hi"
-  local last_command="$(history 1)"
-  if [[ "$sexy_bash_prompt_last_command" == "$last_command" ]]; then
-    exit_code="0"
+  # If we'd like to keep the prompt the same until there's a new command, then do nothing (default behavior)
+  # DEV: Double negatives can be confusing (e.g. `missing` + `!=`, `ignore` + `missing`) so we're avoiding them
+  if [[ "$sexy_bash_prompt_same_prompt_on_missing_command" == "1" ]];
+    : # No-op
+  # Otherwise, check if there's a new command/not
+  else
+    # If the last command has not changed (including its timestamp), then ignore our exit code
+    # DEV: This is a personal preference around seeing a red $ on any failing command consistently
+    # DEV: This also works to ignore keyboard interrupts in the prompt itself (normally exit code 130)
+    #   This will respect keyboard interrupt in running programs though (e.g. `time cat`)
+    # last_command="501  2020-08-19T14:25:09-0700 echo hi"
+    local last_command="$(history 1)"
+    if [[ "$sexy_bash_prompt_last_command" == "$last_command" ]]; then
+      exit_code="0"
+    fi
+    sexy_bash_prompt_last_command="$last_command"
   fi
-  sexy_bash_prompt_last_command="$last_command"
 
   # Reset our PS1 prompt
   PS1="\[$sexy_bash_prompt_reset\]"
