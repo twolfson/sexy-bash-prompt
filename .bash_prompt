@@ -257,16 +257,32 @@ sexy_bash_prompt_get_git_info () {
   fi
 }
 
+sexy_bash_prompt_command () {
+  # Pull down exit code before anything else (otherwise unsets it)
+  # https://stackoverflow.com/a/16715681
+  # https://gist.github.com/weibeld/f3b6e6187029924a9b3d
+  exit_code="$?"
+
+  # Reset our PS1 prompt
+  PS1="\[$sexy_bash_prompt_reset\]"
+
+  # Build out our non-git section (e.g. "todd at Euclid in ~/github/sexy-bash-prompt")
+  PS1="$PS1\[$sexy_bash_prompt_user_color\]\u\[$sexy_bash_prompt_reset\] "
+  PS1="$PS1\[$sexy_bash_prompt_preposition_color\]at\[$sexy_bash_prompt_reset\] "
+  PS1="$PS1\[$sexy_bash_prompt_device_color\]\h\[$sexy_bash_prompt_reset\] "
+  PS1="$PS1\[$sexy_bash_prompt_preposition_color\]in\[$sexy_bash_prompt_reset\] "
+  PS1="$PS1\[$sexy_bash_prompt_dir_color\]\w\[$sexy_bash_prompt_reset\]"
+
+  # If we're in a git repo, then add in git-specific content (e.g. "on master*")
+  if sexy_bash_prompt_is_on_git; then
+    PS1="$PS1 \[$sexy_bash_prompt_preposition_color\]on\[$sexy_bash_prompt_reset\] "
+    PS1="$PS1\[$sexy_bash_prompt_git_status_color\]\$(sexy_bash_prompt_get_git_info)"
+    PS1="$PS1\[$sexy_bash_prompt_git_progress_color\]\$(sexy_bash_prompt_get_git_progress)"
+    PS1="$PS1\[$sexy_bash_prompt_reset\]"
+  fi
+  PS1="$PS1\n"
+  PS1="$PS1\[$sexy_bash_prompt_symbol_color\]$sexy_bash_prompt_symbol \[$sexy_bash_prompt_reset\]"
+}
+
 # Define the sexy-bash-prompt
-PS1="\[$sexy_bash_prompt_reset\]\
-\[$sexy_bash_prompt_user_color\]\u\[$sexy_bash_prompt_reset\] \
-\[$sexy_bash_prompt_preposition_color\]at\[$sexy_bash_prompt_reset\] \
-\[$sexy_bash_prompt_device_color\]\h\[$sexy_bash_prompt_reset\] \
-\[$sexy_bash_prompt_preposition_color\]in\[$sexy_bash_prompt_reset\] \
-\[$sexy_bash_prompt_dir_color\]\w\[$sexy_bash_prompt_reset\]\
-\$( sexy_bash_prompt_is_on_git && \
-  echo -n \" \[$sexy_bash_prompt_preposition_color\]on\[$sexy_bash_prompt_reset\] \" && \
-  echo -n \"\[$sexy_bash_prompt_git_status_color\]\$(sexy_bash_prompt_get_git_info)\" && \
-  echo -n \"\[$sexy_bash_prompt_git_progress_color\]\$(sexy_bash_prompt_get_git_progress)\" && \
-  echo -n \"\[$sexy_bash_prompt_reset\]\")\n\
-\[$sexy_bash_prompt_symbol_color\]$sexy_bash_prompt_symbol \[$sexy_bash_prompt_reset\]"
+PROMPT_COMMAND=sexy_bash_prompt_command
