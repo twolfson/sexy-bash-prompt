@@ -1,4 +1,6 @@
 # sexy-bash-prompt changelog
+1.0.0 - Moved to PROMPT_COMMAND and added exit code support in #88 and #89. Fixed #82
+
 0.30.0 - Added one-line install retry via conditionals and documented install dependencies via @tnatanael
 
 0.29.0 - Added failure case instructions for installation. Fixes #84
