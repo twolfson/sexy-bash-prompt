@@ -140,13 +140,6 @@ source ~/.bashrc
 ```
 
 ## Configuration
-### Behavior
-Behavior can be customized with the following environment variables:
-
-- `PROMPT_SHOW_ERROR_ONCE` - If enabled (default), then will only show error color once per command execution
-  - `bash` persists a non-zero exit code across missing commands (e.g. comment line only, keyboard interrupt, empty command)
-  - Setting this to `1` (default) means show error status once, `0` means always show same error status until a new command is executed
-
 ### Colors
 Colors can be customized by editing `.bash_prompt` directly, or by setting the following environment variables:
 
@@ -156,8 +149,7 @@ Colors can be customized by editing `.bash_prompt` directly, or by setting the f
 - `PROMPT_DIR_COLOR` - Color for directory (e.g. `~/github/sexy-bash-prompt`)
 - `PROMPT_GIT_STATUS_COLOR` - Color for git branch and symbol (e.g. `master`)
 - `PROMPT_GIT_PROGRESS_COLOR` - Color for in progress git actions (e.g. `[merge]`)
-- `PROMPT_SYMBOL_COLOR` - Color for prompt symbol by default or on success (e.g. `$`)
-- `PROMPT_SYMBOL_ERROR_COLOR` - Color for prompt symbol on error (e.g. `$`)
+- `PROMPT_SYMBOL_COLOR` - Color for prompt symbol (e.g. `$`)
 
 You can set colors via [`tput`][] or [ANSI escape codes][]. For example:
 
@@ -209,7 +201,7 @@ PROMPT_DIRTY_UNPUSHED_UNPULLED_SYMBOL="*↑↓"
 ```
 
 ## How does it work?
-[bash][bash] provides a special set of [variables for your prompts][ps-vars]. `PS1` is the one used by default. The install script adds a command to `~/.bashrc`, a file that is run every time a new terminal opens. Inside of the new command, we run our script and set your `PROMPT_COMMAND` and `PS1` which runs some `git` commands to determine its current state and outputs them as a string.
+[bash][bash] provides a special set of [variables for your prompts][ps-vars]. `PS1` is the one used by default. The install script adds a command to `~/.bashrc`, a file that is run every time a new terminal opens. Inside of the new command, we run our script and set your `PS1` which runs some `git` commands to determine its current state and outputs them as a string.
 
 [bash]: https://en.wikipedia.org/wiki/Bash_%28Unix_shell%29
 [ps-vars]: http://www.gnu.org/software/bash/manual/bashref.html#index-PS1
