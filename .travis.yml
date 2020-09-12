@@ -13,8 +13,4 @@ script:
   # - make test-install # Run install-specific test
 
 notifications:
-  email:
-    recipients:
-      - todd@twolfson.com
-    on_success: change
-    on_failure: change
+  email: false
