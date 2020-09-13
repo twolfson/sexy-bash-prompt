@@ -271,6 +271,7 @@ sexy_bash_prompt_get_symbol_color () {
   if [[ "$sexy_bash_prompt_exit_code" == "" ]]; then
     echo "Missing \`sexy_bash_prompt_exit_code\` for prompt symbol coloring" 1>&2
     echo "Please verify \`PROMPT_COMMAND\` includes \`sexy_bash_prompt_command\` (enabled unless overwritten)" 1>&2
+    echo "$sexy_bash_prompt_symbol_color"
     return
   fi
   exit_code="$sexy_bash_prompt_exit_code"
