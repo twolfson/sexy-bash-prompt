@@ -37,7 +37,7 @@ if tput setaf 1 &> /dev/null; then
   fi
 
   sexy_bash_prompt_symbol_color="$sexy_bash_prompt_bold" # BOLD
-
+  sexy_bash_prompt_symbol_error_color="$sexy_bash_prompt_bold$(tput setaf 1)" # BOLD RED
 else
 # Otherwise, use ANSI escape sequences for coloring
   # If you would like to customize your colors, use
@@ -55,6 +55,7 @@ else
   sexy_bash_prompt_git_status_color="\033[1;33m" # YELLOW
   sexy_bash_prompt_git_progress_color="\033[1;31m" # RED
   sexy_bash_prompt_symbol_color="" # NORMAL
+  sexy_bash_prompt_symbol_error_color="\033[1;31m" # RED
 fi
 
 # Define the default prompt terminator character '$'
@@ -73,6 +74,7 @@ if [[ -n "$PROMPT_GIT_STATUS_COLOR" ]]; then sexy_bash_prompt_git_status_color="
 if [[ -n "$PROMPT_GIT_PROGRESS_COLOR" ]]; then sexy_bash_prompt_git_progress_color="$PROMPT_GIT_PROGRESS_COLOR"; fi
 if [[ -n "$PROMPT_SYMBOL" ]]; then sexy_bash_prompt_symbol="$PROMPT_SYMBOL"; fi
 if [[ -n "$PROMPT_SYMBOL_COLOR" ]]; then sexy_bash_prompt_symbol_color="$PROMPT_SYMBOL_COLOR"; fi
+if [[ -n "$PROMPT_SYMBOL_ERROR_COLOR" ]]; then sexy_bash_prompt_symbol_error_color="$PROMPT_SYMBOL_ERROR_COLOR"; fi
 
 # Set up symbols
 sexy_bash_prompt_synced_symbol=""
@@ -97,6 +99,13 @@ if [[ -n "$PROMPT_DIRTY_UNPULLED_SYMBOL" ]]; then sexy_bash_prompt_dirty_unpulle
 if [[ -n "$PROMPT_UNPUSHED_UNPULLED_SYMBOL" ]]; then sexy_bash_prompt_unpushed_unpulled_symbol="$PROMPT_UNPUSHED_UNPULLED_SYMBOL"; fi
 if [[ -n "$PROMPT_DIRTY_UNPUSHED_UNPULLED_SYMBOL" ]]; then sexy_bash_prompt_dirty_unpushed_unpulled_symbol="$PROMPT_DIRTY_UNPUSHED_UNPULLED_SYMBOL"; fi
 
+# Set up behavior options
+sexy_bash_prompt_show_error_once="1"
+
+# Apply behavior overrides that have been set in the environment
+if [[ -n "$PROMPT_SHOW_ERROR_ONCE" ]]; then sexy_bash_prompt_show_error_once="$PROMPT_SHOW_ERROR_ONCE"; fi
+
+# Define all our helper functions
 function sexy_bash_prompt_get_git_branch() {
   # On branches, this will return the branch name
   # On non-branches, (no branch)
@@ -289,6 +298,7 @@ sexy_bash_prompt_get_symbol_color () {
 }
 
 # Define our hooks for storing the exit code
+sexy_bash_prompt_last_command=""
 sexy_bash_prompt_command () {
   export sexy_bash_prompt_exit_code="$?"
 }
