@@ -304,6 +304,8 @@ sexy_bash_prompt_command () {
   # DEV: We would save these in `get_symbol_color` but its subshell variables don't persist
   export sexy_bash_prompt_last_command="$sexy_bash_prompt_current_command"
   export sexy_bash_prompt_current_command="$(history 1)"
+
+  # DEV: We don't set PS1 in here as it would prevent extension, see https://github.com/twolfson/sexy-bash-prompt/issues/90
 }
 # DEV: Extend `PROMPT_COMMAND` if there already is one
 if [[ "$PROMPT_COMMAND" != "" ]]; then
