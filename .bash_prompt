@@ -296,7 +296,7 @@ sexy_bash_prompt_command () {
 # DEV: Extend `PROMPT_COMMAND` if there already is one
 if [[ "$PROMPT_COMMAND" != "" ]]; then
   PROMPT_COMMAND="sexy_bash_prompt_command;$PROMPT_COMMAND"
-# else
+else
   PROMPT_COMMAND="sexy_bash_prompt_command"
 fi
 
