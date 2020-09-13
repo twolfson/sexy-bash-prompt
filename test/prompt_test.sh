@@ -1,3 +1,6 @@
+# Enable history for accurate past command testing
+set -o history
+
 # Navigate to test directory
 ORIG_PWD="$PWD"
 TEST_DIR="$PWD/test"
@@ -323,16 +326,12 @@ esc=$'\033'
     # a successful command uses the default color
     true
     $PROMPT_COMMAND
-    # DEV: Stub out last command being checked against
-    sexy_bash_prompt_last_command="valid command"
 
     test $(sexy_bash_prompt_get_symbol_color) = "#default-color" || echo 'sexy_bash_prompt_get_symbol_color did not return `#default-color` as expected' 1>&2
 
     # an errored command uses the error color
     false
     $PROMPT_COMMAND
-    # DEV: Stub out last command being checked against
-    sexy_bash_prompt_last_command="invalid command"
 
     test $(sexy_bash_prompt_get_symbol_color) = "#error-color" || echo 'sexy_bash_prompt_get_symbol_color did not return `#error-color` as expected' 1>&2
 
