@@ -19,7 +19,9 @@ fixture_git_init() {
 }
 
 # Load in bash_prompt
+PROMPT_COMMAND=""
 . .bash_prompt
+$PROMPT_COMMAND
 
 # sexy_bash_prompt_is_on_git
 
@@ -263,6 +265,7 @@ cd "$ORIG_PWD"
 esc=$'\033'
 
   # in a 256 color terminal
+  PROMPT_COMMAND=""
   TERM=xterm-256color . .bash_prompt
   $PROMPT_COMMAND
 
@@ -281,6 +284,7 @@ esc=$'\033'
     test "$PS1" = "$expected_prompt" || echo '`PS1` is not as expected (256)' 1>&2
 
   # in an 8 color terminal
+  PROMPT_COMMAND=""
   TERM=xterm . .bash_prompt
   $PROMPT_COMMAND
 
@@ -289,6 +293,7 @@ esc=$'\033'
     test "$PS1" = "$expected_prompt" || echo '`PS1` is not as expected (8)' 1>&2
 
   # in an ANSI terminal
+  PROMPT_COMMAND=""
   TERM="" . .bash_prompt
   $PROMPT_COMMAND
 
@@ -297,6 +302,7 @@ esc=$'\033'
     test "$PS1" = "$expected_prompt" || echo '`PS1` is not as expected (ANSI)' 1>&2
 
   # when overridden
+  PROMPT_COMMAND=""
   TERM=xterm-256color PROMPT_USER_COLOR='\033[1;32m' \
     PROMPT_PREPOSITION_COLOR='\033[1;33m' PROMPT_DEVICE_COLOR='\033[1;34m' \
     PROMPT_DIR_COLOR='\033[1;35m' PROMPT_GIT_STATUS_COLOR='\033[1;36m'  \
@@ -309,6 +315,7 @@ esc=$'\033'
     test "$PS1" = "$expected_prompt" || echo '`PS1` is not as expected (overridden)' 1>&2
 
   # with an error code
+  PROMPT_COMMAND=""
   TERM=xterm-256color . .bash_prompt
   # DEV: Stub out last command being checked against
   sexy_bash_prompt_last_command="invalid command"
@@ -321,6 +328,7 @@ esc=$'\033'
 
 # prompt status symbols
   # when overridden
+  PROMPT_COMMAND=""
   PROMPT_SYNCED_SYMBOL='#synced' PROMPT_DIRTY_SYNCED_SYMBOL='#dirty-synced' \
     PROMPT_UNPUSHED_SYMBOL='#unpushed' PROMPT_DIRTY_UNPUSHED_SYMBOL='#dirty-unpushed' \
     PROMPT_UNPULLED_SYMBOL='#unpulled' PROMPT_DIRTY_UNPULLED_SYMBOL='#dirty-unpulled' \
