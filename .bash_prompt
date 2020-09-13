@@ -300,7 +300,10 @@ sexy_bash_prompt_get_symbol_color () {
 # Define our hooks for storing the exit code and past commands
 sexy_bash_prompt_current_command=""
 sexy_bash_prompt_command () {
+  # Capture and expose exit code first before anything, otherwise it'll be lost
   export sexy_bash_prompt_exit_code="$?"
+
+  # Capture last commands for `SEXY_BASH_PROMPT_SHOW_ERROR_ONCE` logic
   # DEV: We would save these in `get_symbol_color` but its subshell variables don't persist
   export sexy_bash_prompt_last_command="$sexy_bash_prompt_current_command"
   export sexy_bash_prompt_current_command="$(history 1)"
