@@ -257,19 +257,47 @@ sexy_bash_prompt_get_git_info () {
   fi
 }
 
+sexy_bash_prompt_get_symbol_color () {
+  # Verify we have an exit code set
+  # if [[ "$sexy_bash_prompt_exit_code" == "" ]]; then
+  #   echo "Missing \`sexy_bash_prompt_exit_code\` for prompt symbol coloring" 1>&2
+  #   echo "Please verify \`PROMPT_COMMAND\` includes an invocation for \`sexy_bash_prompt_command\` (enabled unless overwritten)" 1>&2
+  #   return
+  # fi
+  exit_code="$sexy_bash_prompt_exit_code"
+  echo "wat$exit_code"
+
+  # If we'd like to show errors once, then inspect further
+  # DEV: This is a personal preference around seeing a red $ on any failing command consistently
+  # DEV: This also works to ignore keyboard interrupts in the prompt itself (normally exit code 130)
+  #   This will respect keyboard interrupt in running programs though (e.g. `time cat`)
+  if [[ "$sexy_bash_prompt_show_error_once" == "1" ]]; then
+    # If the last command has not changed (including its timestamp), then ignore our exit code
+    # last_command="501  2020-08-19T14:25:09-0700 echo hi"
+    local last_command="$(history 1)"
+    if [[ "$sexy_bash_prompt_last_command" == "$last_command" ]]; then
+      exit_code="0"
+    fi
+    sexy_bash_prompt_last_command="$last_command"
+  fi
+
+  # Determine and output our symbol color
+  symbol_color="$sexy_bash_prompt_symbol_color"
+  if [[ "$exit_code" != 0 ]]; then
+    symbol_color="$sexy_bash_prompt_symbol_error_color"
+  fi
+  echo "$symbol_color"
+}
 
 # Define our hooks for storing the exit code
-sexy_bash_prompt_store_exit_code () {
+sexy_bash_prompt_command () {
   export sexy_bash_prompt_exit_code="$?"
-}
-sexy_bash_prompt_get_symbol_color () {
-  echo "$sexy_bash_prompt_exit_code"
 }
 # DEV: Extend `PROMPT_COMMAND` if there already is one
 if [[ "$PROMPT_COMMAND" != "" ]]; then
-  PROMPT_COMMAND="sexy_bash_prompt_store_exit_code;$PROMPT_COMMAND"
-else
-  PROMPT_COMMAND="sexy_bash_prompt_store_exit_code"
+  PROMPT_COMMAND="sexy_bash_prompt_command;$PROMPT_COMMAND"
+# else
+  PROMPT_COMMAND="sexy_bash_prompt_command"
 fi
 
 # Define the sexy-bash-prompt
