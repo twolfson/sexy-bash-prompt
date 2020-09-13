@@ -264,7 +264,6 @@ sexy_bash_prompt_store_exit_code () {
 }
 sexy_bash_prompt_get_symbol_color () {
   echo "$sexy_bash_prompt_exit_code"
-  echo "foo"
 }
 # DEV: Extend `PROMPT_COMMAND` if there already is one
 if [[ "$PROMPT_COMMAND" != "" ]]; then
@@ -285,4 +284,4 @@ PS1="\[$sexy_bash_prompt_reset\]\
   echo -n \"\[$sexy_bash_prompt_git_status_color\]\$(sexy_bash_prompt_get_git_info)\" && \
   echo -n \"\[$sexy_bash_prompt_git_progress_color\]\$(sexy_bash_prompt_get_git_progress)\" && \
   echo -n \"\[$sexy_bash_prompt_reset\]\")\n\
-$(sexy_bash_prompt_get_symbol_color)$sexy_bash_prompt_symbol \[$sexy_bash_prompt_reset\]"
+\$(sexy_bash_prompt_get_symbol_color)$sexy_bash_prompt_symbol \[$sexy_bash_prompt_reset\]"
