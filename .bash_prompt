@@ -279,14 +279,13 @@ sexy_bash_prompt_get_symbol_color () {
   # DEV: This is a personal preference around seeing a red $ on any failing command consistently
   # DEV: This also works to ignore keyboard interrupts in the prompt itself (normally exit code 130)
   #   This will respect keyboard interrupt in running programs though (e.g. `time cat`)
+  # DEV: Further explanation of all scenarios, https://github.com/twolfson/sexy-bash-prompt/pull/89#issuecomment-685239313
   if [[ "$sexy_bash_prompt_show_error_once" == "1" ]]; then
     # If the last command has not changed (including its timestamp), then ignore our exit code
-    # last_command="501  2020-08-19T14:25:09-0700 echo hi"
-    local last_command="$(history 1)"
-    if [[ "$sexy_bash_prompt_last_command" == "$last_command" ]]; then
+    # last_command="501  echo hi"
+    if [[ "$sexy_bash_prompt_last_command" == "$sexy_bash_prompt_current_command" ]]; then
       exit_code="0"
     fi
-    sexy_bash_prompt_last_command="$last_command"
   fi
 
   # Determine and output our symbol color
@@ -297,10 +296,13 @@ sexy_bash_prompt_get_symbol_color () {
   echo "$symbol_color"
 }
 
-# Define our hooks for storing the exit code
-sexy_bash_prompt_last_command=""
+# Define our hooks for storing the exit code and past commands
+sexy_bash_prompt_current_command=""
 sexy_bash_prompt_command () {
   export sexy_bash_prompt_exit_code="$?"
+  # DEV: We would save these in `get_symbol_color` but its subshell variables don't persist
+  export sexy_bash_prompt_last_command="$sexy_bash_prompt_current_command"
+  export sexy_bash_prompt_current_command="$(history 1)"
 }
 # DEV: Extend `PROMPT_COMMAND` if there already is one
 if [[ "$PROMPT_COMMAND" != "" ]]; then
