@@ -317,22 +317,22 @@ esc=$'\033'
 # prompt symbol color
   # when overridden
   PROMPT_COMMAND=""
-  PROMPT_SYMBOL_COLOR='#default-color' PROMPT_ERROR_SYMBOL_COLOR='#error-color' \
+  PROMPT_SYMBOL_COLOR='#default-color' PROMPT_SYMBOL_ERROR_COLOR='#error-color' \
     . .bash_prompt
 
     # a successful command uses the default color
-    # DEV: Stub out last command being checked against
-    sexy_bash_prompt_last_command="valid command"
     true
     $PROMPT_COMMAND
+    # DEV: Stub out last command being checked against
+    sexy_bash_prompt_last_command="valid command"
 
     test $(sexy_bash_prompt_get_symbol_color) = "#default-color" || echo 'sexy_bash_prompt_get_symbol_color did not return `#default-color` as expected' 1>&2
 
     # an errored command uses the error color
-    # DEV: Stub out last command being checked against
-    sexy_bash_prompt_last_command="invalid command"
     false
     $PROMPT_COMMAND
+    # DEV: Stub out last command being checked against
+    sexy_bash_prompt_last_command="invalid command"
 
     test $(sexy_bash_prompt_get_symbol_color) = "#error-color" || echo 'sexy_bash_prompt_get_symbol_color did not return `#error-color` as expected' 1>&2
 
