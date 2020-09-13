@@ -298,7 +298,7 @@ esc=$'\033'
   $PROMPT_COMMAND
 
     # uses ANSI colors
-    expected_prompt='\[\033[m\]\[\033[1;34m\]\u\[\033[m\] \[\033[1;37m\]at\[\033[m\] \[\033[1;36m\]\h\[\033[m\] \[\033[1;37m\]in\[\033[m\] \[\033[1;32m\]\w\[\033[m\]$( sexy_bash_prompt_is_on_git &&   echo -n " \[\033[1;37m\]on\[\033[m\] " &&   echo -n "\[\033[1;33m\]$(sexy_bash_prompt_get_git_info)" &&   echo -n "\[\033[1;31m\]$(sexy_bash_prompt_get_git_progress)" &&   echo -n "\[\033[m\]")\n\[\]$ \[\033[m\]'
+    expected_prompt='\[\033[m\]\[\033[1;34m\]\u\[\033[m\] \[\033[1;37m\]at\[\033[m\] \[\033[1;36m\]\h\[\033[m\] \[\033[1;37m\]in\[\033[m\] \[\033[1;32m\]\w\[\033[m\]$( sexy_bash_prompt_is_on_git &&   echo -n " \[\033[1;37m\]on\[\033[m\] " &&   echo -n "\[\033[1;33m\]$(sexy_bash_prompt_get_git_info)" &&   echo -n "\[\033[1;31m\]$(sexy_bash_prompt_get_git_progress)" &&   echo -n "\[\033[m\]")\n\[$(sexy_bash_prompt_get_symbol_color)\]$ \[\033[m\]'
     test "$PS1" = "$expected_prompt" || echo '`PS1` is not as expected (ANSI)' 1>&2
 
   # when overridden
