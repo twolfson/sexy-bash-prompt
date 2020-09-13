@@ -314,17 +314,27 @@ esc=$'\033'
     expected_prompt='\['$esc'(B'$esc'[m\]\[\033[1;32m\]\u\['$esc'(B'$esc'[m\] \[\033[1;33m\]at\['$esc'(B'$esc'[m\] \[\033[1;34m\]\h\['$esc'(B'$esc'[m\] \[\033[1;33m\]in\['$esc'(B'$esc'[m\] \[\033[1;35m\]\w\['$esc'(B'$esc'[m\]$( sexy_bash_prompt_is_on_git &&   echo -n " \[\033[1;33m\]on\['$esc'(B'$esc'[m\] " &&   echo -n "\[\033[1;36m\]$(sexy_bash_prompt_get_git_info)" &&   echo -n "\[\033[1;37m\]$(sexy_bash_prompt_get_git_progress)" &&   echo -n "\['$esc'(B'$esc'[m\]")\n\[$(sexy_bash_prompt_get_symbol_color)\]$ \['$esc'(B'$esc'[m\]'
     test "$PS1" = "$expected_prompt" || echo '`PS1` is not as expected (overridden)' 1>&2
 
-  # with an error code
+# prompt symbol color
+  # when overridden
   PROMPT_COMMAND=""
-  TERM=xterm-256color . .bash_prompt
-  # DEV: Stub out last command being checked against
-  sexy_bash_prompt_last_command="invalid command"
-  false
-  $PROMPT_COMMAND
+  PROMPT_SYMBOL_COLOR='#default-color' PROMPT_ERROR_SYMBOL_COLOR='#error-color' \
+    . .bash_prompt
 
-    # uses red prompt symbol
-    expected_prompt='\['$esc'(B'$esc'[m\]\['$esc'[1m'$esc'[38;5;27m\]\u\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[37m\]at\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[38;5;39m\]\h\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[37m\]in\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[38;5;76m\]\w\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[37m\]on\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[38;5;154m\]$(sexy_bash_prompt_get_git_info)\['$esc'[1m'$esc'[91m\]$(sexy_bash_prompt_get_git_progress)\['$esc'(B'$esc'[m\]\n\[$(sexy_bash_prompt_get_symbol_color)\]$ \['$esc'(B'$esc'[m\]'
-    test "$PS1" = "$expected_prompt" || echo '`PS1` is not as expected (error-code)' 1>&2
+    # a successful command uses the default color
+    # DEV: Stub out last command being checked against
+    sexy_bash_prompt_last_command="valid command"
+    true
+    $PROMPT_COMMAND
+
+    test $(sexy_bash_prompt_get_symbol_color) = "#default-color" || echo 'sexy_bash_prompt_get_symbol_color did not return `#default-color` as expected' 1>&2
+
+    # an errored command uses the error color
+    # DEV: Stub out last command being checked against
+    sexy_bash_prompt_last_command="invalid command"
+    false
+    $PROMPT_COMMAND
+
+    test $(sexy_bash_prompt_get_symbol_color) = "#error-color" || echo 'sexy_bash_prompt_get_symbol_color did not return `#error-color` as expected' 1>&2
 
 # prompt status symbols
   # when overridden
