@@ -259,13 +259,12 @@ sexy_bash_prompt_get_git_info () {
 
 sexy_bash_prompt_get_symbol_color () {
   # Verify we have an exit code set
-  # if [[ "$sexy_bash_prompt_exit_code" == "" ]]; then
-  #   echo "Missing \`sexy_bash_prompt_exit_code\` for prompt symbol coloring" 1>&2
-  #   echo "Please verify \`PROMPT_COMMAND\` includes an invocation for \`sexy_bash_prompt_command\` (enabled unless overwritten)" 1>&2
-  #   return
-  # fi
+  if [[ "$sexy_bash_prompt_exit_code" == "" ]]; then
+    echo "Missing \`sexy_bash_prompt_exit_code\` for prompt symbol coloring" 1>&2
+    echo "Please verify \`PROMPT_COMMAND\` includes \`sexy_bash_prompt_command\` (enabled unless overwritten)" 1>&2
+    return
+  fi
   exit_code="$sexy_bash_prompt_exit_code"
-  echo "wat$exit_code"
 
   # If we'd like to show errors once, then inspect further
   # DEV: This is a personal preference around seeing a red $ on any failing command consistently
