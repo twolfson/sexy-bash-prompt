@@ -33,13 +33,13 @@ run_bash_prompt
   fixture_dir 'git'
 
     # has an exit code of 0
-    sexy_bash_prompt_is_on_git || echo '`sexy_bash_prompt_is_on_git`; $? != 0 in git directory' 1>&2
+    sexy_bash_prompt_is_on_git || echo "Line $LINENO: "'`sexy_bash_prompt_is_on_git` was `false` in git directory' 1>&2
 
   # in a non-git directory
   fixture_dir 'non-git'
 
     # has a non-zero exit code
-    ! sexy_bash_prompt_is_on_git || echo '`sexy_bash_prompt_is_on_git`; $? == 0 in non-git directory' 1>&2
+    ! sexy_bash_prompt_is_on_git || echo "Line $LINENO: "'`sexy_bash_prompt_is_on_git` was `true` in non-git directory' 1>&2
 
   # in a git-init'd directory
   # DEV: This is an edge case test discovered in 0.10.0
@@ -48,7 +48,7 @@ run_bash_prompt
   fixture_git_init
 
     # has an exit code of 0
-    sexy_bash_prompt_is_on_git || echo '`sexy_bash_prompt_is_on_git`; $? != 0 in git-init directory' 1>&2
+    sexy_bash_prompt_is_on_git || echo "Line $LINENO: "'`sexy_bash_prompt_is_on_git` was `false` in git-init directory' 1>&2
 
 # sexy_bash_prompt_get_git_branch
 
@@ -56,26 +56,26 @@ run_bash_prompt
   fixture_dir 'branch-master'
 
     # is `master`
-    test "$(sexy_bash_prompt_get_git_branch)" = "master" || echo '`sexy_bash_prompt_get_git_branch` !== `master` on a `master` branch' 1>&2
+    test "$(sexy_bash_prompt_get_git_branch)" = "master" || echo "Line $LINENO: "'`sexy_bash_prompt_get_git_branch` != `master` on a `master` branch' 1>&2
 
   # on `dev/test` branch
   fixture_dir 'branch-dev'
 
     # is `dev/test`
-    test "$(sexy_bash_prompt_get_git_branch)" = "dev/test" || echo '`sexy_bash_prompt_get_git_branch` !== `dev/test` on `dev/test` branch' 1>&2
+    test "$(sexy_bash_prompt_get_git_branch)" = "dev/test" || echo "Line $LINENO: "'`sexy_bash_prompt_get_git_branch` != `dev/test` on `dev/test` branch' 1>&2
 
   # off of a branch
   fixture_dir 'branch-non'
 
     # is 'no branch'
-    test "$(sexy_bash_prompt_get_git_branch)" = "(no branch)" || echo '`sexy_bash_prompt_get_git_branch` !== `(no branch)` off of a branch' 1>&2
+    test "$(sexy_bash_prompt_get_git_branch)" = "(no branch)" || echo "Line $LINENO: "'`sexy_bash_prompt_get_git_branch` != `(no branch)` off of a branch' 1>&2
 
   # in a git-init'd directory
   # DEV: This is an edge case test discovered in 0.10.0
   fixture_git_init
 
     # is `master`
-    test "$(sexy_bash_prompt_get_git_branch)" = "master" || echo '`sexy_bash_prompt_get_git_branch` !== `master` in a `git-init` directory' 1>&2
+    test "$(sexy_bash_prompt_get_git_branch)" = "master" || echo "Line $LINENO: "'`sexy_bash_prompt_get_git_branch` != `master` in a `git-init` directory' 1>&2
 
 # git_status
 
@@ -83,38 +83,38 @@ run_bash_prompt
   fixture_dir 'synced'
 
     # is nothing
-    test "$(sexy_bash_prompt_get_git_status)" = "" || echo '`sexy_bash_prompt_get_git_status` !== "" on a synced branch' 1>&2
+    test "$(sexy_bash_prompt_get_git_status)" = "" || echo "Line $LINENO: "'`sexy_bash_prompt_get_git_status` != "" on a synced branch' 1>&2
 
   # on a dirty synced branch
   fixture_dir 'dirty-synced'
 
     # is an asterisk
-    test "$(sexy_bash_prompt_get_git_status)" = "*" || echo '`sexy_bash_prompt_get_git_status` !== "*" on a dirty synced branch' 1>&2
+    test "$(sexy_bash_prompt_get_git_status)" = "*" || echo "Line $LINENO: "'`sexy_bash_prompt_get_git_status` != "*" on a dirty synced branch' 1>&2
 
   # on an unpushed branch
   # DEV: This covers new branches (for now)
   fixture_dir 'unpushed'
 
     # is an empty up triangle
-    test "$(sexy_bash_prompt_get_git_status)" = "△" || echo '`sexy_bash_prompt_get_git_status` !== "△" on an unpushed branch' 1>&2
+    test "$(sexy_bash_prompt_get_git_status)" = "△" || echo "Line $LINENO: "'`sexy_bash_prompt_get_git_status` != "△" on an unpushed branch' 1>&2
 
   # on a dirty and unpushed branch
   fixture_dir 'dirty-unpushed'
 
     # is a filled up triangle
-    test "$(sexy_bash_prompt_get_git_status)" = "▲" || echo '`sexy_bash_prompt_get_git_status` !== "▲" on a dirty and unpushed branch' 1>&2
+    test "$(sexy_bash_prompt_get_git_status)" = "▲" || echo "Line $LINENO: "'`sexy_bash_prompt_get_git_status` != "▲" on a dirty and unpushed branch' 1>&2
 
   # on an unpulled branch
   fixture_dir 'unpulled'
 
     # is an empty down triangle
-    test "$(sexy_bash_prompt_get_git_status)" = "▽" || echo '`sexy_bash_prompt_get_git_status` !== "▽" on an unpulled branch' 1>&2
+    test "$(sexy_bash_prompt_get_git_status)" = "▽" || echo "Line $LINENO: "'`sexy_bash_prompt_get_git_status` != "▽" on an unpulled branch' 1>&2
 
   # on a dirty and unpulled branch
   fixture_dir 'dirty-unpulled'
 
     # is an filled down triangle
-    test "$(sexy_bash_prompt_get_git_status)" = "▼" || echo '`sexy_bash_prompt_get_git_status` !== "▼" on a dirty unpulled branch' 1>&2
+    test "$(sexy_bash_prompt_get_git_status)" = "▼" || echo "Line $LINENO: "'`sexy_bash_prompt_get_git_status` != "▼" on a dirty unpulled branch' 1>&2
 
   # on an unpushed and unpulled branch
   fixture_dir 'unpushed-unpulled'
