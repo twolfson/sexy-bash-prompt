@@ -283,14 +283,14 @@ esc=$'\033'
     # To get the latest prompt, enable one of the echoes and run `make test | copy`
     # echo "$PS1"
     # echo "$expected_prompt"
-    test "$PS1" = "$expected_prompt" || echo "Line ${LINENO}: \`PS1\` is not as expected (256)" 1>&2
+    test "$PS1" = "$expected_prompt" || echo '`PS1` is not as expected (256)' 1>&2
 
   # in an 8 color terminal
   TERM=xterm run_bash_prompt
 
     # uses 8 color palette
     expected_prompt='\['$esc'(B'$esc'[m\]\['$esc'[1m'$esc'[34m\]\u\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[37m\]at\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[36m\]\h\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[37m\]in\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[32m\]\w\['$esc'(B'$esc'[m\]$( sexy_bash_prompt_is_on_git &&   echo -n " \['$esc'[1m'$esc'[37m\]on\['$esc'(B'$esc'[m\] " &&   echo -n "\['$esc'[1m'$esc'[33m\]$(sexy_bash_prompt_get_git_info)" &&   echo -n "\['$esc'[1m'$esc'[31m\]$(sexy_bash_prompt_get_git_progress)" &&   echo -n "\['$esc'(B'$esc'[m\]")\n\[$(sexy_bash_prompt_get_symbol_color)\]$ \['$esc'(B'$esc'[m\]'
-    test "$PS1" = "$expected_prompt" || echo "Line ${LINENO}: \`PS1\` is not as expected (8)" 1>&2
+    test "$PS1" = "$expected_prompt" || echo '`PS1` is not as expected (8)' 1>&2
 
   # in an ANSI terminal
   TERM="" run_bash_prompt
