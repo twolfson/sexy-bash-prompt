@@ -283,21 +283,21 @@ esc=$'\033'
     # To get the latest prompt, enable one of the echoes and run `make test | copy`
     # echo "$PS1"
     # echo "$expected_prompt"
-    test "$PS1" = "$expected_prompt" || echo '`PS1` is not as expected (256)' 1>&2
+    test "$PS1" = "$expected_prompt" || echo "Line $LINENO: "'`PS1` is not as expected (256)' 1>&2
 
   # in an 8 color terminal
   TERM=xterm run_bash_prompt
 
     # uses 8 color palette
     expected_prompt='\['$esc'(B'$esc'[m\]\['$esc'[1m'$esc'[34m\]\u\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[37m\]at\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[36m\]\h\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[37m\]in\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[32m\]\w\['$esc'(B'$esc'[m\]$( sexy_bash_prompt_is_on_git &&   echo -n " \['$esc'[1m'$esc'[37m\]on\['$esc'(B'$esc'[m\] " &&   echo -n "\['$esc'[1m'$esc'[33m\]$(sexy_bash_prompt_get_git_info)" &&   echo -n "\['$esc'[1m'$esc'[31m\]$(sexy_bash_prompt_get_git_progress)" &&   echo -n "\['$esc'(B'$esc'[m\]")\n\[$(sexy_bash_prompt_get_symbol_color)\]$ \['$esc'(B'$esc'[m\]'
-    test "$PS1" = "$expected_prompt" || echo '`PS1` is not as expected (8)' 1>&2
+    test "$PS1" = "$expected_prompt" || echo "Line $LINENO: "'`PS1` is not as expected (8)' 1>&2
 
   # in an ANSI terminal
   TERM="" run_bash_prompt
 
     # uses ANSI colors
     expected_prompt='\[\033[m\]\[\033[1;34m\]\u\[\033[m\] \[\033[1;37m\]at\[\033[m\] \[\033[1;36m\]\h\[\033[m\] \[\033[1;37m\]in\[\033[m\] \[\033[1;32m\]\w\[\033[m\]$( sexy_bash_prompt_is_on_git &&   echo -n " \[\033[1;37m\]on\[\033[m\] " &&   echo -n "\[\033[1;33m\]$(sexy_bash_prompt_get_git_info)" &&   echo -n "\[\033[1;31m\]$(sexy_bash_prompt_get_git_progress)" &&   echo -n "\[\033[m\]")\n\[$(sexy_bash_prompt_get_symbol_color)\]$ \[\033[m\]'
-    test "$PS1" = "$expected_prompt" || echo '`PS1` is not as expected (ANSI)' 1>&2
+    test "$PS1" = "$expected_prompt" || echo "Line $LINENO: "'`PS1` is not as expected (ANSI)' 1>&2
 
   # when overridden
   TERM=xterm-256color PROMPT_USER_COLOR='\033[1;32m' \
@@ -308,7 +308,7 @@ esc=$'\033'
 
     # use the new colors
     expected_prompt='\['$esc'(B'$esc'[m\]\[\033[1;32m\]\u\['$esc'(B'$esc'[m\] \[\033[1;33m\]at\['$esc'(B'$esc'[m\] \[\033[1;34m\]\h\['$esc'(B'$esc'[m\] \[\033[1;33m\]in\['$esc'(B'$esc'[m\] \[\033[1;35m\]\w\['$esc'(B'$esc'[m\]$( sexy_bash_prompt_is_on_git &&   echo -n " \[\033[1;33m\]on\['$esc'(B'$esc'[m\] " &&   echo -n "\[\033[1;36m\]$(sexy_bash_prompt_get_git_info)" &&   echo -n "\[\033[1;37m\]$(sexy_bash_prompt_get_git_progress)" &&   echo -n "\['$esc'(B'$esc'[m\]")\n\[$(sexy_bash_prompt_get_symbol_color)\]$ \['$esc'(B'$esc'[m\]'
-    test "$PS1" = "$expected_prompt" || echo '`PS1` is not as expected (overridden)' 1>&2
+    test "$PS1" = "$expected_prompt" || echo "Line $LINENO: "'`PS1` is not as expected (overridden)' 1>&2
 
 # prompt symbol color
   # when overridden
@@ -321,7 +321,7 @@ esc=$'\033'
     # DEV: Stub out last command being checked against
     sexy_bash_prompt_last_command="valid command"
 
-    test $(sexy_bash_prompt_get_symbol_color) = "#default-color" || echo 'sexy_bash_prompt_get_symbol_color did not return `#default-color` as expected' 1>&2
+    test $(sexy_bash_prompt_get_symbol_color) = "#default-color" || echo "Line $LINENO: "'`sexy_bash_prompt_get_symbol_color` did not return `#default-color` as expected' 1>&2
 
     # an errored command uses the error color
     false
@@ -329,7 +329,7 @@ esc=$'\033'
     # DEV: Stub out last command being checked against
     sexy_bash_prompt_last_command="invalid command"
 
-    test $(sexy_bash_prompt_get_symbol_color) = "#error-color" || echo 'sexy_bash_prompt_get_symbol_color did not return `#error-color` as expected' 1>&2
+    test $(sexy_bash_prompt_get_symbol_color) = "#error-color" || echo "Line $LINENO: "'`sexy_bash_prompt_get_symbol_color` did not return `#error-color` as expected' 1>&2
 
 # prompt status symbols
   # when overridden
@@ -341,36 +341,36 @@ esc=$'\033'
     run_bash_prompt
 
     # the prompt always uses the PROMPT_SYMBOL
-    test "$sexy_bash_prompt_symbol" = "#prompt-symbol" || echo 'sexy_bash_prompt_symbol was not overridden by PROMPT_SYMBOL as expected' 1>&2
+    test "$sexy_bash_prompt_symbol" = "#prompt-symbol" || echo "Line $LINENO: "'sexy_bash_prompt_symbol was not overridden by PROMPT_SYMBOL as expected' 1>&2
 
     # a synced prompt uses the new symbol
     fixture_dir 'synced'
-    test "$(sexy_bash_prompt_get_git_status)" = "#synced" || echo '`sexy_bash_prompt_get_git_status` !== "#synced" on an overridden synced branch' 1>&2
+    test "$(sexy_bash_prompt_get_git_status)" = "#synced" || echo "Line $LINENO: "'`sexy_bash_prompt_get_git_status` !== "#synced" on an overridden synced branch' 1>&2
 
     # a dirty synced prompt uses the new symbol
     fixture_dir 'dirty-synced'
-    test "$(sexy_bash_prompt_get_git_status)" = "#dirty-synced" || echo '`sexy_bash_prompt_get_git_status` !== "#dirty-synced" on an overridden dirty synced branch' 1>&2
+    test "$(sexy_bash_prompt_get_git_status)" = "#dirty-synced" || echo "Line $LINENO: "'`sexy_bash_prompt_get_git_status` !== "#dirty-synced" on an overridden dirty synced branch' 1>&2
 
     # an unpushed prompt uses the new symbol
     fixture_dir 'unpushed'
-    test "$(sexy_bash_prompt_get_git_status)" = "#unpushed" || echo '`sexy_bash_prompt_get_git_status` !== "#unpushed" on an overridden and unpushed branch' 1>&2
+    test "$(sexy_bash_prompt_get_git_status)" = "#unpushed" || echo "Line $LINENO: "'`sexy_bash_prompt_get_git_status` !== "#unpushed" on an overridden and unpushed branch' 1>&2
 
     # a dirty and unpushed prompt uses the new symbol
     fixture_dir 'dirty-unpushed'
-    test "$(sexy_bash_prompt_get_git_status)" = "#dirty-unpushed" || echo '`sexy_bash_prompt_get_git_status` !== "#dirty-unpushed" on an overridden, dirty, and unpushed branch' 1>&2
+    test "$(sexy_bash_prompt_get_git_status)" = "#dirty-unpushed" || echo "Line $LINENO: "'`sexy_bash_prompt_get_git_status` !== "#dirty-unpushed" on an overridden, dirty, and unpushed branch' 1>&2
 
     # an unpulled prompt uses the new symbol
     fixture_dir 'unpulled'
-    test "$(sexy_bash_prompt_get_git_status)" = "#unpulled" || echo '`sexy_bash_prompt_get_git_status` !== "#unpulled" on an overridden and unpulled branch' 1>&2
+    test "$(sexy_bash_prompt_get_git_status)" = "#unpulled" || echo "Line $LINENO: "'`sexy_bash_prompt_get_git_status` !== "#unpulled" on an overridden and unpulled branch' 1>&2
 
     # a dirty and unpulled prompt uses the new symbol
     fixture_dir 'dirty-unpulled'
-    test "$(sexy_bash_prompt_get_git_status)" = "#dirty-unpulled" || echo '`sexy_bash_prompt_get_git_status` !== "#dirty-unpulled" on an overridden, dirty, and unpulled branch' 1>&2
+    test "$(sexy_bash_prompt_get_git_status)" = "#dirty-unpulled" || echo "Line $LINENO: "'`sexy_bash_prompt_get_git_status` !== "#dirty-unpulled" on an overridden, dirty, and unpulled branch' 1>&2
 
     # an unpushed and unpushed prompt uses the new symbol
     fixture_dir 'unpushed-unpulled'
-    test "$(sexy_bash_prompt_get_git_status)" = "#unpushed-unpulled" || echo '`sexy_bash_prompt_get_git_status` !== "#unpushed-unpulled" on an overridden, unpushed, and unpulled branch' 1>&2
+    test "$(sexy_bash_prompt_get_git_status)" = "#unpushed-unpulled" || echo "Line $LINENO: "'`sexy_bash_prompt_get_git_status` !== "#unpushed-unpulled" on an overridden, unpushed, and unpulled branch' 1>&2
 
     # a dirty, unpushed, and unpushed prompt uses the new symbol
     fixture_dir 'dirty-unpushed-unpulled'
-    test "$(sexy_bash_prompt_get_git_status)" = "#dirty-unpushed-unpulled" || echo '`sexy_bash_prompt_get_git_status` !== "#dirty-unpushed-unpulled" on an overridden, dirty, unpushed, and unpulled branch' 1>&2
+    test "$(sexy_bash_prompt_get_git_status)" = "#dirty-unpushed-unpulled" || echo "Line $LINENO: "'`sexy_bash_prompt_get_git_status` !== "#dirty-unpushed-unpulled" on an overridden, dirty, unpushed, and unpulled branch' 1>&2
