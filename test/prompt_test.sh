@@ -24,9 +24,6 @@ run_bash_prompt() {
   $PROMPT_COMMAND
 }
 
-# https://github.com/kward/shunit2/blob/v2.1.8/shunit2#L192
-fail='eval echo "Line $LINENO: "'
-
 # Load in bash_prompt
 run_bash_prompt
 
@@ -36,7 +33,7 @@ run_bash_prompt
   fixture_dir 'git'
 
     # has an exit code of 0
-    sexy_bash_prompt_is_on_git && ${fail} '`sexy_bash_prompt_is_on_git` was `false` in git directory' 1>&2
+    sexy_bash_prompt_is_on_git || echo "Line $LINENO: "'`sexy_bash_prompt_is_on_git` was `false` in git directory' 1>&2
 
   # in a non-git directory
   fixture_dir 'non-git'
