@@ -148,7 +148,7 @@ run_bash_prompt
   fixture_dir 'unpushed-unpulled'
   git config --unset branch.master.remote
   git config --unset branch.master.merge
-  test "$(git rev-parse --symbolic-full-name "@{upstream}" 2> /dev/null | grep --invert-match "@{upstream}")" = "" || echo 'Expected untracked unpushed-unpulled to have no tracked origin but it did not' 1>&2
+  test "$(git rev-parse --symbolic-full-name "@{upstream}" 2> /dev/null | grep --invert-match "@{upstream}")" = "" || echo "Line $LINENO: "'Expected untracked unpushed-unpulled to have no tracked origin but it did not' 1>&2
 
     # is an empty hexagon
     test "$(sexy_bash_prompt_get_git_status)" = "⬡" || echo "Line $LINENO: "'`sexy_bash_prompt_get_git_status` !== "⬡" on an unpushed and unpulled branch with an untracked origin remote' 1>&2
@@ -273,7 +273,7 @@ esc=$'\033'
 
     # Deprecated color by color test, not used because requires double maintenance
     # echo "$(TERM=xterm-256color tput bold)$(TERM=xterm-256color tput setaf 27)" | copy
-    # test "$sexy_bash_prompt_user_color" = "$esc[1m$esc[38;5;27m" || echo '`sexy_bash_prompt_user_color` is not bold blue (256)' 1>&2
+    # test "$sexy_bash_prompt_user_color" = "$esc[1m$esc[38;5;27m" || echo "Line $LINENO: "'`sexy_bash_prompt_user_color` is not bold blue (256)' 1>&2
 
     # uses 256 color palette
     expected_prompt='\['$esc'(B'$esc'[m\]\['$esc'[1m'$esc'[38;5;27m\]\u\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[37m\]at\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[38;5;39m\]\h\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[37m\]in\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[38;5;76m\]\w\['$esc'(B'$esc'[m\]$( sexy_bash_prompt_is_on_git &&   echo -n " \['$esc'[1m'$esc'[37m\]on\['$esc'(B'$esc'[m\] " &&   echo -n "\['$esc'[1m'$esc'[38;5;154m\]$(sexy_bash_prompt_get_git_info)" &&   echo -n "\['$esc'[1m'$esc'[91m\]$(sexy_bash_prompt_get_git_progress)" &&   echo -n "\['$esc'(B'$esc'[m\]")\n\[$(sexy_bash_prompt_get_symbol_color)\]$ \['$esc'(B'$esc'[m\]'
