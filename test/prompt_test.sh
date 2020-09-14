@@ -1,3 +1,6 @@
+# Load in dependencies
+. helpers/assert.sh
+
 # Navigate to test directory
 ORIG_PWD="$PWD"
 TEST_DIR="$PWD/test"
@@ -33,13 +36,13 @@ run_bash_prompt
   fixture_dir 'git'
 
     # has an exit code of 0
-    sexy_bash_prompt_is_on_git || echo "Line $LINENO: "'`sexy_bash_prompt_is_on_git` was `false` in git directory' 1>&2
+    sexy_bash_prompt_is_on_git || assert_fail "$LINENO" '`sexy_bash_prompt_is_on_git` was `false` in git directory'
 
   # in a non-git directory
   fixture_dir 'non-git'
 
     # has a non-zero exit code
-    ! sexy_bash_prompt_is_on_git || echo "Line $LINENO: "'`sexy_bash_prompt_is_on_git` was `true` in non-git directory' 1>&2
+    ! sexy_bash_prompt_is_on_git || assert_fail "$LINENO" '`sexy_bash_prompt_is_on_git` was `true` in non-git directory'
 
   # in a git-init'd directory
   # DEV: This is an edge case test discovered in 0.10.0
@@ -48,7 +51,7 @@ run_bash_prompt
   fixture_git_init
 
     # has an exit code of 0
-    sexy_bash_prompt_is_on_git || echo "Line $LINENO: "'`sexy_bash_prompt_is_on_git` was `false` in git-init directory' 1>&2
+    sexy_bash_prompt_is_on_git || assert_fail "$LINENO" '`sexy_bash_prompt_is_on_git` was `false` in git-init directory'
 
 # sexy_bash_prompt_get_git_branch
 
@@ -56,7 +59,7 @@ run_bash_prompt
   fixture_dir 'branch-master'
 
     # is `master`
-    test "$(sexy_bash_prompt_get_git_branch)" = "master" || echo "Line $LINENO: "'`sexy_bash_prompt_get_git_branch` != `master` on a `master` branch' 1>&2
+    test "$(sexy_bash_prompt_get_git_branch)" = "master" || assert_fail "Line $LINENO: "'`sexy_bash_prompt_get_git_branch` != `master` on a `master` branch' 1>&2
 
   # on `dev/test` branch
   fixture_dir 'branch-dev'
