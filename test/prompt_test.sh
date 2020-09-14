@@ -120,27 +120,27 @@ run_bash_prompt
   fixture_dir 'unpushed-unpulled'
 
     # is an empty hexagon
-    test "$(sexy_bash_prompt_get_git_status)" = "⬡" || echo '`sexy_bash_prompt_get_git_status` !== "⬡" on an unpushed and unpulled branch' 1>&2
+    test "$(sexy_bash_prompt_get_git_status)" = "⬡" || echo "Line $LINENO: "'`sexy_bash_prompt_get_git_status` !== "⬡" on an unpushed and unpulled branch' 1>&2
 
   # on a dirty, unpushed, and unpulled branch
   fixture_dir 'dirty-unpushed-unpulled'
 
     # is an filled hexagon
-    test "$(sexy_bash_prompt_get_git_status)" = "⬢" || echo '`sexy_bash_prompt_get_git_status` !== "⬢" on a dirty, unpushed, and unpulled branch' 1>&2
+    test "$(sexy_bash_prompt_get_git_status)" = "⬢" || echo "Line $LINENO: "'`sexy_bash_prompt_get_git_status` !== "⬢" on a dirty, unpushed, and unpulled branch' 1>&2
 
   # on an unpushed and unpulled branch with a tracked origin remote
   fixture_dir 'unpushed-unpulled'
-  test "$(git rev-parse --symbolic-full-name "@{upstream}")" != "" || echo 'Expected unpushed-unpulled to have tracked origin but it did not' 1>&2
+  test "$(git rev-parse --symbolic-full-name "@{upstream}")" != "" || echo "Line $LINENO: "'Expected unpushed-unpulled to have tracked origin but it did not' 1>&2
 
     # is an empty hexagon
-    test "$(sexy_bash_prompt_get_git_status)" = "⬡" || echo '`sexy_bash_prompt_get_git_status` !== "⬡" on an unpushed and unpulled branch with a tracked origin remote' 1>&2
+    test "$(sexy_bash_prompt_get_git_status)" = "⬡" || echo "Line $LINENO: "'`sexy_bash_prompt_get_git_status` !== "⬡" on an unpushed and unpulled branch with a tracked origin remote' 1>&2
 
   # on an unpushed and unpulled branch with a tracked non-origin remote
   fixture_dir 'unpushed-unpulled'
   git remote rename origin non-origin
 
     # is an empty hexagon
-    test "$(sexy_bash_prompt_get_git_status)" = "⬡" || echo '`sexy_bash_prompt_get_git_status` !== "⬡" on an unpushed and unpulled branch with a tracked non-origin remote' 1>&2
+    test "$(sexy_bash_prompt_get_git_status)" = "⬡" || echo "Line $LINENO: "'`sexy_bash_prompt_get_git_status` !== "⬡" on an unpushed and unpulled branch with a tracked non-origin remote' 1>&2
 
   # on an unpushed and unpulled branch with an untracked origin remote
   # DEV: Due to git@1.7, we need to use `config --unset` instead of `git branch --unset-upstream`
@@ -151,14 +151,14 @@ run_bash_prompt
   test "$(git rev-parse --symbolic-full-name "@{upstream}" 2> /dev/null | grep --invert-match "@{upstream}")" = "" || echo 'Expected untracked unpushed-unpulled to have no tracked origin but it did not' 1>&2
 
     # is an empty hexagon
-    test "$(sexy_bash_prompt_get_git_status)" = "⬡" || echo '`sexy_bash_prompt_get_git_status` !== "⬡" on an unpushed and unpulled branch with an untracked origin remote' 1>&2
+    test "$(sexy_bash_prompt_get_git_status)" = "⬡" || echo "Line $LINENO: "'`sexy_bash_prompt_get_git_status` !== "⬡" on an unpushed and unpulled branch with an untracked origin remote' 1>&2
 
   # on an unpushed branch with no remote
   fixture_dir 'unpushed'
   git remote rm origin
 
     # is an empty up triangle
-    test "$(sexy_bash_prompt_get_git_status)" = "△" || echo '`sexy_bash_prompt_get_git_status` !== "△" on an unpushed branch with no remote' 1>&2
+    test "$(sexy_bash_prompt_get_git_status)" = "△" || echo "Line $LINENO: "'`sexy_bash_prompt_get_git_status` !== "△" on an unpushed branch with no remote' 1>&2
 
 # git_progress
 
@@ -166,21 +166,21 @@ run_bash_prompt
   fixture_dir 'synced'
 
     # is nothing
-    test "$(sexy_bash_prompt_get_git_progress)" = "" || echo '`sexy_bash_prompt_get_git_progress` !== "" on a clean branch' 1>&2
+    test "$(sexy_bash_prompt_get_git_progress)" = "" || echo "Line $LINENO: "'`sexy_bash_prompt_get_git_progress` !== "" on a clean branch' 1>&2
 
   # https://github.com/twolfson/sexy-bash-prompt/issues/25
   # on a merge-in-progress branch
   fixture_dir 'merge-in-progress'
 
     # shows a merge in progress
-    test "$(sexy_bash_prompt_get_git_progress)" = " [merge]" || echo '`sexy_bash_prompt_get_git_progress` !== " [merge]" on a clean merge-in-progress branch' 1>&2
+    test "$(sexy_bash_prompt_get_git_progress)" = " [merge]" || echo "Line $LINENO: "'`sexy_bash_prompt_get_git_progress` !== " [merge]" on a clean merge-in-progress branch' 1>&2
 
     # in a sub-directory
     mkdir nested
     cd nested
 
       # shows a merge in progress
-      test "$(sexy_bash_prompt_get_git_progress)" = " [merge]" || echo '`sexy_bash_prompt_get_git_progress` !== " [merge]" in a subdirectory of a clean merge-in-progress branch' 1>&2
+      test "$(sexy_bash_prompt_get_git_progress)" = " [merge]" || echo "Line $LINENO: "'`sexy_bash_prompt_get_git_progress` !== " [merge]" in a subdirectory of a clean merge-in-progress branch' 1>&2
 
   # when an `am` is in progress (`git am`)
   # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1208-L1211
@@ -190,7 +190,7 @@ run_bash_prompt
   fixture_dir 'am-in-progress'
 
     # shows an `am` in progress
-    test "$(sexy_bash_prompt_get_git_progress)" = " [am]" || echo '`sexy_bash_prompt_get_git_progress` !== " [am]" in an am-in-progress repo' 1>&2
+    test "$(sexy_bash_prompt_get_git_progress)" = " [am]" || echo "Line $LINENO: "'`sexy_bash_prompt_get_git_progress` !== " [am]" in an am-in-progress repo' 1>&2
 
   # when a `git rebase` is in progress (no `--interactive` or `--merge`)
   # DEV: This is caused by `git rebase`
@@ -198,35 +198,35 @@ run_bash_prompt
   fixture_dir 'rebase-in-progress'
 
     # shows a `rebase` in progress
-    test "$(sexy_bash_prompt_get_git_progress)" = " [rebase]" || echo '`sexy_bash_prompt_get_git_progress` !== " [rebase]" in a rebase-in-progress repo' 1>&2
+    test "$(sexy_bash_prompt_get_git_progress)" = " [rebase]" || echo "Line $LINENO: "'`sexy_bash_prompt_get_git_progress` !== " [rebase]" in a rebase-in-progress repo' 1>&2
 
   # when an interactive rebase is in progress(`git rebase --interactive`)
   # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1218-L1219
   fixture_dir 'rebase-interactive-in-progress'
 
     # shows a `rebase` in progress
-    test "$(sexy_bash_prompt_get_git_progress)" = " [rebase]" || echo '`sexy_bash_prompt_get_git_progress` !== " [rebase]" in a rebase-interactive-in-progress repo' 1>&2
+    test "$(sexy_bash_prompt_get_git_progress)" = " [rebase]" || echo "Line $LINENO: "'`sexy_bash_prompt_get_git_progress` !== " [rebase]" in a rebase-interactive-in-progress repo' 1>&2
 
   # when a merge based rebase is in progress (`git rebase --merge`)
   # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1220-L1223
   fixture_dir 'rebase-merge-in-progress'
 
     # shows a `rebase` in progress
-    test "$(sexy_bash_prompt_get_git_progress)" = " [rebase]" || echo '`sexy_bash_prompt_get_git_progress` !== " [rebase]" in a rebase-merge-in-progress repo' 1>&2
+    test "$(sexy_bash_prompt_get_git_progress)" = " [rebase]" || echo "Line $LINENO: "'`sexy_bash_prompt_get_git_progress` !== " [rebase]" in a rebase-merge-in-progress repo' 1>&2
 
   # on an incomplete cherry-pick
   # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1224-L1227
   fixture_dir 'cherry-pick-in-progress'
 
     # shows a `cherry-pick` in progress
-    test "$(sexy_bash_prompt_get_git_progress)" = " [cherry-pick]" || echo '`sexy_bash_prompt_get_git_progress` !== " [cherry-pick]" in a cherry-pick-in-progress repo' 1>&2
+    test "$(sexy_bash_prompt_get_git_progress)" = " [cherry-pick]" || echo "Line $LINENO: "'`sexy_bash_prompt_get_git_progress` !== " [cherry-pick]" in a cherry-pick-in-progress repo' 1>&2
 
   # in an incomplete bisect
   # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1229-L1232
   fixture_dir 'bisect-in-progress'
 
     # shows a `bisect` in progress
-    test "$(sexy_bash_prompt_get_git_progress)" = " [bisect]" || echo '`sexy_bash_prompt_get_git_progress` !== " [bisect]" in a bisect-in-progress repo' 1>&2
+    test "$(sexy_bash_prompt_get_git_progress)" = " [bisect]" || echo "Line $LINENO: "'`sexy_bash_prompt_get_git_progress` !== " [bisect]" in a bisect-in-progress repo' 1>&2
 
   # in an incomplete revert
   # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1233-L1237
@@ -234,7 +234,7 @@ run_bash_prompt
   fixture_dir 'revert-in-progress'
 
     # shows a `revert` in progress
-    test "$(sexy_bash_prompt_get_git_progress)" = " [revert]" || echo '`sexy_bash_prompt_get_git_progress` !== " [revert]" in a revert-in-progress repo' 1>&2
+    test "$(sexy_bash_prompt_get_git_progress)" = " [revert]" || echo "Line $LINENO: "'`sexy_bash_prompt_get_git_progress` !== " [revert]" in a revert-in-progress repo' 1>&2
 
 # sexy-bash-prompt
 cd "$ORIG_PWD"
@@ -243,7 +243,7 @@ cd "$ORIG_PWD"
   prompt_output="$(bash --norc --noprofile -i -c '. .bash_prompt')"
 
     # does not have any output
-    test ${#prompt_output} -eq 0 || echo '`prompt_output` did not have length 0' 1>&2
+    test ${#prompt_output} -eq 0 || echo "Line $LINENO: "'`prompt_output` did not have length 0' 1>&2
 
 # sexy_bash_prompt_symbol
 cd "$ORIG_PWD"
@@ -252,14 +252,14 @@ cd "$ORIG_PWD"
   bash_symbol="$(bash --norc --noprofile -i -c '. .bash_prompt; echo "$sexy_bash_prompt_symbol"')"
 
     # is $
-    test "$bash_symbol" = "$" || echo '`sexy_bash_prompt_symbol` !== "$" for a normal user' 1>&2
+    test "$bash_symbol" = "$" || echo "Line $LINENO: "'`sexy_bash_prompt_symbol` !== "$" for a normal user' 1>&2
 
   # with root
   if which sudo &> /dev/null; then
     bash_symbol="$(sudo bash --norc --noprofile -i -c '. .bash_prompt; echo "$sexy_bash_prompt_symbol"')";
 
     # is #
-    test "$bash_symbol" = "#" || echo '`sexy_bash_prompt_symbol` !== "#" for root' 1>&2
+    test "$bash_symbol" = "#" || echo "Line $LINENO: "'`sexy_bash_prompt_symbol` !== "#" for root' 1>&2
   else
     echo "WARNING: sudo not found or insufficient privileges. Test skipped." 1>&2
   fi
