@@ -37,7 +37,7 @@ if tput setaf 1 &> /dev/null; then
   fi
 
   sexy_bash_prompt_symbol_color="$sexy_bash_prompt_bold" # BOLD
-
+  sexy_bash_prompt_symbol_error_color="$sexy_bash_prompt_bold$(tput setaf 1)" # BOLD RED
 else
 # Otherwise, use ANSI escape sequences for coloring
   # If you would like to customize your colors, use
@@ -55,6 +55,7 @@ else
   sexy_bash_prompt_git_status_color="\033[1;33m" # YELLOW
   sexy_bash_prompt_git_progress_color="\033[1;31m" # RED
   sexy_bash_prompt_symbol_color="" # NORMAL
+  sexy_bash_prompt_symbol_error_color="\033[1;31m" # RED
 fi
 
 # Define the default prompt terminator character '$'
@@ -73,6 +74,7 @@ if [[ -n "$PROMPT_GIT_STATUS_COLOR" ]]; then sexy_bash_prompt_git_status_color="
 if [[ -n "$PROMPT_GIT_PROGRESS_COLOR" ]]; then sexy_bash_prompt_git_progress_color="$PROMPT_GIT_PROGRESS_COLOR"; fi
 if [[ -n "$PROMPT_SYMBOL" ]]; then sexy_bash_prompt_symbol="$PROMPT_SYMBOL"; fi
 if [[ -n "$PROMPT_SYMBOL_COLOR" ]]; then sexy_bash_prompt_symbol_color="$PROMPT_SYMBOL_COLOR"; fi
+if [[ -n "$PROMPT_SYMBOL_ERROR_COLOR" ]]; then sexy_bash_prompt_symbol_error_color="$PROMPT_SYMBOL_ERROR_COLOR"; fi
 
 # Set up symbols
 sexy_bash_prompt_synced_symbol=""
@@ -97,6 +99,13 @@ if [[ -n "$PROMPT_DIRTY_UNPULLED_SYMBOL" ]]; then sexy_bash_prompt_dirty_unpulle
 if [[ -n "$PROMPT_UNPUSHED_UNPULLED_SYMBOL" ]]; then sexy_bash_prompt_unpushed_unpulled_symbol="$PROMPT_UNPUSHED_UNPULLED_SYMBOL"; fi
 if [[ -n "$PROMPT_DIRTY_UNPUSHED_UNPULLED_SYMBOL" ]]; then sexy_bash_prompt_dirty_unpushed_unpulled_symbol="$PROMPT_DIRTY_UNPUSHED_UNPULLED_SYMBOL"; fi
 
+# Set up behavior options
+sexy_bash_prompt_show_error_once="1"
+
+# Apply behavior overrides that have been set in the environment
+if [[ -n "$PROMPT_SHOW_ERROR_ONCE" ]]; then sexy_bash_prompt_show_error_once="$PROMPT_SHOW_ERROR_ONCE"; fi
+
+# Define all our helper functions
 function sexy_bash_prompt_get_git_branch() {
   # On branches, this will return the branch name
   # On non-branches, (no branch)
@@ -257,6 +266,57 @@ sexy_bash_prompt_get_git_info () {
   fi
 }
 
+sexy_bash_prompt_get_symbol_color () {
+  # Verify we have an exit code set
+  if [[ "$sexy_bash_prompt_exit_code" == "" ]]; then
+    echo "Missing \`sexy_bash_prompt_exit_code\` for prompt symbol coloring" 1>&2
+    echo "Please verify \`PROMPT_COMMAND\` includes \`sexy_bash_prompt_command\` (enabled unless overwritten)" 1>&2
+    echo "$sexy_bash_prompt_symbol_color"
+    return
+  fi
+  exit_code="$sexy_bash_prompt_exit_code"
+
+  # If we'd like to show errors once, then inspect further
+  # DEV: This is a personal preference around seeing a red $ on any failing command consistently
+  # DEV: This also works to ignore keyboard interrupts in the prompt itself (normally exit code 130)
+  #   This will respect keyboard interrupt in running programs though (e.g. `time cat`)
+  # DEV: Further explanation of all scenarios, https://github.com/twolfson/sexy-bash-prompt/pull/89#issuecomment-685239313
+  if [[ "$sexy_bash_prompt_show_error_once" == "1" ]]; then
+    # If the last command has not changed (including its timestamp), then ignore our exit code
+    # last_command="501  echo hi"
+    if [[ "$sexy_bash_prompt_last_command" == "$sexy_bash_prompt_current_command" ]]; then
+      exit_code="0"
+    fi
+  fi
+
+  # Determine and output our symbol color
+  symbol_color="$sexy_bash_prompt_symbol_color"
+  if [[ "$exit_code" != 0 ]]; then
+    symbol_color="$sexy_bash_prompt_symbol_error_color"
+  fi
+  echo "$symbol_color"
+}
+
+# Define our hooks for storing the exit code and past commands
+sexy_bash_prompt_current_command=""
+sexy_bash_prompt_command () {
+  # Capture and expose exit code first before anything, otherwise it'll be lost
+  export sexy_bash_prompt_exit_code="$?"
+
+  # Capture last commands for `SEXY_BASH_PROMPT_SHOW_ERROR_ONCE` logic
+  # DEV: We would save these in `get_symbol_color` but its subshell variables don't persist
+  export sexy_bash_prompt_last_command="$sexy_bash_prompt_current_command"
+  export sexy_bash_prompt_current_command="$(history 1)"
+
+  # DEV: We don't set PS1 in here as it would prevent extension, see https://github.com/twolfson/sexy-bash-prompt/issues/90
+}
+# DEV: Extend `PROMPT_COMMAND` if there already is one
+if [[ "$PROMPT_COMMAND" != "" ]]; then
+  PROMPT_COMMAND="sexy_bash_prompt_command ; $PROMPT_COMMAND"
+else
+  PROMPT_COMMAND="sexy_bash_prompt_command"
+fi
+
 # Define the sexy-bash-prompt
 PS1="\[$sexy_bash_prompt_reset\]\
 \[$sexy_bash_prompt_user_color\]\u\[$sexy_bash_prompt_reset\] \
@@ -269,4 +329,4 @@ PS1="\[$sexy_bash_prompt_reset\]\
   echo -n \"\[$sexy_bash_prompt_git_status_color\]\$(sexy_bash_prompt_get_git_info)\" && \
   echo -n \"\[$sexy_bash_prompt_git_progress_color\]\$(sexy_bash_prompt_get_git_progress)\" && \
   echo -n \"\[$sexy_bash_prompt_reset\]\")\n\
-\[$sexy_bash_prompt_symbol_color\]$sexy_bash_prompt_symbol \[$sexy_bash_prompt_reset\]"
+\[\$(sexy_bash_prompt_get_symbol_color)\]$sexy_bash_prompt_symbol \[$sexy_bash_prompt_reset\]"
