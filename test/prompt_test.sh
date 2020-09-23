@@ -33,13 +33,13 @@ run_bash_prompt
   fixture_dir 'git'
 
     # has an exit code of 0
-    sexy_bash_prompt_is_on_git || echo "Line $LINENO: "'`sexy_bash_prompt_is_on_git` was `false` in git directory' 1>&2
+    sexy_bash_prompt_is_on_git || echo "Line $LINENO: "'`sexy_bash_prompt_is_on_git`; $? != 0 in git directory' 1>&2
 
   # in a non-git directory
   fixture_dir 'non-git'
 
     # has a non-zero exit code
-    ! sexy_bash_prompt_is_on_git || echo "Line $LINENO: "'`sexy_bash_prompt_is_on_git` was `true` in non-git directory' 1>&2
+    ! sexy_bash_prompt_is_on_git || echo "Line $LINENO: "'`sexy_bash_prompt_is_on_git`; $? == 0 in non-git directory' 1>&2
 
   # in a git-init'd directory
   # DEV: This is an edge case test discovered in 0.10.0
@@ -48,7 +48,7 @@ run_bash_prompt
   fixture_git_init
 
     # has an exit code of 0
-    sexy_bash_prompt_is_on_git || echo "Line $LINENO: "'`sexy_bash_prompt_is_on_git` was `false` in git-init directory' 1>&2
+    sexy_bash_prompt_is_on_git || echo "Line $LINENO: "'`sexy_bash_prompt_is_on_git`; $? != 0 in git-init directory' 1>&2
 
 # sexy_bash_prompt_get_git_branch
 
