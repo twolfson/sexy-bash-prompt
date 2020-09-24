@@ -1,4 +1,6 @@
 # sexy-bash-prompt changelog
+1.1.0 - Added exit code support with PROMPT_COMMAND hook but PS1 persistence, also improved test feedback. Fixed #82 again
+
 1.0.1 - Reverted PROMPT_COMMAND and exit code support due to PS1 extension no longer working, see #90
 
 1.0.0 - Moved to PROMPT_COMMAND and added exit code support in #88 and #89. Fixed #82
