@@ -312,7 +312,10 @@ sexy_bash_prompt_command () {
 }
 # DEV: Extend `PROMPT_COMMAND` if there already is one
 if [[ "$PROMPT_COMMAND" != "" ]]; then
-  PROMPT_COMMAND="sexy_bash_prompt_command ; $PROMPT_COMMAND"
+  # DEV: Do not duplicate `sexy_bash_prompt_command` in PROMPT_COMMAND
+  if ! grep 'sexy_bash_prompt_command' <<< "$PROMPT_COMMAND" &> /dev/null; then
+    PROMPT_COMMAND="sexy_bash_prompt_command ; $PROMPT_COMMAND"
+  fi
 else
   PROMPT_COMMAND="sexy_bash_prompt_command"
 fi
