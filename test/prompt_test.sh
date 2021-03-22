@@ -276,7 +276,7 @@ esc=$'\033'
     # test "$sexy_bash_prompt_user_color" = "$esc[1m$esc[38;5;27m" || echo "Line $LINENO: "'`sexy_bash_prompt_user_color` is not bold blue (256)' 1>&2
 
     # uses 256 color palette
-    expected_prompt='\['$esc'(B'$esc'[m\]\['$esc'[1m'$esc'[38;5;27m\]\u\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[37m\]at\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[38;5;39m\]\h\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[37m\]in\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[38;5;76m\]\w\['$esc'(B'$esc'[m\]$( sexy_bash_prompt_is_on_git &&   echo -n " \['$esc'[1m'$esc'[37m\]on\['$esc'(B'$esc'[m\] " &&   echo -n "\['$esc'[1m'$esc'[38;5;154m\]$(sexy_bash_prompt_get_git_info)" &&   echo -n "\['$esc'[1m'$esc'[91m\]$(sexy_bash_prompt_get_git_progress)" &&   echo -n "\['$esc'(B'$esc'[m\]")\n\[$(sexy_bash_prompt_get_symbol_color)\]$ \['$esc'(B'$esc'[m\]'
+    expected_prompt='\['$esc'(B'$esc'[m\]\['$esc'[1m'$esc'[38;5;27m\]\u\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[37m\]at\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[38;5;39m\]\h\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[37m\]in\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[38;5;76m\]\w\['$esc'(B'$esc'[m\]$( sexy_bash_prompt_is_on_git &&   printf " \['$esc'[1m'$esc'[37m\]on\['$esc'(B'$esc'[m\] " &&   printf "\['$esc'[1m'$esc'[38;5;154m\]$(sexy_bash_prompt_get_git_info)" &&   printf "\['$esc'[1m'$esc'[91m\]$(sexy_bash_prompt_get_git_progress)" &&   printf "\['$esc'(B'$esc'[m\]")\n\[$(sexy_bash_prompt_get_symbol_color)\]$ \['$esc'(B'$esc'[m\]'
 
     # DEV: To debug, use a diff tool. Don't stare at the code.
     # http://www.diffchecker.com/diff
@@ -289,14 +289,14 @@ esc=$'\033'
   TERM=xterm run_bash_prompt
 
     # uses 8 color palette
-    expected_prompt='\['$esc'(B'$esc'[m\]\['$esc'[1m'$esc'[34m\]\u\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[37m\]at\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[36m\]\h\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[37m\]in\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[32m\]\w\['$esc'(B'$esc'[m\]$( sexy_bash_prompt_is_on_git &&   echo -n " \['$esc'[1m'$esc'[37m\]on\['$esc'(B'$esc'[m\] " &&   echo -n "\['$esc'[1m'$esc'[33m\]$(sexy_bash_prompt_get_git_info)" &&   echo -n "\['$esc'[1m'$esc'[31m\]$(sexy_bash_prompt_get_git_progress)" &&   echo -n "\['$esc'(B'$esc'[m\]")\n\[$(sexy_bash_prompt_get_symbol_color)\]$ \['$esc'(B'$esc'[m\]'
+    expected_prompt='\['$esc'(B'$esc'[m\]\['$esc'[1m'$esc'[34m\]\u\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[37m\]at\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[36m\]\h\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[37m\]in\['$esc'(B'$esc'[m\] \['$esc'[1m'$esc'[32m\]\w\['$esc'(B'$esc'[m\]$( sexy_bash_prompt_is_on_git &&   printf " \['$esc'[1m'$esc'[37m\]on\['$esc'(B'$esc'[m\] " &&   printf "\['$esc'[1m'$esc'[33m\]$(sexy_bash_prompt_get_git_info)" &&   printf "\['$esc'[1m'$esc'[31m\]$(sexy_bash_prompt_get_git_progress)" &&   printf "\['$esc'(B'$esc'[m\]")\n\[$(sexy_bash_prompt_get_symbol_color)\]$ \['$esc'(B'$esc'[m\]'
     test "$PS1" = "$expected_prompt" || echo "Line $LINENO: "'`PS1` is not as expected (8)' 1>&2
 
   # in an ANSI terminal
   TERM="" run_bash_prompt
 
     # uses ANSI colors
-    expected_prompt='\[\033[m\]\[\033[1;34m\]\u\[\033[m\] \[\033[1;37m\]at\[\033[m\] \[\033[1;36m\]\h\[\033[m\] \[\033[1;37m\]in\[\033[m\] \[\033[1;32m\]\w\[\033[m\]$( sexy_bash_prompt_is_on_git &&   echo -n " \[\033[1;37m\]on\[\033[m\] " &&   echo -n "\[\033[1;33m\]$(sexy_bash_prompt_get_git_info)" &&   echo -n "\[\033[1;31m\]$(sexy_bash_prompt_get_git_progress)" &&   echo -n "\[\033[m\]")\n\[$(sexy_bash_prompt_get_symbol_color)\]$ \[\033[m\]'
+    expected_prompt='\[\033[m\]\[\033[1;34m\]\u\[\033[m\] \[\033[1;37m\]at\[\033[m\] \[\033[1;36m\]\h\[\033[m\] \[\033[1;37m\]in\[\033[m\] \[\033[1;32m\]\w\[\033[m\]$( sexy_bash_prompt_is_on_git &&   printf " \[\033[1;37m\]on\[\033[m\] " &&   printf "\[\033[1;33m\]$(sexy_bash_prompt_get_git_info)" &&   printf "\[\033[1;31m\]$(sexy_bash_prompt_get_git_progress)" &&   printf "\[\033[m\]")\n\[$(sexy_bash_prompt_get_symbol_color)\]$ \[\033[m\]'
     test "$PS1" = "$expected_prompt" || echo "Line $LINENO: "'`PS1` is not as expected (ANSI)' 1>&2
 
   # when overridden
@@ -307,7 +307,7 @@ esc=$'\033'
     run_bash_prompt
 
     # use the new colors
-    expected_prompt='\['$esc'(B'$esc'[m\]\[\033[1;32m\]\u\['$esc'(B'$esc'[m\] \[\033[1;33m\]at\['$esc'(B'$esc'[m\] \[\033[1;34m\]\h\['$esc'(B'$esc'[m\] \[\033[1;33m\]in\['$esc'(B'$esc'[m\] \[\033[1;35m\]\w\['$esc'(B'$esc'[m\]$( sexy_bash_prompt_is_on_git &&   echo -n " \[\033[1;33m\]on\['$esc'(B'$esc'[m\] " &&   echo -n "\[\033[1;36m\]$(sexy_bash_prompt_get_git_info)" &&   echo -n "\[\033[1;37m\]$(sexy_bash_prompt_get_git_progress)" &&   echo -n "\['$esc'(B'$esc'[m\]")\n\[$(sexy_bash_prompt_get_symbol_color)\]$ \['$esc'(B'$esc'[m\]'
+    expected_prompt='\['$esc'(B'$esc'[m\]\[\033[1;32m\]\u\['$esc'(B'$esc'[m\] \[\033[1;33m\]at\['$esc'(B'$esc'[m\] \[\033[1;34m\]\h\['$esc'(B'$esc'[m\] \[\033[1;33m\]in\['$esc'(B'$esc'[m\] \[\033[1;35m\]\w\['$esc'(B'$esc'[m\]$( sexy_bash_prompt_is_on_git &&   printf " \[\033[1;33m\]on\['$esc'(B'$esc'[m\] " &&   printf "\[\033[1;36m\]$(sexy_bash_prompt_get_git_info)" &&   printf "\[\033[1;37m\]$(sexy_bash_prompt_get_git_progress)" &&   printf "\['$esc'(B'$esc'[m\]")\n\[$(sexy_bash_prompt_get_symbol_color)\]$ \['$esc'(B'$esc'[m\]'
     test "$PS1" = "$expected_prompt" || echo "Line $LINENO: "'`PS1` is not as expected (overridden)' 1>&2
 
 # prompt symbol color
