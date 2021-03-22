@@ -43,8 +43,8 @@ else
   # If you would like to customize your colors, use
   # DEV: 30-39 lines up 0-9 from `tput`
   # for i in $(seq 0 109); do
-  #   echo -n -e "\033[1;${i}mText$(tput sgr0) "
-  #   echo "\033[1;${i}m"
+  #   printf "\033[1;${i}mText$(tput sgr0) "
+  #   printf "\033[1;${i}m"
   # done
 
   sexy_bash_prompt_reset="\033[m"
@@ -173,7 +173,7 @@ sexy_bash_prompt_branch_exists () {
 sexy_bash_prompt_parse_git_ahead () {
   # Grab the local and remote branch
   branch="$(sexy_bash_prompt_get_git_branch)"
-  remote="$(git config --get "branch.${branch}.remote" || echo -n "origin")"
+  remote="$(git config --get "branch.${branch}.remote" || printf "origin")"
   remote_branch="$remote/$branch"
 
   # $ git log origin/master..master
@@ -195,7 +195,7 @@ sexy_bash_prompt_parse_git_ahead () {
 sexy_bash_prompt_parse_git_behind () {
   # Grab the branch
   branch="$(sexy_bash_prompt_get_git_branch)"
-  remote="$(git config --get "branch.${branch}.remote" || echo -n "origin")"
+  remote="$(git config --get "branch.${branch}.remote" || printf "origin")"
   remote_branch="$remote/$branch"
 
   # $ git log master..origin/master

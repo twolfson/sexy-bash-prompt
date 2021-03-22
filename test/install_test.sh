@@ -10,7 +10,7 @@ EXPECTED_FILE="test/test-files/ps1/expected.txt"
 ACTUAL_PS1="$(bash -i -c 'echo $PS1; exit 0')"
 
 # # Save a fixture
-# echo -n "$ACTUAL_PS1" > "$EXPECTED_FILE"
+# printf "$ACTUAL_PS1" > "$EXPECTED_FILE"
 
 # Assert the ACTUAL_PS1 matches the expected PS1
 EXPECTED_PS1="$(cat $EXPECTED_FILE)"
